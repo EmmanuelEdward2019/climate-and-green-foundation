@@ -84,13 +84,16 @@ export default function FromTheFieldSection() {
           </Link>
         </div>
 
-        {/* Blog cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Blog cards — horizontal scroll carousel on mobile, 3-col grid on desktop */}
+        <div
+          className="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-4 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-8 md:overflow-x-visible md:snap-none md:pb-0 md:mx-0 md:px-0"
+          style={{ scrollbarWidth: 'none' }}
+        >
           {posts.map((post, i) => (
             <Link
               key={post.id}
               href={`/news/${post.id}`}
-              className="blog-card group block rounded-2xl overflow-hidden border border-border-color hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+              className="flex-shrink-0 w-[82vw] snap-start md:w-auto blog-card group block rounded-2xl overflow-hidden border border-border-color hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? 'translateY(0)' : 'translateY(40px)',
