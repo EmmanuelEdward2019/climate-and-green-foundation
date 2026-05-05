@@ -75,7 +75,7 @@ export default function WhoWeAreSection() {
 
           {/* Right: Image + accent */}
           <div
-            className="relative"
+            className="relative overflow-hidden sm:overflow-visible"
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? 'translateX(0)' : 'translateX(40px)',
