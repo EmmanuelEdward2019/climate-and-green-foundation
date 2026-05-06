@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import LiveEditorProvider from "@/components/editor/LiveEditorProvider"
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://climategreenworld.org'),
@@ -67,9 +68,11 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="font-garamond antialiased">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <LiveEditorProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </LiveEditorProvider>
       </body>
     </html>
   )
