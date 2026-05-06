@@ -24,12 +24,20 @@ const sidebarLinks = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(true);
   const pathname = usePathname();
 
+  React.useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50 text-gray-900 font-sans selection:bg-green-500 selection:text-white">
+    <div className="flex h-[calc(100vh-80px)] overflow-hidden bg-gray-50 text-gray-900 font-sans selection:bg-green-500 selection:text-white relative z-10">
       {/* Mobile sidebar toggle */}
-      <div className="md:hidden fixed top-4 left-4 z-50">
+      <div className="md:hidden absolute top-4 left-4 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="p-2 bg-white rounded-lg shadow-md text-gray-700 hover:text-green-600 transition-colors"
@@ -41,8 +49,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Sidebar */}
       <motion.aside
         initial={{ x: -300 }}
-        animate={{ x: isOpen || typeof window !== 'undefined' && window.innerWidth >= 768 ? 0 : -300 }}
-        className="w-64 flex-shrink-0 bg-white border-r border-gray-200 overflow-y-auto z-40 fixed md:relative h-full shadow-xl md:shadow-none"
+        animate={{ x: isOpen || isDesktop ? 0 : -300 }}
+        className="w-64 flex-shrink-0 bg-white border-r border-gray-200 overflow-y-auto z-40 absolute md:relative h-full shadow-xl md:shadow-none"
       >
         <div className="p-6">
           <div className="flex items-center gap-3 text-green-700 font-bold text-2xl tracking-tight">

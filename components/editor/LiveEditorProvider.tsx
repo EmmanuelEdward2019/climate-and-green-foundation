@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { getStorageData, setStorageData } from "@/lib/admin/storage";
 
-// This component can be placed at the root of the application (e.g. layout.tsx)
-// to enable live visual editing when ?editMode=true is present in the URL.
-export default function LiveEditorProvider({ children }: { children: React.ReactNode }) {
+// The inner component using useSearchParams
+function LiveEditorInner({ children }: { children: React.ReactNode }) {
   const searchParams = useSearchParams();
   const [isEditMode, setIsEditMode] = useState(false);
   const [themeOverrides, setThemeOverrides] = useState<any>({});
@@ -25,14 +24,45 @@ export default function LiveEditorProvider({ children }: { children: React.React
       
       // Apply CSS variables
       if (overrides.primaryColor) {
-        document.documentElement.style.setProperty('--primary', overrides.primaryColor);
+        document.documentElement.style.setProperty('--forest-green', overrides.primaryColor);
       }
       if (overrides.secondaryColor) {
-        document.documentElement.style.setProperty('--secondary', overrides.secondaryColor);
+        document.documentElement.style.setProperty('--lime-green', overrides.secondaryColor);
       }
       if (overrides.fontFamily) {
         document.documentElement.style.fontFamily = overrides.fontFamily;
       }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Apply previously saved texts on load
+    const savedTexts = getStorageData("admin_edited_texts");
+    if (savedTexts && !Array.isArray(savedTexts)) {
+      const applySavedTexts = () => {
+        Object.keys(savedTexts).forEach(key => {
+          const element = document.getElementById(key);
+          if (element) {
+            element.innerText = savedTexts[key];
+          } else {
+             // For elements that rely on tagName-className
+             const allElements = document.querySelectorAll('*');
+             for (let i = 0; i < allElements.length; i++) {
+                 const el = allElements[i] as HTMLElement;
+                 const expectedKey = `${el.tagName}-${el.className.substring(0, 10)}`;
+                 if (expectedKey === key) {
+                     el.innerText = savedTexts[key];
+                     break;
+                 }
+             }
+          }
+        });
+      };
+      
+      // Run once immediately
+      applySavedTexts();
+      // And run again after a slight delay in case of late renders
+      setTimeout(applySavedTexts, 500);
     }
   }, []);
 
@@ -102,10 +132,18 @@ export default function LiveEditorProvider({ children }: { children: React.React
       {isEditMode && (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[9999] bg-green-600 text-white px-6 py-2 rounded-full shadow-2xl font-medium text-sm flex items-center gap-2 animate-pulse">
           <span className="w-2 h-2 rounded-full bg-white"></span>
-          Live Edit Mode Active
+          Live Edit Mode Active. Click on any text to edit!
         </div>
       )}
       {children}
     </>
+  );
+}
+
+export default function LiveEditorProvider({ children }: { children: React.ReactNode }) {
+  return (
+    <Suspense fallback={<>{children}</>}>
+      <LiveEditorInner>{children}</LiveEditorInner>
+    </Suspense>
   );
 }
