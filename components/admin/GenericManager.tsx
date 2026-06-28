@@ -24,10 +24,14 @@ export default function GenericManager({ title, storageKey, fields }: GenericMan
   const [currentItem, setCurrentItem] = useState<any | null>(null);
 
   useEffect(() => {
-    setItems(getStorageData(storageKey));
+    const fetchItems = async () => {
+      const data = await getStorageData(storageKey);
+      setItems(data);
+    };
+    fetchItems();
   }, [storageKey]);
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const newItem: any = {};
@@ -46,16 +50,16 @@ export default function GenericManager({ title, storageKey, fields }: GenericMan
     }
 
     setItems(updatedItems);
-    setStorageData(storageKey, updatedItems);
+    await setStorageData(storageKey, updatedItems);
     setIsModalOpen(false);
     setCurrentItem(null);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (confirm("Are you sure you want to delete this item?")) {
       const updatedItems = items.filter(item => item.id !== id);
       setItems(updatedItems);
-      setStorageData(storageKey, updatedItems);
+      await setStorageData(storageKey, updatedItems);
     }
   };
 
