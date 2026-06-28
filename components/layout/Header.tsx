@@ -348,9 +348,12 @@ export default function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="xl:hidden p-2 rounded-lg flex-shrink-0"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            type="button"
+            className="xl:hidden p-2 rounded-lg flex-shrink-0 relative z-[80]"
+            onClick={() => setMobileOpen((open) => !open)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileOpen ? (
               <X size={24} className="text-white" />
@@ -363,8 +366,11 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="xl:hidden fixed inset-0 top-[60px] bg-white z-40 overflow-y-auto">
-          <div className="px-4 py-6 space-y-1">
+        <div
+          id="mobile-navigation"
+          className="xl:hidden fixed inset-x-0 top-[60px] bottom-0 bg-white z-[70] overflow-y-auto shadow-2xl"
+        >
+          <div className="px-4 py-5 space-y-1">
             {navItems.map((item) => (
               <div key={item.label}>
                 {item.children ? (

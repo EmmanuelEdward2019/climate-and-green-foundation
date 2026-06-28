@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { BUNKERING_IMAGES } from '@/lib/media'
 
 export default function WhoWeAreSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -84,8 +85,8 @@ export default function WhoWeAreSection() {
           >
             <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
               <img
-                src="/images/tree-planting-welcome.png"
-                alt="Tree planting in Nigeria"
+                src={BUNKERING_IMAGES[4].src}
+                alt="Environmental restoration field work"
                 className="w-full h-full object-cover"
                 loading="lazy"
               />

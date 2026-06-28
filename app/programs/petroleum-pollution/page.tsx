@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
-import { CheckCircle, AlertTriangle } from 'lucide-react'
+import EnvironmentalContentSections from '@/components/content/EnvironmentalContentSections'
+import { CheckCircle } from 'lucide-react'
+import { BUNKERING_IMAGES } from '@/lib/media'
 
 export const metadata: Metadata = {
   title: 'Petroleum Pollution & Ecological Defense',
@@ -23,10 +25,10 @@ export default function PetroleumPollutionPage() {
         tag="Program 03"
         headline="The damage no one else is talking about."
         subheadline="This is the work that sets Climate & Green World Foundation apart."
-        image="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=80"
+        image={BUNKERING_IMAGES[0].src}
       />
 
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-white border-b border-section-divider">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
@@ -53,23 +55,8 @@ export default function PetroleumPollutionPage() {
                 </p>
               </div>
 
-              {/* Why this matters box */}
-              <div className="p-6 rounded-2xl bg-forest-green/5 border-l-4 border-forest-green mb-8">
-                <div className="flex gap-3 mb-3">
-                  <AlertTriangle size={20} className="text-forest-green flex-shrink-0 mt-0.5" />
-                  <h3 className="font-garamond font-semibold text-lg text-text-primary">
-                    Why this matters.
-                  </h3>
-                </div>
-                <p className="font-garamond text-base text-text-secondary leading-relaxed">
-                  Reforestation efforts that ignore petroleum pollution and forest-burning practices
-                  are incomplete. We cannot plant our way out of a problem that is being made worse
-                  upstream. This program addresses the upstream.
-                </p>
-              </div>
-
               <h3 className="heading-sm mb-5">Key activities.</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {activities.map((activity) => (
                   <div key={activity} className="flex items-start gap-3 p-4 rounded-xl border border-border-color">
                     <CheckCircle size={16} className="text-lime-green flex-shrink-0 mt-0.5" />
@@ -113,6 +100,8 @@ export default function PetroleumPollutionPage() {
           </div>
         </div>
       </section>
+
+      <EnvironmentalContentSections variant="full" />
     </>
   )
 }
