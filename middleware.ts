@@ -5,8 +5,9 @@ export function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl
   const hasEditMode = searchParams.get('editMode') === 'true'
   const isAdminRoute = pathname.startsWith('/admin') || pathname.startsWith('/api/admin')
+  const isPublicStorageRead = pathname.startsWith('/api/admin/storage') && request.method === 'GET'
   
-  if (isAdminRoute || hasEditMode) {
+  if ((isAdminRoute && !isPublicStorageRead) || hasEditMode) {
     const adminToken = request.cookies.get('admin_token')
     
     if (!adminToken || adminToken.value !== 'authenticated') {

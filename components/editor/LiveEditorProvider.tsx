@@ -39,7 +39,7 @@ function LiveEditorInner({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    const applyTexts = async () => {
+    const applyTextsAndImages = async () => {
       // Apply previously saved texts on load
       const savedTexts = await getStorageData("admin_edited_texts");
       if (savedTexts && !Array.isArray(savedTexts)) {
@@ -70,8 +70,43 @@ function LiveEditorInner({ children }: { children: React.ReactNode }) {
         // And run again after a slight delay in case of late renders
         setTimeout(applySavedTexts, 500);
       }
+
+      // Apply previously saved images on load
+      const savedImages = await getStorageData("admin_edited_images");
+      if (savedImages && !Array.isArray(savedImages)) {
+        const applySavedImages = () => {
+          Object.keys(savedImages).forEach(key => {
+            let element = document.querySelector(`[data-editable-id="${key}"]`) as HTMLImageElement;
+            if (!element) element = document.getElementById(key) as HTMLImageElement;
+            
+            if (element) {
+              element.src = savedImages[key];
+              if (element.hasAttribute('srcset')) {
+                element.removeAttribute('srcset');
+              }
+            } else {
+               // Fallback for older saved data
+               const allElements = document.querySelectorAll('img');
+               for (let i = 0; i < allElements.length; i++) {
+                   const el = allElements[i] as HTMLImageElement;
+                   const expectedKey = `${el.tagName}-${el.className.substring(0, 10)}`;
+                   if (expectedKey === key) {
+                       el.src = savedImages[key];
+                       if (el.hasAttribute('srcset')) {
+                         el.removeAttribute('srcset');
+                       }
+                       break;
+                   }
+               }
+            }
+          });
+        };
+        
+        applySavedImages();
+        setTimeout(applySavedImages, 500);
+      }
     };
-    applyTexts();
+    applyTextsAndImages();
   }, []);
 
   useEffect(() => {
@@ -79,7 +114,7 @@ function LiveEditorInner({ children }: { children: React.ReactNode }) {
 
     const isEditable = (el: HTMLElement) => {
       if (!el) return false;
-      return el.hasAttribute('data-editable-id') || ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'A'].includes(el.tagName);
+      return el.hasAttribute('data-editable-id') || ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'A', 'IMG'].includes(el.tagName);
     };
 
     // A simple visual editor implementation that allows clicking on text elements to edit them
@@ -104,28 +139,54 @@ function LiveEditorInner({ children }: { children: React.ReactNode }) {
         e.preventDefault();
         e.stopPropagation();
         
-        target.contentEditable = "true";
-        target.focus();
+        if (target.tagName === 'IMG') {
+          // Handle Image Editing
+          const currentSrc = (target as HTMLImageElement).src;
+          // Use prompt with a slight delay to avoid blocking click event lifecycle entirely
+          setTimeout(async () => {
+            const newSrc = window.prompt("Enter new image URL (e.g., /images/new-photo.jpg):", currentSrc);
+            
+            if (newSrc && newSrc !== currentSrc) {
+              (target as HTMLImageElement).src = newSrc;
+              if (target.hasAttribute('srcset')) {
+                target.removeAttribute('srcset');
+              }
+              
+              const elementKey = target.getAttribute('data-editable-id') || target.id || `${target.tagName}-${target.className.substring(0, 10)}`;
+              const editedImages = await getStorageData("admin_edited_images") || {};
+              
+              if (Array.isArray(editedImages)) {
+                await setStorageData("admin_edited_images", { [elementKey]: newSrc });
+              } else {
+                await setStorageData("admin_edited_images", { ...editedImages, [elementKey]: newSrc });
+              }
+            }
+          }, 10);
+        } else {
+          // Handle Text Editing
+          target.contentEditable = "true";
+          target.focus();
 
-        const handleBlur = async () => {
-          target.contentEditable = "false";
-          target.style.outline = '';
+          const handleBlur = async () => {
+            target.contentEditable = "false";
+            target.style.outline = '';
+            
+            // Save to global storage using data-editable-id or fallback
+            const elementKey = target.getAttribute('data-editable-id') || target.id || `${target.tagName}-${target.className.substring(0, 10)}`;
+            const editedTexts = await getStorageData("admin_edited_texts") || {};
+            
+            if (Array.isArray(editedTexts)) {
+              // handle transition from empty array default
+              await setStorageData("admin_edited_texts", { [elementKey]: target.innerText });
+            } else {
+              await setStorageData("admin_edited_texts", { ...editedTexts, [elementKey]: target.innerText });
+            }
+            
+            target.removeEventListener('blur', handleBlur);
+          };
           
-          // Save to global storage using data-editable-id or fallback
-          const elementKey = target.getAttribute('data-editable-id') || target.id || `${target.tagName}-${target.className.substring(0, 10)}`;
-          const editedTexts = await getStorageData("admin_edited_texts") || {};
-          
-          if (Array.isArray(editedTexts)) {
-            // handle transition from empty array default
-            await setStorageData("admin_edited_texts", { [elementKey]: target.innerText });
-          } else {
-            await setStorageData("admin_edited_texts", { ...editedTexts, [elementKey]: target.innerText });
-          }
-          
-          target.removeEventListener('blur', handleBlur);
-        };
-        
-        target.addEventListener('blur', handleBlur);
+          target.addEventListener('blur', handleBlur);
+        }
       }
     };
 
