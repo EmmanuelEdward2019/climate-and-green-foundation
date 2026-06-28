@@ -17,62 +17,75 @@ function LiveEditorInner({ children }: { children: React.ReactNode }) {
   }, [searchParams]);
 
   useEffect(() => {
-    // Load theme overrides from local storage
-    const overrides = getStorageData("admin_theme_overrides");
-    if (overrides && !Array.isArray(overrides) && Object.keys(overrides).length > 0) {
-      setThemeOverrides(overrides);
-      
-      // Apply CSS variables
-      if (overrides.primaryColor) {
-        document.documentElement.style.setProperty('--forest-green', overrides.primaryColor);
+    const fetchOverrides = async () => {
+      // Load theme overrides from global storage
+      const overrides = await getStorageData("admin_theme_overrides");
+      if (overrides && !Array.isArray(overrides) && Object.keys(overrides).length > 0) {
+        setThemeOverrides(overrides);
+        
+        // Apply CSS variables
+        if (overrides.primaryColor) {
+          document.documentElement.style.setProperty('--forest-green', overrides.primaryColor);
+        }
+        if (overrides.secondaryColor) {
+          document.documentElement.style.setProperty('--lime-green', overrides.secondaryColor);
+        }
+        if (overrides.fontFamily) {
+          document.documentElement.style.fontFamily = overrides.fontFamily;
+        }
       }
-      if (overrides.secondaryColor) {
-        document.documentElement.style.setProperty('--lime-green', overrides.secondaryColor);
-      }
-      if (overrides.fontFamily) {
-        document.documentElement.style.fontFamily = overrides.fontFamily;
-      }
-    }
+    };
+    fetchOverrides();
   }, []);
 
   useEffect(() => {
-    // Apply previously saved texts on load
-    const savedTexts = getStorageData("admin_edited_texts");
-    if (savedTexts && !Array.isArray(savedTexts)) {
-      const applySavedTexts = () => {
-        Object.keys(savedTexts).forEach(key => {
-          const element = document.getElementById(key);
-          if (element) {
-            element.innerText = savedTexts[key];
-          } else {
-             // For elements that rely on tagName-className
-             const allElements = document.querySelectorAll('*');
-             for (let i = 0; i < allElements.length; i++) {
-                 const el = allElements[i] as HTMLElement;
-                 const expectedKey = `${el.tagName}-${el.className.substring(0, 10)}`;
-                 if (expectedKey === key) {
-                     el.innerText = savedTexts[key];
-                     break;
-                 }
-             }
-          }
-        });
-      };
-      
-      // Run once immediately
-      applySavedTexts();
-      // And run again after a slight delay in case of late renders
-      setTimeout(applySavedTexts, 500);
-    }
+    const applyTexts = async () => {
+      // Apply previously saved texts on load
+      const savedTexts = await getStorageData("admin_edited_texts");
+      if (savedTexts && !Array.isArray(savedTexts)) {
+        const applySavedTexts = () => {
+          Object.keys(savedTexts).forEach(key => {
+            let element = document.querySelector(`[data-editable-id="${key}"]`) as HTMLElement;
+            if (!element) element = document.getElementById(key) as HTMLElement;
+            
+            if (element) {
+              element.innerText = savedTexts[key];
+            } else {
+               // Fallback for older saved data
+               const allElements = document.querySelectorAll('*');
+               for (let i = 0; i < allElements.length; i++) {
+                   const el = allElements[i] as HTMLElement;
+                   const expectedKey = `${el.tagName}-${el.className.substring(0, 10)}`;
+                   if (expectedKey === key) {
+                       el.innerText = savedTexts[key];
+                       break;
+                   }
+               }
+            }
+          });
+        };
+        
+        // Run once immediately
+        applySavedTexts();
+        // And run again after a slight delay in case of late renders
+        setTimeout(applySavedTexts, 500);
+      }
+    };
+    applyTexts();
   }, []);
 
   useEffect(() => {
     if (!isEditMode) return;
 
+    const isEditable = (el: HTMLElement) => {
+      if (!el) return false;
+      return el.hasAttribute('data-editable-id') || ['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'A'].includes(el.tagName);
+    };
+
     // A simple visual editor implementation that allows clicking on text elements to edit them
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'A'].includes(target.tagName)) {
+      if (isEditable(target)) {
         target.style.outline = '2px dashed #16a34a';
         target.style.cursor = 'text';
       }
@@ -80,33 +93,33 @@ function LiveEditorInner({ children }: { children: React.ReactNode }) {
 
     const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'A'].includes(target.tagName)) {
+      if (isEditable(target)) {
         target.style.outline = '';
       }
     };
 
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (['P', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'SPAN', 'A'].includes(target.tagName)) {
+      if (isEditable(target)) {
         e.preventDefault();
         e.stopPropagation();
         
         target.contentEditable = "true";
         target.focus();
 
-        const handleBlur = () => {
+        const handleBlur = async () => {
           target.contentEditable = "false";
           target.style.outline = '';
           
-          // Save to local storage using a rudimentary path as key
-          // In a real app, elements should have unique IDs
-          const elementKey = target.id || `${target.tagName}-${target.className.substring(0, 10)}`;
-          const editedTexts = getStorageData("admin_edited_texts") || {};
+          // Save to global storage using data-editable-id or fallback
+          const elementKey = target.getAttribute('data-editable-id') || target.id || `${target.tagName}-${target.className.substring(0, 10)}`;
+          const editedTexts = await getStorageData("admin_edited_texts") || {};
+          
           if (Array.isArray(editedTexts)) {
             // handle transition from empty array default
-            setStorageData("admin_edited_texts", { [elementKey]: target.innerText });
+            await setStorageData("admin_edited_texts", { [elementKey]: target.innerText });
           } else {
-            setStorageData("admin_edited_texts", { ...editedTexts, [elementKey]: target.innerText });
+            await setStorageData("admin_edited_texts", { ...editedTexts, [elementKey]: target.innerText });
           }
           
           target.removeEventListener('blur', handleBlur);

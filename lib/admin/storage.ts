@@ -1,12 +1,28 @@
-export const getStorageData = (key: string) => {
-  if (typeof window === "undefined") return [];
-  const data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : [];
+export const getStorageData = async (key: string) => {
+  try {
+    const res = await fetch(`/api/admin/storage?key=${key}`);
+    if (res.ok) {
+      const data = await res.json();
+      return data || [];
+    }
+    return [];
+  } catch (error) {
+    console.error("Error fetching storage data:", error);
+    return [];
+  }
 };
 
-export const setStorageData = (key: string, data: any) => {
-  if (typeof window !== "undefined") {
-    localStorage.setItem(key, JSON.stringify(data));
+export const setStorageData = async (key: string, data: any) => {
+  try {
+    await fetch('/api/admin/storage', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ key, data }),
+    });
+  } catch (error) {
+    console.error("Error setting storage data:", error);
   }
 };
 

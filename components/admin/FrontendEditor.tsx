@@ -17,10 +17,13 @@ export default function FrontendEditor() {
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
-    const savedOverrides = getStorageData("admin_theme_overrides");
-    if (savedOverrides && !Array.isArray(savedOverrides) && Object.keys(savedOverrides).length > 0) {
-      setThemeOverrides(savedOverrides as any);
-    }
+    const fetchOverrides = async () => {
+      const savedOverrides = await getStorageData("admin_theme_overrides");
+      if (savedOverrides && !Array.isArray(savedOverrides) && Object.keys(savedOverrides).length > 0) {
+        setThemeOverrides(savedOverrides as any);
+      }
+    };
+    fetchOverrides();
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -29,13 +32,13 @@ export default function FrontendEditor() {
     setSaved(false);
   };
 
-  const handleSave = () => {
-    setStorageData("admin_theme_overrides", themeOverrides);
+  const handleSave = async () => {
+    await setStorageData("admin_theme_overrides", themeOverrides);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
 
-  const handleReset = () => {
+  const handleReset = async () => {
     if (confirm("Are you sure you want to reset to default?")) {
       const defaults = {
         primaryColor: "#16a34a",
@@ -46,7 +49,7 @@ export default function FrontendEditor() {
         logoUrl: "/AFR100 logo with border.png.webp"
       };
       setThemeOverrides(defaults);
-      setStorageData("admin_theme_overrides", defaults);
+      await setStorageData("admin_theme_overrides", defaults);
     }
   };
 
