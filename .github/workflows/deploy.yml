@@ -1,0 +1,54 @@
+name: Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy to cPanel
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🔐 Generate Environment Variables
+        run: |
+          echo "NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}" >> .env.production
+          echo "NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY=${{ secrets.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY }}" >> .env.production
+          echo "PAYSTACK_SECRET_KEY=${{ secrets.PAYSTACK_SECRET_KEY }}" >> .env.production
+          echo "PAYSTACK_CURRENCY=${{ secrets.PAYSTACK_CURRENCY }}" >> .env.production
+          # Add any other required secrets following the same pattern above
+
+      - name: 🏗️ Build Project
+        run: npm run build
+
+      - name: 🚀 Deploy to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          password: ${{ secrets.CPANEL_PASSWORD }}
+          server-dir: ${{ secrets.CPANEL_REMOTE_DIR }}
+          # To prevent uploading unnecessary files and drastically speed up deployment
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .env
+            .env.local
+            .env.development
+            README.md
+            .next/cache/**
