@@ -42,6 +42,24 @@ function findEditableElement(key: string): HTMLElement | null {
   const byId = document.getElementById(key);
   if (byId) return byId;
 
+  // Safe fallback: match by tagName-className pattern (e.g. "H1-font-garam")
+  // ONLY search safe text-level elements to avoid destroying React layout containers
+  const safeTags = ["H1", "H2", "H3", "H4", "H5", "H6", "P", "SPAN", "A"];
+  const dashIndex = key.indexOf("-");
+  if (dashIndex > 0) {
+    const tagPart = key.substring(0, dashIndex);
+    if (safeTags.includes(tagPart)) {
+      const candidates = document.querySelectorAll(tagPart.toLowerCase());
+      for (let i = 0; i < candidates.length; i++) {
+        const el = candidates[i] as HTMLElement;
+        const candidateKey = `${el.tagName}-${(el.className || "").substring(0, 10)}`;
+        if (candidateKey === key) {
+          return el;
+        }
+      }
+    }
+  }
+
   return null;
 }
 
