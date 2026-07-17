@@ -52,3 +52,25 @@ jobs:
             .env.development
             README.md
             .next/cache/**
+            .data/**
+            restart-trigger/**
+            tmp/**
+
+      # The Node.js app on cPanel (Passenger) keeps the OLD build in memory until
+      # it is restarted. Touching tmp/restart.txt is Passenger's restart signal.
+      # This runs as a separate FTP step so it always lands AFTER the full sync,
+      # guaranteeing the app reloads with the complete new build.
+      - name: 📝 Create restart trigger
+        run: |
+          mkdir -p restart-trigger/tmp
+          date > restart-trigger/tmp/restart.txt
+
+      - name: 🔄 Restart Node.js app via Passenger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USERNAME }}
+          password: ${{ secrets.CPANEL_PASSWORD }}
+          server-dir: ${{ secrets.CPANEL_REMOTE_DIR }}
+          local-dir: ./restart-trigger/
+          state-name: .ftp-restart-sync-state.json

@@ -7,6 +7,10 @@
 /.next
 /out
 
+# runtime admin data (written by the live site, never deployed)
+/.data
+/restart-trigger
+
 # env files
 .env
 .env.local
