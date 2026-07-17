@@ -6,7 +6,7 @@ import { ArrowRight, Calendar } from 'lucide-react'
 
 const posts = [
   {
-    id: 1,
+    id: 'post-1',
     title: 'Six Hundred Trees in the Ground: What Our First Planting Season Taught Us',
     excerpt:
       'We planted 600 trees across one hectare of degraded land in our foundation year. Here is what went right, what went wrong, and what we are doing differently in season two.',
@@ -16,7 +16,7 @@ const posts = [
     readTime: '5 min read',
   },
   {
-    id: 2,
+    id: 'post-2',
     title: 'What Bush Burning Does to Topsoil: A Conversation with Our Field Teams',
     excerpt:
       'The damage from a single season of bush burning can take years to reverse. Our ecologists explain what happens under the surface and why sensitization is as important as planting.',
@@ -26,7 +26,7 @@ const posts = [
     readTime: '7 min read',
   },
   {
-    id: 3,
+    id: 'post-3',
     title: 'Urban Trees in Lagos: Why City Greening is Climate Action',
     excerpt:
       'Africa\'s fastest-growing cities are losing green cover just as they need it most. We make the case for urban greening as a serious climate intervention, not just beautification.',

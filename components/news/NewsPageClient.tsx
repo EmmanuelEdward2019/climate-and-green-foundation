@@ -1,14 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Calendar, ArrowRight } from 'lucide-react'
 
 const categories = ['All', 'Field Updates', 'Voices from the Community', 'Research & Learning', "Founder's Notes", 'Press Releases']
 
-const posts = [
+// Hardcoded fallback posts (used when no admin-managed posts exist)
+const fallbackPosts = [
   {
-    id: 1,
+    id: 'post-1',
     title: 'Six Hundred Trees in the Ground: What Our First Planting Season Taught Us',
     excerpt: 'We planted 600 trees across one hectare of degraded land in our foundation year. Here is what went right, what went wrong, and what we are doing differently in season two.',
     date: 'April 2025',
@@ -17,7 +18,7 @@ const posts = [
     readTime: '5 min read',
   },
   {
-    id: 2,
+    id: 'post-2',
     title: 'What Bush Burning Does to Topsoil: A Conversation with Our Field Teams',
     excerpt: 'The damage from a single season of bush burning can take years to reverse. Our ecologists explain what happens under the surface and why sensitization is as important as planting.',
     date: 'March 2025',
@@ -26,7 +27,7 @@ const posts = [
     readTime: '7 min read',
   },
   {
-    id: 3,
+    id: 'post-3',
     title: 'Urban Trees in Lagos: Why City Greening is Climate Action',
     excerpt: "Africa's fastest-growing cities are losing green cover just as they need it most. We make the case for urban greening as a serious climate intervention.",
     date: 'February 2025',
@@ -35,7 +36,7 @@ const posts = [
     readTime: '6 min read',
   },
   {
-    id: 4,
+    id: 'post-4',
     title: "A Farmer's Perspective: Why We Stopped Burning Our Fields",
     excerpt: "One farmer from our first program community explains the conversation that changed how he manages land — and what made the difference between lecture and dialogue.",
     date: 'January 2025',
@@ -44,7 +45,7 @@ const posts = [
     readTime: '4 min read',
   },
   {
-    id: 5,
+    id: 'post-5',
     title: 'Why Climate & Green World Foundation Exists: A Note from Dr. Anosike',
     excerpt: 'I spent years watching the landscapes I loved shrink. Here is why I decided a lone voice was no longer enough.',
     date: 'December 2024',
@@ -53,7 +54,7 @@ const posts = [
     readTime: '8 min read',
   },
   {
-    id: 6,
+    id: 'post-6',
     title: 'Climate & Green World Foundation Registered with CAC Nigeria',
     excerpt: 'We are pleased to announce the formal registration of Climate & Green World Foundation with the Corporate Affairs Commission of Nigeria.',
     date: 'November 2024',
@@ -73,6 +74,28 @@ const categoryColors: Record<string, string> = {
 
 export default function NewsPageClient() {
   const [selected, setSelected] = useState('All')
+  const [posts, setPosts] = useState(fallbackPosts)
+  const [loading, setLoading] = useState(true)
+
+  // Fetch admin-managed posts from storage
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch(`/api/admin/storage?key=admin_blogs&t=${Date.now()}`, { cache: 'no-store' })
+        if (res.ok) {
+          const data = await res.json()
+          if (data && Array.isArray(data) && data.length > 0) {
+            setPosts(data)
+          }
+        }
+      } catch {
+        // Use fallback posts on error
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPosts()
+  }, [])
 
   const filtered = selected === 'All' ? posts : posts.filter((p) => p.category === selected)
   const featured = filtered[0]
@@ -98,7 +121,13 @@ export default function NewsPageClient() {
           ))}
         </div>
 
-        {filtered.length === 0 && (
+        {loading && (
+          <p className="font-garamond text-base text-text-secondary text-center py-8">
+            Loading posts...
+          </p>
+        )}
+
+        {!loading && filtered.length === 0 && (
           <p className="font-garamond text-base text-text-secondary text-center py-16">
             No posts in this category yet.
           </p>
@@ -120,7 +149,7 @@ export default function NewsPageClient() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20" />
               </div>
               <div className="p-8 lg:p-10 bg-white flex flex-col justify-center">
-                <span className={`inline-flex self-start px-3 py-1 rounded-full font-comfortaa font-semibold text-xs mb-4 ${categoryColors[featured.category]}`}>
+                <span className={`inline-flex self-start px-3 py-1 rounded-full font-comfortaa font-semibold text-xs mb-4 ${categoryColors[featured.category] || 'bg-gray-100 text-gray-600'}`}>
                   {featured.category}
                 </span>
                 <h2 className="font-garamond font-semibold text-2xl md:text-3xl text-text-primary mb-4 leading-snug group-hover:text-forest-green transition-colors duration-200">
@@ -156,7 +185,7 @@ export default function NewsPageClient() {
                     className="blog-card-img w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-full font-comfortaa font-semibold text-xs ${categoryColors[post.category]}`}>
+                  <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-full font-comfortaa font-semibold text-xs ${categoryColors[post.category] || 'bg-gray-100 text-gray-600'}`}>
                     {post.category}
                   </span>
                 </div>
