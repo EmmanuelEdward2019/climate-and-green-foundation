@@ -68,11 +68,10 @@ export default function RootLayout({
         <link rel="icon" href="/images/favicon.png" type="image/png" sizes="any" />
       </head>
       <body className="font-garamond antialiased">
-        <LiveEditorProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </LiveEditorProvider>
+        <LiveEditorProvider />
+        <Header />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   )

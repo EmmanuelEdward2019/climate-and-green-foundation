@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { getStorageData, setStorageData } from "@/lib/admin/storage";
 
 // The inner component using useSearchParams
-function LiveEditorInner({ children }: { children: React.ReactNode }) {
+function LiveEditorInner() {
   const searchParams = useSearchParams();
   const [isEditMode, setIsEditMode] = useState(false);
   const [themeOverrides, setThemeOverrides] = useState<any>({});
@@ -300,16 +300,14 @@ function LiveEditorInner({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       )}
-
-      {children}
     </>
   );
 }
 
-export default function LiveEditorProvider({ children }: { children: React.ReactNode }) {
+export default function LiveEditorProvider() {
   return (
-    <Suspense fallback={<>{children}</>}>
-      <LiveEditorInner>{children}</LiveEditorInner>
+    <Suspense fallback={null}>
+      <LiveEditorInner />
     </Suspense>
   );
 }
