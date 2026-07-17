@@ -1,6 +1,6 @@
 export const getStorageData = async (key: string) => {
   try {
-    const res = await fetch(`/api/admin/storage?key=${key}`);
+    const res = await fetch(`/api/admin/storage?key=${key}&t=${Date.now()}`, { cache: 'no-store' });
     if (res.ok) {
       const data = await res.json();
       return data || [];
