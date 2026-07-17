@@ -55,13 +55,16 @@ function LiveEditorInner({ children }: { children: React.ReactNode }) {
             if (element) {
               element.innerText = savedTexts[key];
             } else {
-               // Fallback for older saved data
-               const allElements = document.querySelectorAll('*');
+               // Fallback for older saved data - ONLY target text elements to prevent layout destruction
+               const allElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p, span, a');
                for (let i = 0; i < allElements.length; i++) {
                    const el = allElements[i] as HTMLElement;
                    const expectedKey = `${el.tagName}-${el.className.substring(0, 10)}`;
                    if (expectedKey === key) {
-                       el.innerText = savedTexts[key];
+                       // Only apply if it doesn't have complex children (to prevent React crashes)
+                       if (el.children.length === 0 || el.tagName === 'P' || el.tagName === 'H1') {
+                         el.innerText = savedTexts[key];
+                       }
                        break;
                    }
                }
