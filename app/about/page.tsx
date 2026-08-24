@@ -81,14 +81,14 @@ export default function AboutPage() {
             <div className="bg-forest-green rounded-2xl p-8 text-white">
               <span className="font-comfortaa text-xs uppercase tracking-widest text-lime-green mb-3 block">Vision</span>
               <h2 className="font-garamond font-semibold text-2xl mb-4 leading-snug">
-                A sustainable planet where nature thrives.
+                A greener, healthier and climate-resilient world where people and nature thrive together.
               </h2>
               <div className="w-12 h-0.5 bg-lime-green" />
             </div>
             <div className="bg-neutral-bg rounded-2xl p-8 border border-border-color">
               <span className="font-comfortaa text-xs uppercase tracking-widest text-forest-green mb-3 block">Mission</span>
               <h2 className="font-garamond font-semibold text-2xl text-text-primary mb-4 leading-snug">
-                Empowering communities to protect and preserve ecosystems and promote eco-friendly practices.
+                To empower communities with knowledge, partnerships and practical solutions that protect the environment, restore ecosystems and strengthen resilience to climate change.
               </h2>
               <div className="w-12 h-0.5 bg-forest-green" />
             </div>

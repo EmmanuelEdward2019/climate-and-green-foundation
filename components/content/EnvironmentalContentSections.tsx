@@ -1,19 +1,26 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
 import {
   TreePine,
   Droplets,
   Wind,
   Users,
   Leaf,
-  ArrowRight,
+  Megaphone,
   type LucideIcon,
 } from 'lucide-react'
 import { BUNKERING_IMAGES } from '@/lib/media'
 import AudioReportPlayer from '@/components/ui/AudioReportPlayer'
 import FieldVideoGrid from '@/components/ui/FieldVideoGrid'
+
+/* Environmental preservation images */
+const PRESERVATION_IMAGES = [
+  { src: '/images/environmental-preservation-1.png', alt: 'Environmental preservation', label: 'Environmental Preservation' },
+  { src: '/images/environmental-preservation-2.png', alt: 'Environmental preservation', label: 'Environmental Preservation' },
+  { src: '/images/environmental-preservation-3.png', alt: 'Environmental preservation', label: 'Environmental Preservation' },
+  { src: '/images/environmental-preservation-4.png', alt: 'Environmental preservation', label: 'Environmental Preservation' },
+]
 
 interface EnvironmentalContentSectionsProps {
   variant?: 'home' | 'full'
@@ -47,17 +54,17 @@ export default function EnvironmentalContentSections({
 
   return (
     <div ref={ref} className="environmental-content">
-      {/* Introduction */}
+      {/* WE FIGHT AGAINST heading — merged bunkering, charcoal, deforestation */}
       <section className="section-padding bg-neutral-bg pattern-dots">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div className="lg:col-span-5" style={fade(0)}>
               <span className="section-tag mb-4">
                 <span className="w-4 h-0.5 bg-lime-green" />
-                Introduction
+                What We Fight Against
               </span>
               <h2 className="heading-lg green-line mb-6">
-                Charcoal, communities, and the cost to our environment.
+                WE FIGHT AGAINST: Bunkering, Charcoal Production and Deforestation
               </h2>
               <div className="trust-badge-row mb-6">
                 <span className="trust-badge">Field Evidence</span>
@@ -93,7 +100,7 @@ export default function EnvironmentalContentSections({
         </div>
       </section>
 
-      {/* Habitat loss + first bunkering image */}
+      {/* Habitat loss + bunkering and environmental preservation images */}
       <section className="section-padding bg-white">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -118,6 +125,25 @@ export default function EnvironmentalContentSections({
                 </span>
               </div>
             </div>
+          </div>
+
+          {/* Environmental Preservation Images integrated with bunkering */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10" style={fade(160)}>
+            {PRESERVATION_IMAGES.map((image, i) => (
+              <div key={image.src} className="media-image-frame">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full aspect-[4/3] object-cover"
+                  loading="lazy"
+                />
+                <div className="media-image-caption">
+                  <span className="font-comfortaa text-xs uppercase tracking-widest text-lime-green">
+                    {image.label}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -203,7 +229,7 @@ export default function EnvironmentalContentSections({
         </div>
       </section>
 
-      {/* Implications */}
+      {/* The Environmental Consequences (renamed from IMPLICATIONS OF LOCAL BUNKERING) */}
       <section className="section-padding bg-white">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -213,7 +239,7 @@ export default function EnvironmentalContentSections({
                 Implications
               </span>
               <h2 className="heading-lg green-line">
-                IMPLICATIONS OF LOCAL BUNKERING.
+                The Environmental Consequences.
               </h2>
             </div>
             <div className="lg:col-span-8" style={fade(100)}>
@@ -247,7 +273,7 @@ export default function EnvironmentalContentSections({
         </div>
       </section>
 
-      {/* Our Response */}
+      {/* Our Response — updated heading and approach */}
       <section className="section-padding bg-neutral-bg">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -256,55 +282,54 @@ export default function EnvironmentalContentSections({
                 <span className="w-4 h-0.5 bg-lime-green" />
                 Our Response
               </span>
-              <h2 className="heading-lg green-line mb-6">Climate &amp; Green&apos;s approach</h2>
-              <p className="body-md text-text-primary mb-6">
-                One may ask how Climate &amp; Green wishes to tackle these problems:
-              </p>
+              <h2 className="heading-lg green-line mb-6">Climate and Green World is responding through</h2>
               <ol className="response-list">
                 <li>
                   <span className="response-number">1</span>
                   <span>
-                    working with the chiefs and communities in areas of sensitisation
+                    <strong>Awareness:</strong> Working with the chiefs and communities on the link between livelihood and long term survival.
                   </span>
                 </li>
                 <li>
                   <span className="response-number">2</span>
                   <span>
-                    Reclaiming the land through tree planting. That&apos;s what Climate &amp; Green
-                    stands for.
+                    <strong>Alternative Livelihood and Restoration:</strong> Promoting clean energy, sustainable farming, and leading tree planting campaigns to restore what has been lost.
+                  </span>
+                </li>
+                <li>
+                  <span className="response-number">3</span>
+                  <span>
+                    <strong>Advocacy:</strong> Pushing for enforcement and government action.
                   </span>
                 </li>
               </ol>
-              {variant === 'home' && (
-                <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                  <Link href="/programs/petroleum-pollution" className="btn-primary">
-                    Our Petroleum Defense Program
-                  </Link>
-                  <Link href="/get-involved/corporate" className="btn-outline">
-                    Partner With Us
-                  </Link>
-                </div>
-              )}
             </div>
             <div className="space-y-6" style={fade(120)}>
               <div className="solution-card">
-                <Users size={24} className="text-lime-green mb-4" />
+                <Megaphone size={24} className="text-lime-green mb-4" />
                 <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
-                  Community Sensitisation
+                  Awareness
                 </h3>
                 <p className="font-garamond text-text-secondary">
-                  Working with chiefs and communities to address the root causes of environmental
-                  harm.
+                  Working with the chiefs and communities on the link between livelihood and long term survival.
                 </p>
               </div>
               <div className="solution-card">
                 <Leaf size={24} className="text-lime-green mb-4" />
                 <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
-                  Land Reclamation
+                  Alternative Livelihood and Restoration
                 </h3>
                 <p className="font-garamond text-text-secondary">
-                  Reclaiming degraded land through tree planting — the core mission of Climate
-                  &amp; Green.
+                  Promoting clean energy, sustainable farming, and leading tree planting campaigns to restore what has been lost.
+                </p>
+              </div>
+              <div className="solution-card">
+                <Users size={24} className="text-lime-green mb-4" />
+                <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
+                  Advocacy
+                </h3>
+                <p className="font-garamond text-text-secondary">
+                  Pushing for enforcement and government action.
                 </p>
               </div>
             </div>
@@ -349,17 +374,6 @@ export default function EnvironmentalContentSections({
           <div style={fade(100)}>
             <AudioReportPlayer />
           </div>
-          {variant === 'home' && (
-            <div className="text-center mt-8" style={fade(180)}>
-              <Link
-                href="/what-we-do/research"
-                className="inline-flex items-center gap-2 font-comfortaa font-semibold text-sm text-forest-green hover:text-lime-green transition-colors group"
-              >
-                View all research &amp; publications
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          )}
         </div>
       </section>
     </div>

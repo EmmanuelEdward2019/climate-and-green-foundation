@@ -4,7 +4,7 @@ import NewsPageClient from '@/components/news/NewsPageClient'
 
 export const metadata: Metadata = {
   title: 'News & Stories',
-  description: 'Field updates, community voices, research findings, and founder notes from Climate & Green World Foundation.',
+  description: 'Activities, community voices, environmental stories and organizational news from Climate & Green World Foundation.',
 }
 
 export default function NewsPage() {
@@ -12,8 +12,8 @@ export default function NewsPage() {
     <>
       <PageHero
         tag="News & Stories"
-        headline="From the field. In our own words."
-        subheadline="Restoration is a story told slowly. We publish from our project sites — updates, essays, community voices, and the hard truths."
+        headline="News & Stories"
+        subheadline="We showcase activities, community voices, environmental stories and organizational news."
         image="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1920&q=80"
       />
       <NewsPageClient />

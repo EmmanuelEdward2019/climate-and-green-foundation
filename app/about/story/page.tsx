@@ -209,8 +209,8 @@ export default function StoryPage() {
         <div className="container-max max-w-3xl">
           <div className="space-y-10">
             {[
-              { label: 'Vision', text: 'A sustainable planet where nature thrives.' },
-              { label: 'Mission', text: 'Empowering communities to protect and preserve ecosystems and to promote eco-friendly practices.' },
+              { label: 'Vision', text: 'A greener, healthier and climate-resilient world where people and nature thrive together.' },
+              { label: 'Mission', text: 'To empower communities with knowledge, partnerships and practical solutions that protect the environment, restore ecosystems and strengthen resilience to climate change.' },
             ].map((item) => (
               <div key={item.label} className="border-l-4 border-lime-green pl-6">
                 <span className="font-comfortaa font-semibold text-xs text-lime-green uppercase tracking-widest block mb-2">

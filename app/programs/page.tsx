@@ -31,7 +31,7 @@ const programs = [
     body: "Many of Africa's fastest-growing cities are losing green cover at exactly the moment they need it most. We work with municipal partners, schools, and community associations to plant and protect urban trees and restore public green spaces.",
     stats: [],
     href: '/programs/urban-greening',
-    image: 'https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?w=800&q=80',
+    image: '/images/environmental-preservation-1.png',
     color: 'border-lime-green',
   },
   {

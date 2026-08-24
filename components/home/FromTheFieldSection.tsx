@@ -73,7 +73,7 @@ export default function FromTheFieldSection() {
               <span className="w-4 h-0.5 bg-lime-green" />
               News & Stories
             </span>
-            <h2 className="heading-lg mt-4">From the field.</h2>
+            <h2 className="heading-lg mt-4">News & Stories</h2>
           </div>
           <Link
             href="/news"

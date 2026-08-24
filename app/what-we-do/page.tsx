@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
 import { ArrowRight, Download } from 'lucide-react'
+import EnvironmentalContentSections from '@/components/content/EnvironmentalContentSections'
 
 export const metadata: Metadata = {
   title: 'What We Do',
@@ -55,8 +56,7 @@ export default function WhatWeDoPage() {
     <>
       <PageHero
         tag="What We Do"
-        headline="Tree-planting is the easy part. Everything around it is the work."
-        subheadline="Anyone can plant a tree. Making sure it is still alive in ten years — that is the work."
+        headline={`We Engage.\nWe Restore.\nWe Regrow.\nWe Monitor.\nWe Measure.`}
         image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80"
       />
 
@@ -64,12 +64,6 @@ export default function WhatWeDoPage() {
       <section className="section-padding bg-white">
         <div className="container-max max-w-3xl">
           <div className="space-y-5 body-md">
-            <p>
-              Anyone can plant a tree. Making sure that tree is still alive in ten years, that the
-              soil it sits in is healthier than it was, that the community around it benefits, and
-              that the activities killing the surrounding ecosystem are being addressed in parallel —
-              that is the work.
-            </p>
             <p>
               Climate & Green World Foundation runs four interlocking programs across Nigeria and
               the Sahel. Each one is designed to keep delivering benefit long after our direct
@@ -132,6 +126,9 @@ export default function WhatWeDoPage() {
           </div>
         </div>
       </section>
+
+      {/* Bunkering, Charcoal Production and Deforestation — moved from homepage */}
+      <EnvironmentalContentSections variant="full" />
 
       {/* Impact measurement */}
       <section id="impact" className="section-padding bg-white">
