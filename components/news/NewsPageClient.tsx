@@ -9,15 +9,6 @@ const categories = ['All', 'Field Updates', 'Voices from the Community', 'Resear
 // Hardcoded fallback posts (used when no admin-managed posts exist)
 const fallbackPosts = [
   {
-    id: 'post-env-day-2026',
-    title: 'Climate and Green World Foundation for World Environmental Day 2026',
-    excerpt: 'World Environment Day is a reminder of our shared responsibility to protect and preserve the environment for generations to come. It is an opportunity to raise awareness, inspire action, and encourage communities to make meaningful choices that support a healthier and more sustainable planet.\n\nTo mark this important day, Climate and Green World Foundation organized an environmental engagement exercise focused on tree planting and other activities aimed at promoting environmental awareness and stewardship. By coming together to plant trees, engaging in a radio public announcement advertisement and care for our surroundings, we took a simple but meaningful step toward creating a greener and more resilient future.\n\nEvery tree planted, every positive environmental action, and every person inspired to care for nature contributes to a larger movement for change. World Environment Day reminds us that protecting our planet is not the responsibility of a few but a collective commitment.\n\nTogether, we can take action today for a healthier environment tomorrow.',
-    date: 'June 2026',
-    category: 'Field Updates',
-    image: '/images/environment-week-group-1.png',
-    readTime: '3 min read',
-  },
-  {
     id: 'post-1',
     title: 'Six Hundred Trees in the Ground: What Our First Planting Season Taught Us',
     excerpt: 'We planted 600 trees across one hectare of degraded land in our foundation year. Here is what went right, what went wrong, and what we are doing differently in season two.',
@@ -47,7 +38,7 @@ const fallbackPosts = [
   {
     id: 'post-4',
     title: "A Farmer's Perspective: Why We Stopped Burning Our Fields",
-    excerpt: "One farmer from our first program community explains the conversation that changed how he manages land - and what made the difference between lecture and dialogue.",
+    excerpt: "One farmer from our first program community explains the conversation that changed how he manages land — and what made the difference between lecture and dialogue.",
     date: 'January 2025',
     category: 'Voices from the Community',
     image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80',

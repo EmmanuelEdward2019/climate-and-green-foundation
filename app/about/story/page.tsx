@@ -12,7 +12,7 @@ const timeline = [
   {
     year: 'Years Before',
     title: 'One man. One question.',
-    body: 'Dr. Ike Anosike works as a lone voice - planting what he can, speaking where he can, documenting what he sees. The forests strain. The rivers darken. The land shrinks.',
+    body: 'Dr. Ike Anosike works as a lone voice — planting what he can, speaking where he can, documenting what he sees. The forests strain. The rivers darken. The land shrinks.',
     image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=75',
     imageAlt: 'Forest landscape under pressure',
   },
@@ -73,8 +73,8 @@ export default function StoryPage() {
                 </p>
                 <p>
                   A scientist by training and a lover of nature by disposition, he watched the
-                  landscapes he had grown up loving - the forests, the riverbanks, the farmland of
-                  Nigeria and the wider Sahel - strain and shrink under the combined pressures of
+                  landscapes he had grown up loving — the forests, the riverbanks, the farmland of
+                  Nigeria and the wider Sahel — strain and shrink under the combined pressures of
                   climate change, deforestation, oil pollution, and the slow erosion of community
                   knowledge. He planted what he could. He spoke where he could. He documented what
                   he saw.
@@ -89,7 +89,7 @@ export default function StoryPage() {
                   outlast any one person. A foundation. A team. A long horizon.
                 </p>
                 <p>
-                  We started with what we had - a hectare of land, six hundred trees, ten people
+                  We started with what we had — a hectare of land, six hundred trees, ten people
                   committed to the work. We are growing season by season. The vision is sustainable:
                   a planet where nature thrives.
                 </p>
@@ -151,7 +151,7 @@ export default function StoryPage() {
         </div>
       </section>
 
-      {/* Staggered photo grid - visual break */}
+      {/* Staggered photo grid — visual break */}
       <section className="py-0 bg-white overflow-hidden">
         <div className="grid grid-cols-3 grid-rows-2 gap-1" style={{ height: '420px' }}>
           {/* Large left */}
@@ -199,7 +199,7 @@ export default function StoryPage() {
             "The vision is bigger than the numbers. The numbers are growing every season."
           </p>
           <p className="font-comfortaa font-semibold text-sm text-lime-green">
-            - Dr. Ike Anosike, Founder
+            — Dr. Ike Anosike, Founder
           </p>
         </div>
       </section>
@@ -209,8 +209,8 @@ export default function StoryPage() {
         <div className="container-max max-w-3xl">
           <div className="space-y-10">
             {[
-              { label: 'Vision', text: 'A greener, healthier and climate-resilient world where people and nature thrive together.' },
-              { label: 'Mission', text: 'To empower communities with knowledge, partnerships and practical solutions that protect the environment, restore ecosystems and strengthen resilience to climate change.' },
+              { label: 'Vision', text: 'A sustainable planet where nature thrives.' },
+              { label: 'Mission', text: 'Empowering communities to protect and preserve ecosystems and to promote eco-friendly practices.' },
             ].map((item) => (
               <div key={item.label} className="border-l-4 border-lime-green pl-6">
                 <span className="font-comfortaa font-semibold text-xs text-lime-green uppercase tracking-widest block mb-2">

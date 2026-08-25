@@ -15,21 +15,12 @@ const metrics = [
   },
   {
     icon: Layers,
-    label: 'Awareness Campaign',
+    label: 'Hectares Under Restoration',
     current: 1,
     goal: '5,000',
     description: 'Under active management and monitoring',
     image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=75',
-    imageAlt: 'Awareness campaign site',
-  },
-  {
-    icon: MapPin,
-    label: 'Communities Engaged',
-    current: null,
-    goal: '100',
-    description: 'Communities co-designing our programs',
-    image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=75',
-    imageAlt: 'Community engagement in Nigeria',
+    imageAlt: 'Landscape restoration site',
   },
   {
     icon: Users,
@@ -39,6 +30,15 @@ const metrics = [
     description: 'Ecologists, field staff & community organizers',
     image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=75',
     imageAlt: 'Community members working together',
+  },
+  {
+    icon: MapPin,
+    label: 'Communities Engaged',
+    current: null,
+    goal: '100',
+    description: 'Communities co-designing our programs',
+    image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=75',
+    imageAlt: 'Community engagement in Nigeria',
   },
 ]
 
@@ -70,7 +70,7 @@ function MetricCard({
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
-        {/* Gradient overlay - darker at bottom for content readability */}
+        {/* Gradient overlay — darker at bottom for content readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-forest-green/80 via-forest-green/30 to-transparent" />
 
         {/* Icon + Year One badge pinned to image */}

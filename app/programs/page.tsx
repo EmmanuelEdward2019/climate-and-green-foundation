@@ -31,7 +31,7 @@ const programs = [
     body: "Many of Africa's fastest-growing cities are losing green cover at exactly the moment they need it most. We work with municipal partners, schools, and community associations to plant and protect urban trees and restore public green spaces.",
     stats: [],
     href: '/programs/urban-greening',
-    image: '/images/environmental-preservation-1.png',
+    image: 'https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?w=800&q=80',
     color: 'border-lime-green',
   },
   {
@@ -39,7 +39,7 @@ const programs = [
     tag: 'Signature Program',
     title: 'Petroleum Pollution & Ecological Defense',
     tagline: 'The damage no one else is talking about.',
-    body: 'Across Nigeria, oil bunkering and illegal artisanal refining are quietly poisoning soils, rivers, and mangroves. We engage directly - educating communities, partnering with government, and restoring petroleum-affected sites.',
+    body: 'Across Nigeria, oil bunkering and illegal artisanal refining are quietly poisoning soils, rivers, and mangroves. We engage directly — educating communities, partnering with government, and restoring petroleum-affected sites.',
     stats: [],
     href: '/programs/petroleum-pollution',
     image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',

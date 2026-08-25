@@ -40,7 +40,7 @@ export default function PageHero({
           </span>
         )}
         <h1
-          className="font-garamond font-semibold text-white mb-5 leading-tight whitespace-pre-line"
+          className="font-garamond font-semibold text-white mb-5 leading-tight"
           style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)' }}
         >
           {headline}

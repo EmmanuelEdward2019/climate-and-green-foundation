@@ -7,7 +7,7 @@ import { BUNKERING_IMAGES } from '@/lib/media'
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background - field evidence image */}
+      {/* Background — field evidence image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{
@@ -22,7 +22,14 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-7 text-center lg:text-left">
-
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8 animate-fade-up opacity-0"
+            >
+              <Globe2 size={14} className="text-lime-green" />
+              <span className="font-comfortaa text-xs text-white/90 uppercase tracking-widest">
+                International Environmental Foundation
+              </span>
+            </div>
 
             <h1
               className="font-garamond font-bold text-white leading-[1.1] mb-6 animate-fade-up opacity-0 [animation-delay:100ms]"
@@ -38,7 +45,7 @@ export default function Hero() {
               style={{ fontSize: 'clamp(1.05rem, 2.2vw, 1.3rem)' }}
             >
               We restore degraded landscapes, defend ecosystems from pollution, and equip
-              communities to thrive in a changing climate, starting in Nigeria and the Sahel,
+              communities to thrive in a changing climate — starting in Nigeria and the Sahel,
               and growing outward.
             </p>
 
