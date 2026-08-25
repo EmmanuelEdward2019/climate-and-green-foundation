@@ -51,7 +51,7 @@ export default function ContactPage() {
       <PageHero
         tag="Contact"
         headline="Let's talk."
-        subheadline="Whether you are a potential partner, a journalist, a researcher, or someone who simply wants to know more — we want to hear from you."
+        subheadline="Whether you are a potential partner, a journalist, a researcher, or someone who simply wants to know more - we want to hear from you."
       />
 
       <section className="section-padding bg-white">

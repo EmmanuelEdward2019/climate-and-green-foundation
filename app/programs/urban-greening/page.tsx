@@ -40,7 +40,7 @@ export default function UrbanGreeningPage() {
                 <p>
                   Lagos is adding a million people every year. Abuja is growing. Kano is growing.
                   And as they grow, they are losing the trees, parks, and green corridors that keep
-                  cities livable — that cool streets, clean air, absorb rain, and give people somewhere
+                  cities livable - that cool streets, clean air, absorb rain, and give people somewhere
                   to breathe.
                 </p>
                 <p>
@@ -50,8 +50,8 @@ export default function UrbanGreeningPage() {
                 </p>
                 <p>
                   We work with municipal governments, schools, and community associations to plant
-                  and protect urban trees, restore public green spaces, and build the case — with
-                  mayors, council members, and ministries — that nature belongs in the city.
+                  and protect urban trees, restore public green spaces, and build the case - with
+                  mayors, council members, and ministries - that nature belongs in the city.
                 </p>
               </div>
 
@@ -81,7 +81,7 @@ export default function UrbanGreeningPage() {
                   Is your city a fit?
                 </h4>
                 <p className="font-garamond text-sm text-text-secondary mb-4">
-                  Municipal and corporate partners interested in urban greening initiatives — we want to hear from you.
+                  Municipal and corporate partners interested in urban greening initiatives - we want to hear from you.
                 </p>
                 <Link href="/contact" className="btn-primary w-full text-center flex items-center justify-center gap-2 text-sm">
                   Get in touch <ArrowRight size={14} />

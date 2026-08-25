@@ -65,7 +65,7 @@ export default function TeamPage() {
               <div className="aspect-[4/5] rounded-2xl bg-neutral-bg border border-border-color overflow-hidden">
                 <img
                   src="/images/the-founder.png"
-                  alt="Dr. Ike Anosike — Founder"
+                  alt="Dr. Ike Anosike - Founder"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -95,7 +95,7 @@ export default function TeamPage() {
                 </p>
                 <p>
                   He founded the Foundation to channel decades of personal commitment into an
-                  institution capable of carrying the work forward — beyond any one person, beyond
+                  institution capable of carrying the work forward - beyond any one person, beyond
                   any one season.
                 </p>
               </div>

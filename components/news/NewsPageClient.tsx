@@ -47,7 +47,7 @@ const fallbackPosts = [
   {
     id: 'post-4',
     title: "A Farmer's Perspective: Why We Stopped Burning Our Fields",
-    excerpt: "One farmer from our first program community explains the conversation that changed how he manages land — and what made the difference between lecture and dialogue.",
+    excerpt: "One farmer from our first program community explains the conversation that changed how he manages land - and what made the difference between lecture and dialogue.",
     date: 'January 2025',
     category: 'Voices from the Community',
     image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80',

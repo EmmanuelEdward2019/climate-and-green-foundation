@@ -47,7 +47,7 @@ export default function PetroleumPollutionPage() {
                 </p>
                 <p>
                   We engage directly with this reality. Our work in this program is not extractive
-                  enforcement — we are not police. We are educators, partners, and advocates. We
+                  enforcement - we are not police. We are educators, partners, and advocates. We
                   sit with farmers and community members. We explain what bush burning does to
                   topsoil, what charcoal kilns do to forest cover, and what illegal refining does
                   to water and lung health. We work with government and security stakeholders on

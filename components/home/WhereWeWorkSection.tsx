@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { ArrowRight, MapPin } from 'lucide-react'
 
-/* Load the Leaflet map only on the client — it uses window APIs */
+/* Load the Leaflet map only on the client - it uses window APIs */
 const MapLeaflet = dynamic(() => import('@/components/ui/MapLeaflet'), {
   ssr: false,
   loading: () => (
@@ -59,7 +59,7 @@ export default function WhereWeWorkSection() {
             <div className="flex items-center justify-center gap-6 mt-4 px-4 py-3 bg-white rounded-xl border border-border-color shadow-sm">
               <div className="flex items-center gap-2">
                 <span className="w-3.5 h-3.5 rounded-full bg-forest-green border-2 border-white shadow-sm" />
-                <span className="font-comfortaa text-xs font-semibold text-text-secondary">Nigeria — active sites</span>
+                <span className="font-comfortaa text-xs font-semibold text-text-secondary">Nigeria - active sites</span>
               </div>
               <div className="w-px h-4 bg-border-color" />
               <div className="flex items-center gap-2">

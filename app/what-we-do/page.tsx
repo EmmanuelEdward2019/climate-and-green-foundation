@@ -6,7 +6,7 @@ import EnvironmentalContentSections from '@/components/content/EnvironmentalCont
 
 export const metadata: Metadata = {
   title: 'What We Do',
-  description: "Our approach to ecological restoration — five principles that shape every project.",
+  description: "Our approach to ecological restoration - five principles that shape every project.",
 }
 
 const principles = [
@@ -31,7 +31,7 @@ const principles = [
   {
     num: '04',
     title: 'The conversation matters as much as the planting.',
-    body: 'Bush burning, charcoal production, and oil bunkering are not abstractions — they are decisions made by real people under real economic pressure. Sensitization — done with respect, not lecture — is core to our work.',
+    body: 'Bush burning, charcoal production, and oil bunkering are not abstractions - they are decisions made by real people under real economic pressure. Sensitization - done with respect, not lecture - is core to our work.',
     image: 'https://images.unsplash.com/photo-1578836537282-3171d77f8632?w=500&q=75',
   },
   {
@@ -127,7 +127,7 @@ export default function WhatWeDoPage() {
         </div>
       </section>
 
-      {/* Bunkering, Charcoal Production and Deforestation — moved from homepage */}
+      {/* Bunkering, Charcoal Production and Deforestation - moved from homepage */}
       <EnvironmentalContentSections variant="full" />
 
       {/* Impact measurement */}

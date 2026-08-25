@@ -11,11 +11,11 @@ const faqs = [
   },
   {
     q: "You're new. Why should I trust you with my partnership or donation?",
-    a: "Honest answer: because we say what we have done, not what we wish we had. Our founder has been working on these issues personally for years before formalizing the Foundation. Our Year-One numbers are modest and we publish them as such. Our growth plan is concrete, measurable, and shared openly with every partner we work with. That is the basis of trust we are offering — not a long history we don't yet have.",
+    a: "Honest answer: because we say what we have done, not what we wish we had. Our founder has been working on these issues personally for years before formalizing the Foundation. Our Year-One numbers are modest and we publish them as such. Our growth plan is concrete, measurable, and shared openly with every partner we work with. That is the basis of trust we are offering - not a long history we don't yet have.",
   },
   {
     q: 'Where does my donation go?',
-    a: 'A minimum of [XX%] of every donation goes directly to on-the-ground program delivery. The remainder covers the essentials of running a transparent organization — monitoring, reporting, and the staff who make the field work possible. We publish full financial reports annually.',
+    a: 'A minimum of [XX%] of every donation goes directly to on-the-ground program delivery. The remainder covers the essentials of running a transparent organization - monitoring, reporting, and the staff who make the field work possible. We publish full financial reports annually.',
   },
   {
     q: 'Do you issue carbon credits?',

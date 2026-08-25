@@ -70,7 +70,7 @@ const navItems: NavItem[] = [
       {
         label: 'Petroleum Pollution Defense',
         href: '/programs/petroleum-pollution',
-        desc: 'Confronting oil bunkering and illegal refining — the damage others overlook',
+        desc: 'Confronting oil bunkering and illegal refining - the damage others overlook',
       },
       {
         label: 'Climate Education',
@@ -87,7 +87,7 @@ const navItems: NavItem[] = [
     megaHeadline: 'Where we are. Honestly.',
     megaDesc: 'Year-One numbers that are real, and the curve our partners are helping us climb toward 2030.',
     children: [
-      { label: 'Year One So Far', href: '/progress#year-one', desc: 'Honest foundation-year numbers — every tree in the ground' },
+      { label: 'Year One So Far', href: '/progress#year-one', desc: 'Honest foundation-year numbers - every tree in the ground' },
       { label: 'Where We\'re Going', href: '/progress#goals', desc: 'Our 2027 and 2030 targets, published and held to' },
     ],
   },
@@ -97,11 +97,11 @@ const navItems: NavItem[] = [
     megaImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
     megaImageAlt: 'Partnership',
     megaHeadline: 'Every greener world begins with a decision.',
-    megaDesc: 'Corporate partners, government agencies, individual donors — there is a place for you here.',
+    megaDesc: 'Corporate partners, government agencies, individual donors - there is a place for you here.',
     children: [
       { label: 'Corporate Partnerships', href: '/get-involved/corporate', desc: 'Measurable climate action for your business' },
       { label: 'Government & Institutional', href: '/get-involved/government', desc: 'A credible delivery partner in complex environments' },
-      { label: 'Donate', href: '/get-involved/donate', desc: 'Fund the work directly — planting, protection, people' },
+      { label: 'Donate', href: '/get-involved/donate', desc: 'Fund the work directly - planting, protection, people' },
       { label: 'Newsletter', href: '/get-involved/newsletter', desc: 'Monthly field updates. No spam.' },
     ],
   },
@@ -170,7 +170,7 @@ export default function Header() {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
 
-          {/* Logo — transparent PNG, no text, no clipping */}
+          {/* Logo - transparent PNG, no text, no clipping */}
           <Link href="/" className="flex-shrink-0 flex items-center">
             <div className="relative h-11 w-auto">
               <Image

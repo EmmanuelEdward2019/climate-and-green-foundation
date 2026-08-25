@@ -25,7 +25,7 @@ export default function ResearchPage() {
           <div className="body-md mb-12 max-w-2xl">
             <p>
               We publish field reports, research briefs, and the occasional hard truth about what
-              is and is not working in restoration across Nigeria and the Sahel. No PR gloss — just
+              is and is not working in restoration across Nigeria and the Sahel. No PR gloss - just
               what we are learning.
             </p>
           </div>

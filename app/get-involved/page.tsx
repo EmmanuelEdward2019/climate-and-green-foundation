@@ -28,7 +28,7 @@ const pathways = [
   {
     icon: Heart,
     title: 'Donate',
-    desc: 'Every contribution funds the work directly — planting, protection, sensitization, and the team that makes it real. One-time, monthly, tribute, or corporate matching.',
+    desc: 'Every contribution funds the work directly - planting, protection, sensitization, and the team that makes it real. One-time, monthly, tribute, or corporate matching.',
     href: '/get-involved/donate',
     cta: 'Donate now',
     primary: false,
@@ -49,7 +49,7 @@ export default function GetInvolvedPage() {
       <PageHero
         tag="Get Involved"
         headline="Every greener world begins with a decision."
-        subheadline="Whether you are a corporation, a government agency, or an individual who wants to help — there is a place for you here."
+        subheadline="Whether you are a corporation, a government agency, or an individual who wants to help - there is a place for you here."
         image="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1920&q=80"
       />
 

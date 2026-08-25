@@ -39,7 +39,7 @@ export default function ClimateEducationPage() {
                 <p>
                   The landscapes we restore today will be inherited by the children sitting in
                   classrooms right now. And we intend for them to inherit not just the trees and
-                  the soil — but the knowledge, the language, and the confidence to defend them.
+                  the soil - but the knowledge, the language, and the confidence to defend them.
                 </p>
                 <p>
                   Climate literacy is not a luxury subject. In Nigeria and the Sahel, children are
@@ -50,7 +50,7 @@ export default function ClimateEducationPage() {
                 </p>
                 <p>
                   Our community sensitization work takes a parallel approach. We run campaigns
-                  on bush burning, charcoal production, and oil pollution — not as lectures, but
+                  on bush burning, charcoal production, and oil pollution - not as lectures, but
                   as conversations. We work with community leaders, elders, and women's groups
                   to make the case for change in terms that acknowledge economic reality and
                   offer real alternatives.

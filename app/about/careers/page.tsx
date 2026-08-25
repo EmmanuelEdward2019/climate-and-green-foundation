@@ -3,7 +3,7 @@ import PageHero from '@/components/ui/PageHero'
 
 export const metadata: Metadata = {
   title: 'Career and Volunteers',
-  description: 'Career and Volunteers — Climate & Green World Foundation.',
+  description: 'Career and Volunteers - Climate & Green World Foundation.',
 }
 
 export default function CareersPage() {

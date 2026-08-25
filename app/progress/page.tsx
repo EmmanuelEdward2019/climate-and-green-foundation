@@ -82,7 +82,7 @@ export default function ProgressPage() {
               Every projection is based on what we know, not what we hope."
             </p>
             <p className="font-comfortaa font-semibold text-sm text-forest-green mt-4">
-              — Dr. Ike Anosike, Founder
+              - Dr. Ike Anosike, Founder
             </p>
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function ProgressPage() {
               "This is our starting line. The plan is to multiply it."
             </p>
             <span className="font-comfortaa text-xs text-lime-green uppercase tracking-widest">
-              — Dr. Ike Anosike, Founder
+              - Dr. Ike Anosike, Founder
             </span>
           </div>
         </div>

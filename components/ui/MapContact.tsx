@@ -12,7 +12,7 @@ export default function MapContact() {
     import('leaflet').then((L) => {
       if (!mapRef.current || instanceRef.current) return
 
-      // @ts-expect-error — _getIconUrl is private
+      // @ts-expect-error - _getIconUrl is private
       delete L.Icon.Default.prototype._getIconUrl
       L.Icon.Default.mergeOptions({ iconRetinaUrl: '', iconUrl: '', shadowUrl: '' })
 

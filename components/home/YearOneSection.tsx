@@ -70,7 +70,7 @@ function MetricCard({
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
-        {/* Gradient overlay — darker at bottom for content readability */}
+        {/* Gradient overlay - darker at bottom for content readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-forest-green/80 via-forest-green/30 to-transparent" />
 
         {/* Icon + Year One badge pinned to image */}

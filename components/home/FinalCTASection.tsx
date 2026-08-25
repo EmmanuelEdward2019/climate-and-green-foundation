@@ -34,7 +34,7 @@ export default function FinalCTASection() {
         <p className="font-garamond text-white/80 text-lg max-w-2xl mx-auto mb-10 leading-relaxed">
           Whether you are a corporation looking to meet credible sustainability goals, a
           government agency seeking a delivery partner, or an individual who simply wants to
-          help — there is a place for you here.
+          help - there is a place for you here.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

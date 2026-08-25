@@ -39,7 +39,7 @@ const programs = [
     tag: 'Signature Program',
     title: 'Petroleum Pollution & Ecological Defense',
     tagline: 'The damage no one else is talking about.',
-    body: 'Across Nigeria, oil bunkering and illegal artisanal refining are quietly poisoning soils, rivers, and mangroves. We engage directly — educating communities, partnering with government, and restoring petroleum-affected sites.',
+    body: 'Across Nigeria, oil bunkering and illegal artisanal refining are quietly poisoning soils, rivers, and mangroves. We engage directly - educating communities, partnering with government, and restoring petroleum-affected sites.',
     stats: [],
     href: '/programs/petroleum-pollution',
     image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',

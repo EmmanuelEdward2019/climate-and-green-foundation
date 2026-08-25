@@ -15,7 +15,7 @@ const markers = [
   {
     lat: 14.5,
     lng: 1.5,
-    label: 'Sahel — Niger',
+    label: 'Sahel - Niger',
     sublabel: 'Landscape restoration',
     color: '#3ABE2C',
     ring: '#1C5E2C',
@@ -23,7 +23,7 @@ const markers = [
   {
     lat: 13.5,
     lng: 8.0,
-    label: 'Sahel — Nigeria North',
+    label: 'Sahel - Nigeria North',
     sublabel: 'Desertification defense',
     color: '#3ABE2C',
     ring: '#1C5E2C',
@@ -41,8 +41,8 @@ export default function MapLeaflet() {
     import('leaflet').then((L) => {
       if (!mapRef.current || instanceRef.current) return
 
-      /* Leaflet uses a bundler default icon that breaks in Next.js — fix it */
-      // @ts-expect-error — _getIconUrl is a private method
+      /* Leaflet uses a bundler default icon that breaks in Next.js - fix it */
+      // @ts-expect-error - _getIconUrl is a private method
       delete L.Icon.Default.prototype._getIconUrl
       L.Icon.Default.mergeOptions({
         iconRetinaUrl: '',
@@ -60,7 +60,7 @@ export default function MapLeaflet() {
 
       instanceRef.current = map
 
-      /* CartoDB Positron — clean greyscale, matches the brand palette */
+      /* CartoDB Positron - clean greyscale, matches the brand palette */
       L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
         {
@@ -70,7 +70,7 @@ export default function MapLeaflet() {
         }
       ).addTo(map)
 
-      /* Highlight Nigeria polygon-like fill — crude approach using a circle overlay */
+      /* Highlight Nigeria polygon-like fill - crude approach using a circle overlay */
       L.circle([9.082, 8.6753], {
         radius: 500000,
         color: '#1C5E2C',
@@ -80,7 +80,7 @@ export default function MapLeaflet() {
         opacity: 0.4,
       }).addTo(map)
 
-      /* Sahel belt — wider ellipse-like area via circles */
+      /* Sahel belt - wider ellipse-like area via circles */
       L.circle([14.0, 5.0], {
         radius: 900000,
         color: '#3ABE2C',

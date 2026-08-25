@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
 /*
-  Logo data — swap `abbr` placeholders for real <img src="..."/> once logos are supplied.
+  Logo data - swap `abbr` placeholders for real <img src="..."/> once logos are supplied.
   To add a real logo: set `logoUrl` to the image path and the img tag will render instead of text.
 */
 const partners = [
@@ -55,7 +55,7 @@ export default function PartnersSection() {
         </div>
       </div>
 
-      {/* Full-bleed carousel — sits outside container-max for edge-to-edge feel */}
+      {/* Full-bleed carousel - sits outside container-max for edge-to-edge feel */}
       <div className="relative overflow-hidden py-4">
         {/* Left fade */}
         <div className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"

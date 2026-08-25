@@ -54,7 +54,7 @@ export default function EnvironmentalContentSections({
 
   return (
     <div ref={ref} className="environmental-content">
-      {/* WE FIGHT AGAINST heading — merged bunkering, charcoal, deforestation */}
+      {/* WE FIGHT AGAINST heading - merged bunkering, charcoal, deforestation */}
       <section className="section-padding bg-neutral-bg pattern-dots">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
@@ -273,7 +273,7 @@ export default function EnvironmentalContentSections({
         </div>
       </section>
 
-      {/* Our Response — updated heading and approach */}
+      {/* Our Response - updated heading and approach */}
       <section className="section-padding bg-neutral-bg">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -351,7 +351,7 @@ export default function EnvironmentalContentSections({
               </h2>
             </div>
             <p className="font-garamond text-white/60 max-w-md">
-              Video documentation from our field work — shared with partners, donors, and
+              Video documentation from our field work - shared with partners, donors, and
               communities working toward restoration.
             </p>
           </div>

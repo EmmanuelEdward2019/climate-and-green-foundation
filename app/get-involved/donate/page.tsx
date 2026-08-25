@@ -40,7 +40,7 @@ export default function DonatePage() {
       <PageHero
         tag="Donate"
         headline="Small gift. Real ground."
-        subheadline="Every contribution funds the work directly — the planting, the protection, the sensitization, the team that makes it real."
+        subheadline="Every contribution funds the work directly - the planting, the protection, the sensitization, the team that makes it real."
         image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80"
       />
 

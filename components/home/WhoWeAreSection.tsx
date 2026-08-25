@@ -50,7 +50,7 @@ export default function WhoWeAreSection() {
                 trying to learn about a future their landscape may not support.
               </p>
               <p>
-                The Climate & Green World Foundation exists to confront that reality — practically,
+                The Climate & Green World Foundation exists to confront that reality - practically,
                 locally, and patiently. We plant trees. We restore degraded land. We make the case
                 to farmers, communities, and government partners that bush burning, charcoal
                 production, oil bunkering, and illegal artisanal refining are not survival
@@ -96,7 +96,7 @@ export default function WhoWeAreSection() {
                   "The institution is new; the conviction is not."
                 </p>
                 <p className="font-comfortaa font-semibold text-xs text-forest-green">
-                  — Dr. Ike Anosike, Founder
+                  - Dr. Ike Anosike, Founder
                 </p>
               </div>
             </div>

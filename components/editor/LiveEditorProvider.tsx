@@ -95,7 +95,7 @@ function useSavedOverrides() {
         console.warn("[LiveEditor] Failed to apply theme overrides:", e);
       }
 
-      // Saved text edits — ONLY apply to elements with explicit IDs
+      // Saved text edits - ONLY apply to elements with explicit IDs
       try {
         const savedTexts = await storageGet("admin_edited_texts");
         if (savedTexts) {
@@ -114,7 +114,7 @@ function useSavedOverrides() {
         console.warn("[LiveEditor] Failed to apply saved texts:", e);
       }
 
-      // Saved image edits — ONLY apply to elements with explicit IDs
+      // Saved image edits - ONLY apply to elements with explicit IDs
       try {
         const savedImages = await storageGet("admin_edited_images");
         if (savedImages) {

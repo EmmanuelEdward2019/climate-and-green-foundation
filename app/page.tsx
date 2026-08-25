@@ -12,7 +12,7 @@ import FinalCTASection from '@/components/home/FinalCTASection'
 export const metadata: Metadata = {
   title: 'Rooted in Africa. Growing a Greener World.',
   description:
-    'Climate & Green World Foundation restores degraded landscapes, defends ecosystems from pollution, and equips communities to thrive in a changing climate — in Nigeria and the Sahel.',
+    'Climate & Green World Foundation restores degraded landscapes, defends ecosystems from pollution, and equips communities to thrive in a changing climate - in Nigeria and the Sahel.',
 }
 
 export default function HomePage() {

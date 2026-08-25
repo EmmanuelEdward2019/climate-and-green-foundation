@@ -13,7 +13,7 @@ const deliverables = [
   'Branded or un-branded project sites',
   'Quarterly reporting with field photography, geotagged data, and outcomes against agreed indicators',
   'Site visits for leadership and employees',
-  'Content rights for your communications — with facts we can stand behind',
+  'Content rights for your communications - with facts we can stand behind',
   'Employee engagement: volunteering days, internal campaigns, matching-gift schemes',
 ]
 
@@ -43,7 +43,7 @@ export default function CorporatePage() {
                 <p>
                   Consumers, regulators, and employees are all asking the same question: what are
                   you actually doing? We work with businesses that want to answer that question
-                  with something concrete — measurable hectares restored, jobs created in real
+                  with something concrete - measurable hectares restored, jobs created in real
                   communities, sensitization sessions delivered, and reports they can stand behind.
                 </p>
                 <p>

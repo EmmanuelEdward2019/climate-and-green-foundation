@@ -46,7 +46,7 @@ export default function TreePlantingPage() {
                 </p>
                 <p>
                   Our restoration work is not simply about planting trees. It is about bringing
-                  back functional ecosystems — places where soil builds, water infiltrates, species
+                  back functional ecosystems - places where soil builds, water infiltrates, species
                   return, and communities have the green infrastructure they need to adapt to a
                   changing climate.
                 </p>
