@@ -11,8 +11,7 @@ export default function CareersPage() {
     <>
       <PageHero
         tag="Careers"
-        headline="Work that matters. Grow where you are."
-        subheadline="We are a small team and we hire carefully."
+        headline="Career and Volunteers"
         image="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80"
       />
 
@@ -20,13 +19,10 @@ export default function CareersPage() {
         <div className="container-max max-w-4xl">
           <div className="max-w-2xl mb-14">
             <p className="body-lg mb-6">
-              If you believe climate work should be African-led, measured honestly, and delivered
-              with community at the center — we want to hear from you.
+              Climate change is a global phenomenon that calls for concerted efforts. Our team for
+              now is modest, but our commitment is unwavering.
             </p>
-            <p className="body-md">
-              We hire for conviction as much as credential. Our team is small, our mission is
-              serious, and we grow from within wherever we can.
-            </p>
+            <p className="body-md">Volunteers and support staff are highly welcome.</p>
           </div>
 
           {/* No current openings */}
@@ -38,8 +34,7 @@ export default function CareersPage() {
               No current openings
             </h2>
             <p className="font-garamond text-base text-text-secondary max-w-md mx-auto mb-6">
-              We do not have any advertised positions right now, but we always welcome CVs from
-              people who share our values. We keep an open file.
+              We are not currently hiring, but we welcome CVs from people who share our values.
             </p>
             <a
               href="mailto:careers@climategreenworld.org"
@@ -57,10 +52,10 @@ export default function CareersPage() {
             <h2 className="heading-md mb-8">What we look for.</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {[
-                { title: 'Conviction', body: 'You believe this work matters. Not as a career step, but as a cause.' },
-                { title: 'Honesty', body: 'You can report what did not work without softening it.' },
-                { title: 'Community instinct', body: 'You understand that the people we serve are not an audience but a partner.' },
-                { title: 'Field comfort', body: 'You are ready to be present in the places where the work happens.' },
+                { title: 'Conviction', body: 'You believe in the impacts of climate change and the zeal to act.' },
+                { title: 'Honesty', body: 'Report events as it is without softening it.' },
+                { title: 'Community Instinct', body: 'Must understand that the people we serve are partners, not audiences.' },
+                { title: 'Field Comfort', body: 'Ready to present in place where it is happening.' },
               ].map((item) => (
                 <div key={item.title} className="p-6 rounded-xl border border-border-color hover:border-lime-green transition-colors duration-300">
                   <h3 className="font-garamond font-semibold text-lg text-text-primary mb-2">{item.title}</h3>

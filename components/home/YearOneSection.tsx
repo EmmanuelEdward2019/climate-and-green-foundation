@@ -14,8 +14,17 @@ const metrics = [
     imageAlt: 'Trees being planted in a field',
   },
   {
+    icon: MapPin,
+    label: 'Communities Engaged',
+    current: null,
+    goal: '100',
+    description: 'Communities co-designing our programs',
+    image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=75',
+    imageAlt: 'Community engagement in Nigeria',
+  },
+  {
     icon: Layers,
-    label: 'Hectares Under Restoration',
+    label: 'Awareness Campaign',
     current: 1,
     goal: '5,000',
     description: 'Under active management and monitoring',
@@ -30,15 +39,6 @@ const metrics = [
     description: 'Ecologists, field staff & community organizers',
     image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=600&q=75',
     imageAlt: 'Community members working together',
-  },
-  {
-    icon: MapPin,
-    label: 'Communities Engaged',
-    current: null,
-    goal: '100',
-    description: 'Communities co-designing our programs',
-    image: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=600&q=75',
-    imageAlt: 'Community engagement in Nigeria',
   },
 ]
 
@@ -70,7 +70,7 @@ function MetricCard({
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
-        {/* Gradient overlay — darker at bottom for content readability */}
+        {/* Gradient overlay - darker at bottom for content readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-forest-green/80 via-forest-green/30 to-transparent" />
 
         {/* Icon + Year One badge pinned to image */}
@@ -89,7 +89,7 @@ function MetricCard({
         {/* Big number overlaid at bottom of image */}
         <div className="absolute bottom-3 left-4">
           <span className="font-garamond font-bold text-4xl text-white drop-shadow-md leading-none">
-            {metric.current !== null ? metric.current.toLocaleString() : '—'}
+            {metric.current !== null ? metric.current.toLocaleString() : '-'}
           </span>
         </div>
       </div>
@@ -178,7 +178,7 @@ export default function YearOneSection() {
         {/* Caption */}
         <div className="text-center">
           <p className="font-garamond text-base text-text-secondary max-w-2xl mx-auto italic">
-            We are in our foundation year. These are the numbers we have actually delivered —
+            We are in our foundation year. These are the numbers we have actually delivered -
             and the curve our partners are helping us climb.
           </p>
         </div>

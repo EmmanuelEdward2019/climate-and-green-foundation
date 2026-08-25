@@ -14,7 +14,7 @@ const slides = [
     cta: 'Explore program',
   },
   {
-    image: 'https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?w=1600&q=85',
+    image: 'https://images.unsplash.com/photo-1496564203457-11bb12075d90?w=1600&q=85',
     tag: 'Program 02',
     title: 'Urban Greening',
     body: "Africa's cities are losing green cover at the moment they need it most. We are fixing that, tree by tree.",

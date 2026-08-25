@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
+import EnvironmentalContentSections from '@/components/content/EnvironmentalContentSections'
 import { ArrowRight, Download } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'What We Do',
-  description: "Our approach to ecological restoration — five principles that shape every project.",
+  description: "Our approach to ecological restoration - five principles that shape every project.",
 }
 
 const principles = [
@@ -30,7 +31,7 @@ const principles = [
   {
     num: '04',
     title: 'The conversation matters as much as the planting.',
-    body: 'Bush burning, charcoal production, and oil bunkering are not abstractions — they are decisions made by real people under real economic pressure. Sensitization — done with respect, not lecture — is core to our work.',
+    body: 'Bush burning, charcoal production, and oil bunkering are not abstractions - they are decisions made by real people under real economic pressure. Sensitization - done with respect, not lecture - is core to our work.',
     image: 'https://images.unsplash.com/photo-1578836537282-3171d77f8632?w=500&q=75',
   },
   {
@@ -55,8 +56,19 @@ export default function WhatWeDoPage() {
     <>
       <PageHero
         tag="What We Do"
-        headline="Tree-planting is the easy part. Everything around it is the work."
-        subheadline="Anyone can plant a tree. Making sure it is still alive in ten years — that is the work."
+        headline={
+          <>
+            We Engage.
+            <br />
+            We Restore.
+            <br />
+            We Regrow.
+            <br />
+            We Monitor.
+            <br />
+            We Measure.
+          </>
+        }
         image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80"
       />
 
@@ -67,7 +79,7 @@ export default function WhatWeDoPage() {
             <p>
               Anyone can plant a tree. Making sure that tree is still alive in ten years, that the
               soil it sits in is healthier than it was, that the community around it benefits, and
-              that the activities killing the surrounding ecosystem are being addressed in parallel —
+              that the activities killing the surrounding ecosystem are being addressed in parallel -
               that is the work.
             </p>
             <p>
@@ -84,6 +96,9 @@ export default function WhatWeDoPage() {
           </Link>
         </div>
       </section>
+
+      {/* Bunkering, charcoal production and deforestation - moved from the homepage */}
+      <EnvironmentalContentSections variant="full" />
 
       {/* Our Approach */}
       <section id="approach" className="section-padding bg-neutral-bg">

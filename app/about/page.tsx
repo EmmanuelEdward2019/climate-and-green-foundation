@@ -6,7 +6,7 @@ import { ArrowRight, Leaf, Scale, Users, Shield, Globe } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'The story of Climate & Green World Foundation — how Dr. Ike Anosike turned years of solo work into an institution.',
+    'The story of Climate & Green World Foundation - how Dr. Ike Anosike turned years of solo work into an institution.',
 }
 
 const values = [

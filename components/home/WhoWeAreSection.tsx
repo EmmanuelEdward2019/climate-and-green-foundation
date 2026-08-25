@@ -40,26 +40,28 @@ export default function WhoWeAreSection() {
               Who We Are
             </span>
             <h2 className="heading-lg mb-6 green-line">
-              A foundation born of one truth: Africa's ecosystems will not save themselves.
+              A foundation dedicated to turning climate awareness into climate action.
             </h2>
             <div className="space-y-4 body-md">
               <p>
-                Climate change is not a distant forecast for the communities we work with. It is
-                the shrinking harvest in the Sahel. It is the river in the Niger Delta that runs
-                black instead of clear. It is the heat building in classrooms, where children are
-                trying to learn about a future their landscape may not support.
+                Climate Change is no longer a distant forecast. It&apos;s the shrinking harvest in
+                the sahel, the polluted rivers in the Niger Delta, the burning heat in various
+                houses and classrooms where our children are learning about a future their
+                ecosystem may not support.
+              </p>
+              <p>Climate and Green world foundation exists to address these realities.</p>
+              <p>
+                We plant trees, We restore degraded lands and engage with communities, artisanal
+                and farmers on the negative impacts of bush burning, charcoal production, crude and
+                illegal refining of petroleum called (Oil bunkering) on our environment.
               </p>
               <p>
-                The Climate & Green World Foundation exists to confront that reality - practically,
-                locally, and patiently. We plant trees. We restore degraded land. We make the case
-                to farmers, communities, and government partners that bush burning, charcoal
-                production, oil bunkering, and illegal artisanal refining are not survival
-                strategies but slow-acting wounds.
+                Our founder spent years working as a lone voice in the wilderness on these issues,
+                before Formalizing the foundation in 2026.
               </p>
               <p>
-                We are new. Our founder spent years working as a lone voice on these issues before
-                formalizing the foundation in 2025. The vision is bigger than the numbers. The
-                numbers are growing every season.
+                Indeed, the vision is getting bigger, the numbers are growing larger and the
+                enthusiasm is so palpable.
               </p>
             </div>
             <Link

@@ -58,7 +58,7 @@ export default function GetInvolvedPage() {
           <div className="max-w-2xl mb-14">
             <p className="body-lg">
               We are a young foundation with a serious mission. The most useful partnerships at
-              this stage come from corporate sponsors and government or institutional partners —
+              this stage come from corporate sponsors and government or institutional partners -
               the kind of relationships that let us scale faster, reach more communities, and keep
               our reporting transparent.
             </p>

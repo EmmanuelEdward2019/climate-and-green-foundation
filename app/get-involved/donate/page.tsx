@@ -7,55 +7,27 @@ export const metadata: Metadata = {
   description: 'Support Climate & Green World Foundation. Every contribution funds the work directly.',
 }
 
-const giftLevels = [
-  {
-    amount: 5000,
-    label: '₦5,000',
-    impact: 'Plants and protects native saplings for three years',
-    recommended: false,
-  },
-  {
-    amount: 15000,
-    label: '₦15,000',
-    impact: 'Funds one community sensitization session',
-    recommended: false,
-  },
-  {
-    amount: 50000,
-    label: '₦50,000',
-    impact: 'Trains one young climate ambassador for a year',
-    recommended: true,
-  },
-  {
-    amount: 500000,
-    label: '₦500,000',
-    impact: 'Supports one hectare of restored land from planting to maturity',
-    recommended: false,
-  },
-]
-
 export default function DonatePage() {
   return (
     <>
       <PageHero
         tag="Donate"
-        headline="Small gift. Real ground."
-        subheadline="Every contribution funds the work directly - the planting, the protection, the sensitization, the team that makes it real."
+        headline="Why Donate?"
+        subheadline="By donating you equip us with tools and resources to plant trees,protect our environment, raise climate awareness in communities, restore degraded ecosystems, and empower communities to take action for a healthier, greener and more resilient future"
         image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80"
       />
 
       <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container-max max-w-4xl">
-          <DonationForm giftLevels={giftLevels} />
+          <DonationForm />
 
-          {/* Transparency note */}
+          {/* Ethical commitment */}
           <div className="mt-7 p-5 rounded-xl bg-forest-green/5 border border-forest-green/20">
             <p className="font-garamond text-base text-text-secondary leading-relaxed">
-              <strong className="font-semibold text-text-primary">Where your money goes.</strong>{' '}
-              A minimum of [XX%] of every donation goes directly to on-the-ground program delivery.
-              The remainder covers the essentials of running a transparent organization —
-              monitoring, reporting, and the staff who make the field work possible. We publish
-              full financial reports annually.
+              <strong className="font-semibold text-text-primary">Ethical Commitment:</strong>{' '}
+              Climate and Green world foundation is committed to transparency, integrity and
+              ethical fundraising. We adhere to ethical standards and international best practices
+              to ensure that donations are properly utilised.
             </p>
           </div>
         </div>

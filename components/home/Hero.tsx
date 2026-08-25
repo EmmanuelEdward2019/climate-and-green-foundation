@@ -1,13 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { ChevronDown, Globe2 } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { BUNKERING_IMAGES } from '@/lib/media'
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background — field evidence image */}
+      {/* Background - field evidence image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{
@@ -22,15 +22,6 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-7 text-center lg:text-left">
-            <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8 animate-fade-up opacity-0"
-            >
-              <Globe2 size={14} className="text-lime-green" />
-              <span className="font-comfortaa text-xs text-white/90 uppercase tracking-widest">
-                International Environmental Foundation
-              </span>
-            </div>
-
             <h1
               className="font-garamond font-bold text-white leading-[1.1] mb-6 animate-fade-up opacity-0 [animation-delay:100ms]"
               style={{ fontSize: 'clamp(2.25rem, 5.5vw, 4.25rem)' }}
@@ -45,18 +36,21 @@ export default function Hero() {
               style={{ fontSize: 'clamp(1.05rem, 2.2vw, 1.3rem)' }}
             >
               We restore degraded landscapes, defend ecosystems from pollution, and equip
-              communities to thrive in a changing climate — starting in Nigeria and the Sahel,
+              communities to thrive in a changing climate - starting in Nigeria and the Sahel,
               and growing outward.
             </p>
 
             <div
               className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 animate-fade-up opacity-0 [animation-delay:300ms]"
             >
-              <Link href="/get-involved/corporate" className="btn-primary text-sm px-8 py-4 w-full sm:w-auto">
-                Partner With Us
-              </Link>
               <Link href="/get-involved/donate" className="btn-secondary text-sm px-8 py-4 w-full sm:w-auto">
                 Donate
+              </Link>
+              <Link href="/about" className="btn-primary text-sm px-8 py-4 w-full sm:w-auto">
+                Who We Are
+              </Link>
+              <Link href="/what-we-do" className="btn-primary text-sm px-8 py-4 w-full sm:w-auto">
+                What We Do
               </Link>
             </div>
           </div>

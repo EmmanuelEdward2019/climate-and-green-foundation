@@ -1,6 +1,6 @@
 interface PageHeroProps {
   tag?: string
-  headline: string
+  headline?: React.ReactNode
   subheadline?: string
   image?: string
   dark?: boolean
@@ -39,12 +39,14 @@ export default function PageHero({
             {tag}
           </span>
         )}
-        <h1
-          className="font-garamond font-semibold text-white mb-5 leading-tight"
-          style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)' }}
-        >
-          {headline}
-        </h1>
+        {headline && (
+          <h1
+            className="font-garamond font-semibold text-white mb-5 leading-tight"
+            style={{ fontSize: 'clamp(2rem, 5vw, 3.75rem)' }}
+          >
+            {headline}
+          </h1>
+        )}
         {subheadline && (
           <p
             className="font-garamond text-white/80 max-w-2xl mx-auto leading-relaxed"

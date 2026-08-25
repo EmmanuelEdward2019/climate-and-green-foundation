@@ -24,7 +24,7 @@ export default function UrbanGreeningPage() {
         tag="Program 02"
         headline="A cooler, greener city is built tree by tree."
         subheadline="Many of Africa's fastest-growing cities are losing green cover at exactly the moment they need it most."
-        image="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?w=1920&q=80"
+        image="https://images.unsplash.com/photo-1496564203457-11bb12075d90?w=1920&q=80"
       />
 
       <section className="section-padding bg-white">

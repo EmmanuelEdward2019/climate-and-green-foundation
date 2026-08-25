@@ -111,7 +111,7 @@ const navItems: NavItem[] = [
 
 const programImages: Record<string, string> = {
   'Tree Planting & Restoration': 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&q=70',
-  'Urban Greening': 'https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?w=400&q=70',
+  'Urban Greening': 'https://images.unsplash.com/photo-1496564203457-11bb12075d90?w=400&q=70',
   'Petroleum Pollution Defense': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=70',
   'Climate Education': 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=400&q=70',
 }

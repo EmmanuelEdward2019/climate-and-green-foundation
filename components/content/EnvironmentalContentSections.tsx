@@ -2,18 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import {
-  TreePine,
-  Droplets,
-  Wind,
-  Users,
-  Leaf,
-  ArrowRight,
-  type LucideIcon,
-} from 'lucide-react'
-import { BUNKERING_IMAGES } from '@/lib/media'
-import AudioReportPlayer from '@/components/ui/AudioReportPlayer'
-import FieldVideoGrid from '@/components/ui/FieldVideoGrid'
+import { Megaphone, Sprout, Gavel } from 'lucide-react'
+import { BUNKERING_IMAGES, FIREWOOD_CHARCOAL_IMAGES } from '@/lib/media'
 
 interface EnvironmentalContentSectionsProps {
   variant?: 'home' | 'full'
@@ -47,90 +37,14 @@ export default function EnvironmentalContentSections({
 
   return (
     <div ref={ref} className="environmental-content">
-      {/* Introduction */}
-      <section className="section-padding bg-neutral-bg pattern-dots">
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            <div className="lg:col-span-5" style={fade(0)}>
-              <span className="section-tag mb-4">
-                <span className="w-4 h-0.5 bg-lime-green" />
-                Introduction
-              </span>
-              <h2 className="heading-lg green-line mb-6">
-                Charcoal, communities, and the cost to our environment.
-              </h2>
-              <div className="trust-badge-row mb-6">
-                <span className="trust-badge">Field Evidence</span>
-                <span className="trust-badge">Nigeria & Niger Delta</span>
-                <span className="trust-badge">Restoration Focus</span>
-              </div>
-            </div>
-            <div className="lg:col-span-7 space-y-5" style={fade(100)}>
-              <p className="body-md text-text-primary">
-                For many rural communities, charcoal is one of the few cash incomes available. It
-                provides cheap fuel for most low income families in cities and villages so, demands
-                stays high.
-              </p>
-              <p className="body-md text-text-primary">
-                To that extent, the environmental effects are huge.
-              </p>
-              <div className="impact-cards-grid">
-                <ImpactCard
-                  icon={TreePine}
-                  text="1) Deforestation. Most charcoal comes from cutting down trees faster than they re-grow, this no doubt is a major driver of forest loss."
-                />
-                <ImpactCard
-                  icon={Droplets}
-                  text="(2) Soil Degradation; Cutting down trees leaves the soil exposed, as it erodes soil nuetranta faster, resulting to poor harvest."
-                />
-                <ImpactCard
-                  icon={Wind}
-                  text="(3) Air Pollution. Burning trees into charcoal releases lots of smoke, CO2 and methane, a major source of green house gases and air pollution."
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Habitat loss + first bunkering image */}
-      <section className="section-padding bg-white">
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-5" style={fade(0)}>
-              <p className="body-md text-text-primary">
-                Trees cut and burnt not only constitutes desertification but loss of habitats for
-                animals and plants. Again, there&apos;s the problem of Air Pollution. The{' '}
-                smoke from charcoal kilns has carbon monoxide particulates, and has other inherent
-                toxin.
-              </p>
-            </div>
-            <div className="media-image-frame" style={fade(120)}>
-              <img
-                src={BUNKERING_IMAGES[0].src}
-                alt={BUNKERING_IMAGES[0].alt}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="media-image-caption">
-                <span className="font-comfortaa text-xs uppercase tracking-widest text-lime-green">
-                  {BUNKERING_IMAGES[0].label}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Bunkering */}
+      {/* We fight against: bunkering, charcoal production and deforestation */}
       <section className="section-padding bg-gradient-green text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pattern-grid" aria-hidden="true" />
         <div className="container-max relative z-10">
           <div className="max-w-3xl mb-12" style={fade(0)}>
-            <span className="inline-flex items-center gap-2 font-comfortaa font-semibold text-xs uppercase tracking-widest text-lime-green mb-4">
-              <span className="w-4 h-0.5 bg-lime-green" />
-              BUNKERING:
-            </span>
+            <h2 className="font-garamond font-bold text-white leading-tight heading-lg mb-6">
+              WE FIGHT AGAINST: Bunkering, Charcoal production and Deforestation
+            </h2>
             <div className="space-y-5 font-garamond text-lg md:text-xl text-white/90 leading-relaxed">
               <p>
                 There&apos;s Marine Bunkering, which is stealing oil by ships. This is being dealt
@@ -164,7 +78,7 @@ export default function EnvironmentalContentSections({
             ))}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             <div className="lg:col-span-2 space-y-5 font-garamond text-base md:text-lg text-white/85 leading-relaxed" style={fade(100)}>
               <p>
                 This is widespread in the Niger Delta and oil producing states due to poverty,
@@ -200,10 +114,29 @@ export default function EnvironmentalContentSections({
               ))}
             </div>
           </div>
+
+          {/* Firewood and charcoal, alongside the bunkering evidence */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" style={fade(220)}>
+            {[BUNKERING_IMAGES[0], ...FIREWOOD_CHARCOAL_IMAGES].map((image) => (
+              <div key={image.src} className="media-image-frame dark">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full aspect-[4/3] object-cover"
+                  loading="lazy"
+                />
+                <div className="media-image-caption">
+                  <span className="font-comfortaa text-xs uppercase tracking-widest text-lime-green">
+                    {image.label}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Implications */}
+      {/* The Environmental Consequences */}
       <section className="section-padding bg-white">
         <div className="container-max">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -213,7 +146,7 @@ export default function EnvironmentalContentSections({
                 Implications
               </span>
               <h2 className="heading-lg green-line">
-                IMPLICATIONS OF LOCAL BUNKERING.
+                THE ENVIRONMENTAL CONSEQUENCES.
               </h2>
             </div>
             <div className="lg:col-span-8" style={fade(100)}>
@@ -256,25 +189,9 @@ export default function EnvironmentalContentSections({
                 <span className="w-4 h-0.5 bg-lime-green" />
                 Our Response
               </span>
-              <h2 className="heading-lg green-line mb-6">Climate &amp; Green&apos;s approach</h2>
-              <p className="body-md text-text-primary mb-6">
-                One may ask how Climate &amp; Green wishes to tackle these problems:
-              </p>
-              <ol className="response-list">
-                <li>
-                  <span className="response-number">1</span>
-                  <span>
-                    working with the chiefs and communities in areas of sensitisation
-                  </span>
-                </li>
-                <li>
-                  <span className="response-number">2</span>
-                  <span>
-                    Reclaiming the land through tree planting. That&apos;s what Climate &amp; Green
-                    stands for.
-                  </span>
-                </li>
-              </ol>
+              <h2 className="heading-lg green-line mb-6">
+                Climate and Green World is responding through
+              </h2>
               {variant === 'home' && (
                 <div className="mt-10 flex flex-col sm:flex-row gap-4">
                   <Link href="/programs/petroleum-pollution" className="btn-primary">
@@ -288,99 +205,38 @@ export default function EnvironmentalContentSections({
             </div>
             <div className="space-y-6" style={fade(120)}>
               <div className="solution-card">
-                <Users size={24} className="text-lime-green mb-4" />
+                <Megaphone size={24} className="text-lime-green mb-4" />
                 <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
-                  Community Sensitisation
+                  Awareness
                 </h3>
                 <p className="font-garamond text-text-secondary">
-                  Working with chiefs and communities to address the root causes of environmental
-                  harm.
+                  Working with the chiefs and communities on the link between livelihood and long
+                  term survival.
                 </p>
               </div>
               <div className="solution-card">
-                <Leaf size={24} className="text-lime-green mb-4" />
+                <Sprout size={24} className="text-lime-green mb-4" />
                 <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
-                  Land Reclamation
+                  Alternative Livelihood and Restoration
                 </h3>
                 <p className="font-garamond text-text-secondary">
-                  Reclaiming degraded land through tree planting — the core mission of Climate
-                  &amp; Green.
+                  Promoting clean energy, sustainable farming, and leading tree planting campaigns
+                  to restore what has been lost.
+                </p>
+              </div>
+              <div className="solution-card">
+                <Gavel size={24} className="text-lime-green mb-4" />
+                <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
+                  Advocacy
+                </h3>
+                <p className="font-garamond text-text-secondary">
+                  Pushing for enforcement and government action.
                 </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Field Videos */}
-      <section className="section-padding bg-[#0a2414]">
-        <div className="container-max">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10" style={fade(0)}>
-            <div>
-              <span className="inline-flex items-center gap-2 font-comfortaa font-semibold text-xs uppercase tracking-widest text-lime-green mb-3">
-                <span className="w-4 h-0.5 bg-lime-green" />
-                Field Documentation
-              </span>
-              <h2 className="font-garamond font-bold text-white leading-tight heading-lg">
-                On-the-ground evidence from affected communities.
-              </h2>
-            </div>
-            <p className="font-garamond text-white/60 max-w-md">
-              Video documentation from our field work — shared with partners, donors, and
-              communities working toward restoration.
-            </p>
-          </div>
-          <div style={fade(100)}>
-            <FieldVideoGrid />
-          </div>
-        </div>
-      </section>
-
-      {/* Audio Report */}
-      <section className="section-padding bg-white border-t border-section-divider">
-        <div className="container-max max-w-4xl">
-          <div className="text-center mb-10" style={fade(0)}>
-            <span className="section-tag mb-4 justify-center">
-              <span className="w-4 h-0.5 bg-lime-green" />
-              Listen
-            </span>
-            <h2 className="heading-md">Climate &amp; Green World Report</h2>
-          </div>
-          <div style={fade(100)}>
-            <AudioReportPlayer />
-          </div>
-          {variant === 'home' && (
-            <div className="text-center mt-8" style={fade(180)}>
-              <Link
-                href="/what-we-do/research"
-                className="inline-flex items-center gap-2 font-comfortaa font-semibold text-sm text-forest-green hover:text-lime-green transition-colors group"
-              >
-                View all research &amp; publications
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
-    </div>
-  )
-}
-
-function ImpactCard({
-  icon: Icon,
-  text,
-}: {
-  icon: LucideIcon
-  text: string
-}) {
-  return (
-    <div className="impact-card">
-      <div className="flex items-start gap-4">
-        <div className="impact-card-icon">
-          <Icon size={22} className="text-forest-green" />
-        </div>
-        <p className="font-garamond text-lg text-text-primary leading-relaxed">{text}</p>
-      </div>
     </div>
   )
 }

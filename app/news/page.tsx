@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import PageHero from '@/components/ui/PageHero'
 import NewsPageClient from '@/components/news/NewsPageClient'
+import WorldEnvironmentDaySection from '@/components/news/WorldEnvironmentDaySection'
 
 export const metadata: Metadata = {
   title: 'News & Stories',
@@ -12,10 +13,10 @@ export default function NewsPage() {
     <>
       <PageHero
         tag="News & Stories"
-        headline="From the field. In our own words."
-        subheadline="Restoration is a story told slowly. We publish from our project sites — updates, essays, community voices, and the hard truths."
+        subheadline="We showcase activities, community voices, environmental stories and organizational news. Under one headline."
         image="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1920&q=80"
       />
+      <WorldEnvironmentDaySection />
       <NewsPageClient />
     </>
   )

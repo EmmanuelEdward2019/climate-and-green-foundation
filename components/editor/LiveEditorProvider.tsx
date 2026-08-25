@@ -32,35 +32,49 @@ const storageSet = async (key: string, data: unknown): Promise<boolean> => {
   }
 };
 
+const SAFE_TAGS = ["H1", "H2", "H3", "H4", "H5", "H6", "P", "SPAN", "A", "IMG"];
+
+// ── Build a key that is unique to one element on one page ──
+// Elements without an explicit id are addressed by "<pathname>|<TAG>|<index>" so an
+// edit saved on one page can never be re-applied to a similar element on another page.
+function buildEditableKey(el: HTMLElement): string {
+  const explicit = el.getAttribute("data-editable-id") || el.id;
+  if (explicit) return explicit;
+
+  const tag = el.tagName;
+  const siblings = document.getElementsByTagName(tag);
+  let index = -1;
+  for (let i = 0; i < siblings.length; i++) {
+    if (siblings[i] === el) {
+      index = i;
+      break;
+    }
+  }
+
+  return `${window.location.pathname}|${tag}|${index}`;
+}
+
 // ── Safely find an element by editable key ──
 function findEditableElement(key: string): HTMLElement | null {
+  // Positional key: only valid on the page it was saved from
+  if (key.includes("|")) {
+    const [pathname, tag, rawIndex] = key.split("|");
+    if (pathname !== window.location.pathname) return null;
+    if (!SAFE_TAGS.includes(tag)) return null;
+
+    const index = Number(rawIndex);
+    if (!Number.isInteger(index) || index < 0) return null;
+
+    const candidates = document.getElementsByTagName(tag);
+    return (candidates[index] as HTMLElement) || null;
+  }
+
   // Try data-editable-id first
   const byAttr = document.querySelector(`[data-editable-id="${CSS.escape(key)}"]`) as HTMLElement | null;
   if (byAttr) return byAttr;
 
   // Try by id
-  const byId = document.getElementById(key);
-  if (byId) return byId;
-
-  // Safe fallback: match by tagName-className pattern (e.g. "H1-font-garam")
-  // ONLY search safe text-level elements to avoid destroying React layout containers
-  const safeTags = ["H1", "H2", "H3", "H4", "H5", "H6", "P", "SPAN", "A"];
-  const dashIndex = key.indexOf("-");
-  if (dashIndex > 0) {
-    const tagPart = key.substring(0, dashIndex);
-    if (safeTags.includes(tagPart)) {
-      const candidates = document.querySelectorAll(tagPart.toLowerCase());
-      for (let i = 0; i < candidates.length; i++) {
-        const el = candidates[i] as HTMLElement;
-        const candidateKey = `${el.tagName}-${(el.className || "").substring(0, 10)}`;
-        if (candidateKey === key) {
-          return el;
-        }
-      }
-    }
-  }
-
-  return null;
+  return document.getElementById(key);
 }
 
 // ── Apply saved overrides AFTER hydration is complete ──
@@ -207,10 +221,7 @@ function LiveEditorInner() {
         target.contentEditable = "false";
         target.style.outline = "";
 
-        const elementKey =
-          target.getAttribute("data-editable-id") ||
-          target.id ||
-          `${target.tagName}-${(target.className || "").substring(0, 10)}`;
+        const elementKey = buildEditableKey(target);
 
         try {
           const editedTexts = (await storageGet("admin_edited_texts")) || {};
@@ -248,10 +259,7 @@ function LiveEditorInner() {
       target.src = newSrc;
       target.removeAttribute("srcset");
 
-      const elementKey =
-        target.getAttribute("data-editable-id") ||
-        target.id ||
-        `${target.tagName}-${(target.className || "").substring(0, 10)}`;
+      const elementKey = buildEditableKey(target);
 
       try {
         const editedImages = (await storageGet("admin_edited_images")) || {};

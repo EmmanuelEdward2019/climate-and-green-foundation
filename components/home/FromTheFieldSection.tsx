@@ -84,7 +84,7 @@ export default function FromTheFieldSection() {
           </Link>
         </div>
 
-        {/* Blog cards — horizontal scroll carousel on mobile, 3-col grid on desktop */}
+        {/* Blog cards - horizontal scroll carousel on mobile, 3-col grid on desktop */}
         <div
           className="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-4 -mx-4 px-4 md:grid md:grid-cols-3 md:gap-8 md:overflow-x-visible md:snap-none md:pb-0 md:mx-0 md:px-0"
           style={{ scrollbarWidth: 'none' }}
