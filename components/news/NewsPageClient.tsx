@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Calendar, ArrowRight } from 'lucide-react'
 import { POSTS, POST_CATEGORY_COLORS } from '@/lib/posts'
+import { focus } from '@/lib/imageFocus'
 
 const categories = ['All', 'Field Updates', 'Voices from the Community', 'Research & Learning', "Founder's Notes", 'Press Releases']
 
@@ -80,6 +81,7 @@ export default function NewsPageClient() {
                   src={featured.image}
                   alt={featured.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ objectPosition: focus(featured.image) }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20" />
               </div>
@@ -120,6 +122,7 @@ export default function NewsPageClient() {
                     src={post.image}
                     alt={post.title}
                     className="blog-card-img w-full h-full object-cover"
+                    style={{ objectPosition: focus(post.image) }}
                     loading="lazy"
                   />
                   <span className={`absolute top-3 left-3 px-2.5 py-1 rounded-full font-comfortaa font-semibold text-xs ${POST_CATEGORY_COLORS[post.category] || 'bg-gray-100 text-gray-600'}`}>

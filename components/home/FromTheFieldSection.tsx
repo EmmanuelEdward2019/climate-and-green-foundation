@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Calendar } from 'lucide-react'
 import { POSTS, POST_CATEGORY_COLORS, WORLD_ENVIRONMENT_DAY_ID } from '@/lib/posts'
+import { focus } from '@/lib/imageFocus'
 
 /* Three stories on the homepage: the Environment Day story plus the two most recent */
 const homepageIds = [WORLD_ENVIRONMENT_DAY_ID, 'post-1', 'post-3']
@@ -72,6 +73,7 @@ export default function FromTheFieldSection() {
                   src={post.image}
                   alt={post.title}
                   className="blog-card-img w-full h-full object-cover"
+                  style={{ objectPosition: focus(post.image) }}
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Sprout, Users, Thermometer } from 'lucide-react'
+import { focus } from '@/lib/imageFocus'
 
 const pillars = [
   {
@@ -94,6 +95,7 @@ export default function PillarsSection() {
                     src={pillar.image}
                     alt={pillar.tag}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    style={{ objectPosition: focus(pillar.image) }}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { TreePine, Layers, Users, MapPin } from 'lucide-react'
+import { focus } from '@/lib/imageFocus'
 
 const metrics = [
   {
@@ -64,6 +65,7 @@ function MetricCard({
           src={metric.image}
           alt={metric.imageAlt}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          style={{ objectPosition: focus(metric.image) }}
           loading="lazy"
         />
         {/* Gradient overlay - darker at bottom for content readability */}

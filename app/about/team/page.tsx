@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import PageHero from '@/components/ui/PageHero'
+import { focus } from '@/lib/imageFocus'
 
 export const metadata: Metadata = {
   title: 'Founder & Team',
@@ -80,6 +81,7 @@ export default function TeamPage() {
                   src="/images/the-founder.png"
                   alt="Dr. Ike Anosike, Founder of Climate & Green World Foundation"
                   className="w-full h-full object-cover"
+                  style={{ objectPosition: focus('/images/the-founder.png') }}
                 />
               </div>
               <div className="absolute -bottom-4 -right-4 bg-lime-green text-white px-5 py-3 rounded-xl">
@@ -222,7 +224,8 @@ export default function TeamPage() {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover object-top"
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: focus(member.image) }}
                     loading="lazy"
                   />
                 </div>

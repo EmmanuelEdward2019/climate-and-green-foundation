@@ -7,6 +7,7 @@ import AudioReportPlayer from '@/components/ui/AudioReportPlayer'
 import FieldVideoGrid from '@/components/ui/FieldVideoGrid'
 import { ENVIRONMENT_WEEK_IMAGES } from '@/lib/media'
 import { POSTS_BY_ID, type Post as BlogPost } from '@/lib/posts'
+import { focus } from '@/lib/imageFocus'
 
 export default function ArticlePage({ params }: { params: { id: string } }) {
   const [post, setPost] = useState<BlogPost | null>(null)
@@ -72,6 +73,7 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
           src={post.image}
           alt={post.title}
           className="w-full h-full object-cover"
+          style={{ objectPosition: focus(post.image) }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
         <div className="absolute bottom-8 left-0 right-0 px-4 sm:px-6 lg:px-8">
@@ -131,6 +133,7 @@ export default function ArticlePage({ params }: { params: { id: string } }) {
                         src={image.src}
                         alt={image.alt}
                         className="w-full aspect-[4/3] object-cover"
+                        style={{ objectPosition: focus(image.src) }}
                         loading="lazy"
                       />
                       <div className="media-image-caption">

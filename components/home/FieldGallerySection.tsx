@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from 'react'
 import { BUNKERING_IMAGES, FIELD_VIDEOS, FIREWOOD_CHARCOAL_IMAGES } from '@/lib/media'
+import { focus } from '@/lib/imageFocus'
 
 type GalleryItem =
   | { type: 'image'; src: string; caption: string; tag: string }
@@ -150,6 +151,7 @@ export default function FieldGallerySection() {
                 src={photo.src}
                 alt={photo.caption}
                 className="w-full h-full object-cover pointer-events-none transition-transform duration-700 group-hover:scale-105"
+                style={{ objectPosition: focus(photo.src) }}
                 draggable={false}
                 loading="lazy"
               />

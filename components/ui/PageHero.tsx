@@ -1,3 +1,5 @@
+import { focus } from '@/lib/imageFocus'
+
 interface PageHeroProps {
   tag?: string
   headline?: React.ReactNode
@@ -5,10 +7,14 @@ interface PageHeroProps {
   image?: string
   /**
    * Focal point of the background image, as a CSS background-position.
-   * Portrait photos need 'top' so the wide hero band does not crop the face off.
+   * Defaults to the image's entry in the focal-point map, so a portrait or
+   * group photo keeps its faces in frame without each page having to say so.
    */
   imagePosition?: string
-  /** Minimum height of the hero band. Portrait photos need more room to frame a face. */
+  /**
+   * Minimum height of the hero band. Defaults to a height that gives the
+   * Foundation's portrait and group photography room to show faces.
+   */
   minHeight?: string
   dark?: boolean
 }
@@ -18,21 +24,21 @@ export default function PageHero({
   headline,
   subheadline,
   image,
-  imagePosition = 'center',
-  minHeight,
+  imagePosition,
+  minHeight = '520px',
   dark = true,
 }: PageHeroProps) {
   return (
     <section
       className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col justify-center"
-      style={minHeight ? { minHeight } : undefined}
+      style={{ minHeight }}
     >
       {/* Background */}
       {image ? (
         <>
           <div
             className="absolute inset-0 bg-cover bg-no-repeat"
-            style={{ backgroundImage: `url('${image}')`, backgroundPosition: imagePosition }}
+            style={{ backgroundImage: `url('${image}')`, backgroundPosition: imagePosition ?? focus(image) }}
           />
           <div className="hero-overlay absolute inset-0" />
         </>

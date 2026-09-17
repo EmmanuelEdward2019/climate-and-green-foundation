@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react'
+import { focus } from '@/lib/imageFocus'
 
 interface NavChild {
   label: string
@@ -111,7 +112,7 @@ const navItems: NavItem[] = [
 const programImages: Record<string, string> = {
   'Tree Planting & Restoration': '/images/tree-planting-welcome.png',
   'Urban Greening': '/images/environment-week-group-1.png',
-  'Petroleum Pollution Defense': '/images/Bunkering 1(1).png',
+  'Petroleum Pollution Defense': '/images/Bunkering 3-1.webp',
   'Climate Education': '/images/environment-week-group-2.png',
 }
 
@@ -254,6 +255,7 @@ export default function Header() {
                                   src={programImages[child.label] || ''}
                                   alt={child.label}
                                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                  style={{ objectPosition: focus(programImages[child.label]) }}
                                 />
                               </div>
                               <div className="flex-1 min-w-0">
@@ -276,7 +278,8 @@ export default function Header() {
                           <img
                             src={item.megaImage}
                             alt={item.megaImageAlt || ''}
-                            className="absolute inset-0 w-full h-full object-cover object-top opacity-50"
+                            className="absolute inset-0 w-full h-full object-cover opacity-50"
+                            style={{ objectPosition: focus(item.megaImage) }}
                           />
                           <div className="relative z-10 p-5 h-full flex flex-col justify-end">
                             <p className="font-garamond font-semibold text-base text-white leading-snug mb-2">

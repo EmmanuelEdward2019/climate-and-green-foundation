@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { focus } from '@/lib/imageFocus'
 
 const slides = [
   {
@@ -22,7 +23,7 @@ const slides = [
     cta: 'Explore program',
   },
   {
-    image: '/images/Bunkering 1(1).png',
+    image: '/images/Bunkering 3-1.webp',
     tag: 'Program 03',
     title: 'Petroleum Pollution & Ecological Defense',
     body: 'The damage no one else is talking about. We engage directly with oil bunkering and illegal refining.',
@@ -68,6 +69,7 @@ export default function ProgramsCarousel() {
           <img
             src={slide.image}
             alt={slide.title}
+            style={{ objectPosition: focus(slide.image) }}
             className="w-full h-full object-cover"
           />
           {/* Overlay */}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ProgramsCarousel from '@/components/ui/ProgramsCarousel'
 import { ArrowRight } from 'lucide-react'
+import { focus } from '@/lib/imageFocus'
 
 export const metadata: Metadata = {
   title: 'Our Programs',
@@ -42,7 +43,7 @@ const programs = [
     body: 'Across Nigeria, oil bunkering and illegal artisanal refining are quietly poisoning soils, rivers, and mangroves. We engage directly - educating communities, partnering with government, and restoring petroleum-affected sites.',
     stats: [],
     href: '/programs/petroleum-pollution',
-    image: '/images/Bunkering 1(1).png',
+    image: '/images/Bunkering 3-1.webp',
     color: 'border-forest-green',
   },
   {
@@ -91,6 +92,7 @@ export default function ProgramsPage() {
                     src={program.image}
                     alt={program.title}
                     className="w-full h-full object-cover"
+                    style={{ objectPosition: focus(program.image) }}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />

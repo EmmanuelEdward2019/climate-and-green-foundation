@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Megaphone, Sprout, Gavel } from 'lucide-react'
 import { BUNKERING_IMAGES, FIREWOOD_CHARCOAL_IMAGES } from '@/lib/media'
+import { focus } from '@/lib/imageFocus'
 
 interface EnvironmentalContentSectionsProps {
   variant?: 'home' | 'full'
@@ -67,6 +68,7 @@ export default function EnvironmentalContentSections({
                   src={image.src}
                   alt={image.alt}
                   className="w-full aspect-[4/3] object-cover"
+                  style={{ objectPosition: focus(image.src) }}
                   loading="lazy"
                 />
                 <div className="media-image-caption">
@@ -103,6 +105,7 @@ export default function EnvironmentalContentSections({
                     src={image.src}
                     alt={image.alt}
                     className="w-full aspect-[16/10] object-cover"
+                    style={{ objectPosition: focus(image.src) }}
                     loading="lazy"
                   />
                   <div className="media-image-caption">
@@ -123,6 +126,7 @@ export default function EnvironmentalContentSections({
                   src={image.src}
                   alt={image.alt}
                   className="w-full aspect-[4/3] object-cover"
+                  style={{ objectPosition: focus(image.src) }}
                   loading="lazy"
                 />
                 <div className="media-image-caption">

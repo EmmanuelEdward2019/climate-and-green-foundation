@@ -3,6 +3,7 @@ import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
 import EnvironmentalContentSections from '@/components/content/EnvironmentalContentSections'
 import { ArrowRight } from 'lucide-react'
+import { focus } from '@/lib/imageFocus'
 
 export const metadata: Metadata = {
   title: 'What We Do',
@@ -38,7 +39,7 @@ const principles = [
     num: '05',
     title: 'Measured impact.',
     body: "It's one of our core values. To seasonally measure progress and impact of the work we have done. The result is our satisfaction.",
-    image: '/images/Bunkering 1(1).png',
+    image: '/images/Bunkering 3-1.webp',
   },
 ]
 
@@ -120,6 +121,7 @@ export default function WhatWeDoPage() {
                     src={p.image}
                     alt={p.title}
                     className="w-full h-full object-cover absolute inset-0"
+                    style={{ objectPosition: focus(p.image) }}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-forest-green/60 to-transparent" />

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
 import { ArrowRight } from 'lucide-react'
+import { focus } from '@/lib/imageFocus'
 
 export const metadata: Metadata = {
   title: 'Our Story',
@@ -22,7 +23,6 @@ const timeline: {
     body: 'Dr. Ike Anosike worked as a lone voice - planting where he could, speaking where he could, documenting what he saw.',
     image: '/images/the-founder.png',
     imageAlt: 'Dr. Ike Anosike, Founder',
-    imagePosition: 'center 12%',
   },
   {
     year: '2026',
@@ -53,7 +53,7 @@ const gridPhotos = [
   { src: '/images/environment-week-group-1.png', alt: 'World Environment Day tree planting', span: '' },
   { src: '/images/environment-week-group-2.png', alt: 'Community engagement', span: '' },
   { src: '/images/environmental-preservation-2.png', alt: 'Felled trees hauled for firewood', span: '' },
-  { src: '/images/Bunkering 1(1).png', alt: 'Documented bunkering site, Niger Delta', span: '' },
+  { src: '/images/Bunkering 3-1.webp', alt: 'Documented bunkering site, Niger Delta', span: '' },
 ]
 
 export default function StoryPage() {
@@ -63,7 +63,6 @@ export default function StoryPage() {
         tag="Our Story"
         headline="A foundation that started with one man, a deep conviction and a growing purpose."
         image="/images/the-founder.png"
-        imagePosition="center top"
         minHeight="560px"
       />
 
@@ -136,7 +135,7 @@ export default function StoryPage() {
                             src={item.image}
                             alt={item.imageAlt}
                             className="w-full h-full object-cover"
-                            style={{ objectPosition: item.imagePosition ?? 'center' }}
+                            style={{ objectPosition: item.imagePosition ?? focus(item.image) }}
                             loading="lazy"
                           />
                           <div className="absolute inset-0 bg-gradient-to-r from-forest-green/70 to-transparent" />
@@ -165,34 +164,39 @@ export default function StoryPage() {
 
       {/* Staggered photo grid - visual break */}
       <section className="py-0 bg-white overflow-hidden">
-        <div className="grid grid-cols-3 grid-rows-2 gap-1" style={{ height: '420px' }}>
+        <div className="grid grid-cols-2 sm:grid-cols-3 grid-rows-2 gap-1" style={{ height: '620px' }}>
           {/* Large left */}
           <div className="relative row-span-2 overflow-hidden group">
             <img src={gridPhotos[0].src} alt={gridPhotos[0].alt}
+              style={{ objectPosition: focus(gridPhotos[0].src) }}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-forest-green/20 group-hover:bg-transparent transition-colors duration-500" />
           </div>
           {/* Top middle */}
           <div className="relative overflow-hidden group">
             <img src={gridPhotos[1].src} alt={gridPhotos[1].alt}
+              style={{ objectPosition: focus(gridPhotos[1].src) }}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-forest-green/20 group-hover:bg-transparent transition-colors duration-500" />
           </div>
           {/* Top right */}
           <div className="relative overflow-hidden group">
             <img src={gridPhotos[2].src} alt={gridPhotos[2].alt}
+              style={{ objectPosition: focus(gridPhotos[2].src) }}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-forest-green/20 group-hover:bg-transparent transition-colors duration-500" />
           </div>
           {/* Bottom middle */}
           <div className="relative overflow-hidden group">
             <img src={gridPhotos[3].src} alt={gridPhotos[3].alt}
+              style={{ objectPosition: focus(gridPhotos[3].src) }}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-forest-green/20 group-hover:bg-transparent transition-colors duration-500" />
           </div>
           {/* Bottom right */}
           <div className="relative overflow-hidden group">
             <img src={gridPhotos[4].src} alt={gridPhotos[4].alt}
+              style={{ objectPosition: focus(gridPhotos[4].src) }}
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             {/* Overlay with tagline */}
             <div className="absolute inset-0 bg-forest-green/50 flex items-center justify-center">
