@@ -26,9 +26,9 @@ const navItems: NavItem[] = [
   {
     label: 'About',
     href: '/about',
-    megaImage: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=600&q=80',
+    megaImage: '/images/the-founder.png',
     megaImageAlt: 'Our story',
-    megaHeadline: 'A foundation born of one truth.',
+    megaHeadline: 'One man, a deep conviction and a growing purpose.',
     megaDesc: 'Dr. Ike Anosike turned years of solo work into an institution. Meet the team and the mission.',
     children: [
       { label: 'Our Story', href: '/about/story', desc: 'How and why the Foundation began' },
@@ -36,16 +36,16 @@ const navItems: NavItem[] = [
       { label: 'Founder & Team', href: '/about/team', desc: 'The people behind the work' },
       { label: 'Network & Partners', href: '/about#network', desc: 'Who we work alongside' },
       { label: 'Careers', href: '/about/careers', desc: 'Work that matters' },
-      { label: 'FAQs', href: '/about/faqs', desc: 'Honest answers' },
+      { label: 'FAQs', href: '/about/faqs', desc: 'Straight answers' },
     ],
   },
   {
     label: 'What We Do',
     href: '/what-we-do',
-    megaImage: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&q=80',
+    megaImage: '/images/tree-planting-welcome.png',
     megaImageAlt: 'Restoration work',
-    megaHeadline: 'Tree-planting is the easy part.',
-    megaDesc: 'Five principles. Rigorous measurement. A ten-year minimum horizon. Everything around the planting is the work.',
+    megaHeadline: 'We Engage. We Restore. We Regrow.',
+    megaDesc: 'We Monitor. We Measure. Five principles shape every project we take on.',
     children: [
       { label: 'Our Approach', href: '/what-we-do#approach', desc: 'Five principles that shape every project' },
       { label: 'How We Measure Impact', href: '/what-we-do#impact', desc: 'What we track and why it matters' },
@@ -82,25 +82,24 @@ const navItems: NavItem[] = [
   {
     label: 'Progress',
     href: '/progress',
-    megaImage: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80',
+    megaImage: '/images/environmental-preservation-2.png',
     megaImageAlt: 'Landscape restoration progress',
     megaHeadline: 'Where we are. Honestly.',
     megaDesc: 'Year-One numbers that are real, and the curve our partners are helping us climb toward 2030.',
     children: [
-      { label: 'Year One So Far', href: '/progress#year-one', desc: 'Honest foundation-year numbers - every tree in the ground' },
+      { label: 'Our Numbers', href: '/progress#year-one', desc: 'Honest numbers - every tree in the ground' },
       { label: 'Where We\'re Going', href: '/progress#goals', desc: 'Our 2027 and 2030 targets, published and held to' },
     ],
   },
   {
     label: 'Get Involved',
     href: '/get-involved',
-    megaImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80',
+    megaImage: '/images/environment-week-group-1.png',
     megaImageAlt: 'Partnership',
-    megaHeadline: 'Every greener world begins with a decision.',
-    megaDesc: 'Corporate partners, government agencies, individual donors - there is a place for you here.',
+    megaHeadline: 'A greener world is possible: Get Involved.',
+    megaDesc: 'Individual, corporate, institutional and government partners - there is a place for you here.',
     children: [
-      { label: 'Corporate Partnerships', href: '/get-involved/corporate', desc: 'Measurable climate action for your business' },
-      { label: 'Government & Institutional', href: '/get-involved/government', desc: 'A credible delivery partner in complex environments' },
+      { label: 'Partnership', href: '/get-involved/partnership', desc: 'Individual, corporate, institutional and government partnerships' },
       { label: 'Donate', href: '/get-involved/donate', desc: 'Fund the work directly - planting, protection, people' },
       { label: 'Newsletter', href: '/get-involved/newsletter', desc: 'Monthly field updates. No spam.' },
     ],
@@ -110,10 +109,10 @@ const navItems: NavItem[] = [
 ]
 
 const programImages: Record<string, string> = {
-  'Tree Planting & Restoration': 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&q=70',
-  'Urban Greening': 'https://images.unsplash.com/photo-1496564203457-11bb12075d90?w=400&q=70',
-  'Petroleum Pollution Defense': 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=70',
-  'Climate Education': 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=400&q=70',
+  'Tree Planting & Restoration': '/images/tree-planting-welcome.png',
+  'Urban Greening': '/images/environment-week-group-1.png',
+  'Petroleum Pollution Defense': '/images/Bunkering 1(1).png',
+  'Climate Education': '/images/environment-week-group-2.png',
 }
 
 export default function Header() {
@@ -333,10 +332,16 @@ export default function Header() {
           {/* Desktop CTAs */}
           <div className="hidden xl:flex items-center gap-2.5 flex-shrink-0">
             <Link
-              href="/get-involved/corporate"
-              className="inline-flex items-center justify-center px-5 py-2.5 border-2 border-white text-white font-comfortaa font-bold text-[13px] rounded-xl whitespace-nowrap transition-all duration-200 hover:bg-white hover:text-forest-green"
+              href="/about"
+              className="inline-flex items-center justify-center px-4 py-2.5 border-2 border-white text-white font-comfortaa font-bold text-[13px] rounded-xl whitespace-nowrap transition-all duration-200 hover:bg-white hover:text-forest-green"
             >
-              Partner With Us
+              Who We Are
+            </Link>
+            <Link
+              href="/what-we-do"
+              className="inline-flex items-center justify-center px-4 py-2.5 border-2 border-white text-white font-comfortaa font-bold text-[13px] rounded-xl whitespace-nowrap transition-all duration-200 hover:bg-white hover:text-forest-green"
+            >
+              What We Do
             </Link>
             <Link
               href="/get-involved/donate"
@@ -424,11 +429,18 @@ export default function Header() {
 
             <div className="pt-5 space-y-3 border-t border-border-color mt-4">
               <Link
-                href="/get-involved/corporate"
+                href="/about"
                 onClick={() => setMobileOpen(false)}
                 className="block w-full text-center px-6 py-3.5 border-2 border-forest-green text-forest-green font-comfortaa font-bold text-sm rounded-xl hover:bg-forest-green hover:text-white transition-all duration-200"
               >
-                Partner With Us
+                Who We Are
+              </Link>
+              <Link
+                href="/what-we-do"
+                onClick={() => setMobileOpen(false)}
+                className="block w-full text-center px-6 py-3.5 border-2 border-forest-green text-forest-green font-comfortaa font-bold text-sm rounded-xl hover:bg-forest-green hover:text-white transition-all duration-200"
+              >
+                What We Do
               </Link>
               <Link
                 href="/get-involved/donate"

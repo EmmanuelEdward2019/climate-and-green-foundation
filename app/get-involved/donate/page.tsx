@@ -14,7 +14,7 @@ export default function DonatePage() {
         tag="Donate"
         headline="Why Donate?"
         subheadline="By donating you equip us with tools and resources to plant trees,protect our environment, raise climate awareness in communities, restore degraded ecosystems, and empower communities to take action for a healthier, greener and more resilient future"
-        image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80"
+        image="/images/tree-planting-welcome.png"
       />
 
       <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white">

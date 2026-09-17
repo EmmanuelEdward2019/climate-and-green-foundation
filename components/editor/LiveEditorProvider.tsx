@@ -4,7 +4,14 @@ import React, { useEffect, useState, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 // ── Storage helpers (inlined to avoid import issues) ──
-const storageGet = async (key: string): Promise<Record<string, string> | null> => {
+/**
+ * A saved override. `original` is what the element contained at the moment the
+ * edit was made; it is how we detect that the page has since been changed in
+ * code and the override no longer belongs to this element.
+ */
+type SavedOverride = string | { value: string; original: string };
+
+const storageGet = async (key: string): Promise<Record<string, SavedOverride> | null> => {
   try {
     const res = await fetch(`/api/admin/storage?key=${key}&t=${Date.now()}`, {
       cache: "no-store",
@@ -33,6 +40,39 @@ const storageSet = async (key: string, data: unknown): Promise<boolean> => {
 };
 
 const SAFE_TAGS = ["H1", "H2", "H3", "H4", "H5", "H6", "P", "SPAN", "A", "IMG"];
+
+function readOverrideValue(entry: SavedOverride): string {
+  return typeof entry === "string" ? entry : entry.value;
+}
+
+function readOverrideOriginal(entry: SavedOverride): string | null {
+  return typeof entry === "string" ? null : entry.original;
+}
+
+function currentContent(el: HTMLElement): string {
+  return el.tagName === "IMG" ? (el as HTMLImageElement).getAttribute("src") || "" : el.innerText;
+}
+
+/**
+ * Guards against the "page turns into something else on refresh" bug.
+ *
+ * Positional keys ("<path>|<TAG>|<index>") point at whatever element happens to
+ * sit at that index today. Once the page markup changes, a stale override lands
+ * on an unrelated heading or paragraph. So a positional override is only
+ * reapplied when the element still holds either the text it was saved from, or
+ * the text it was saved as. Anything else means the page moved on, and the
+ * override is dropped. Keyed overrides (explicit id / data-editable-id) are
+ * stable and always apply.
+ */
+function isOverrideStillValid(key: string, entry: SavedOverride, el: HTMLElement): boolean {
+  if (!key.includes("|")) return true;
+
+  const original = readOverrideOriginal(entry);
+  if (original === null) return false; // legacy positional entry, provenance unknown
+
+  const current = currentContent(el).trim();
+  return current === original.trim() || current === readOverrideValue(entry).trim();
+}
 
 // ── Build a key that is unique to one element on one page ──
 // Elements without an explicit id are addressed by "<pathname>|<TAG>|<index>" so an
@@ -95,30 +135,33 @@ function useSavedOverrides() {
       try {
         const overrides = await storageGet("admin_theme_overrides");
         if (overrides) {
-          if (overrides.primaryColor) {
-            document.documentElement.style.setProperty("--forest-green", overrides.primaryColor);
+          const primaryColor = overrides.primaryColor && readOverrideValue(overrides.primaryColor);
+          const secondaryColor = overrides.secondaryColor && readOverrideValue(overrides.secondaryColor);
+          const fontFamily = overrides.fontFamily && readOverrideValue(overrides.fontFamily);
+          if (primaryColor) {
+            document.documentElement.style.setProperty("--forest-green", primaryColor);
           }
-          if (overrides.secondaryColor) {
-            document.documentElement.style.setProperty("--lime-green", overrides.secondaryColor);
+          if (secondaryColor) {
+            document.documentElement.style.setProperty("--lime-green", secondaryColor);
           }
-          if (overrides.fontFamily) {
-            document.documentElement.style.fontFamily = overrides.fontFamily;
+          if (fontFamily) {
+            document.documentElement.style.fontFamily = fontFamily;
           }
         }
       } catch (e) {
         console.warn("[LiveEditor] Failed to apply theme overrides:", e);
       }
 
-      // Saved text edits - ONLY apply to elements with explicit IDs
+      // Saved text edits
       try {
         const savedTexts = await storageGet("admin_edited_texts");
         if (savedTexts) {
-          for (const [key, value] of Object.entries(savedTexts)) {
+          for (const [key, entry] of Object.entries(savedTexts)) {
             try {
               const el = findEditableElement(key);
-              if (el && el.tagName !== "IMG") {
-                el.innerText = value;
-              }
+              if (!el || el.tagName === "IMG") continue;
+              if (!isOverrideStillValid(key, entry, el)) continue;
+              el.innerText = readOverrideValue(entry);
             } catch {
               // Skip this element silently
             }
@@ -128,17 +171,17 @@ function useSavedOverrides() {
         console.warn("[LiveEditor] Failed to apply saved texts:", e);
       }
 
-      // Saved image edits - ONLY apply to elements with explicit IDs
+      // Saved image edits
       try {
         const savedImages = await storageGet("admin_edited_images");
         if (savedImages) {
-          for (const [key, value] of Object.entries(savedImages)) {
+          for (const [key, entry] of Object.entries(savedImages)) {
             try {
               const el = findEditableElement(key) as HTMLImageElement | null;
-              if (el && el.tagName === "IMG") {
-                el.src = value;
-                el.removeAttribute("srcset");
-              }
+              if (!el || el.tagName !== "IMG") continue;
+              if (!isOverrideStillValid(key, entry, el)) continue;
+              el.src = readOverrideValue(entry);
+              el.removeAttribute("srcset");
             } catch {
               // Skip this element silently
             }
@@ -214,6 +257,7 @@ function LiveEditorInner() {
       }
 
       // Text editing
+      const originalText = target.innerText;
       target.contentEditable = "true";
       target.focus();
 
@@ -227,7 +271,7 @@ function LiveEditorInner() {
           const editedTexts = (await storageGet("admin_edited_texts")) || {};
           await storageSet("admin_edited_texts", {
             ...editedTexts,
-            [elementKey]: target.innerText,
+            [elementKey]: { value: target.innerText, original: originalText },
           });
         } catch (err) {
           console.error("[LiveEditor] Failed to save text edit:", err);
@@ -256,6 +300,7 @@ function LiveEditorInner() {
       if (!imageModal.target) return;
       const target = imageModal.target;
 
+      const originalSrc = target.getAttribute("src") || "";
       target.src = newSrc;
       target.removeAttribute("srcset");
 
@@ -265,7 +310,7 @@ function LiveEditorInner() {
         const editedImages = (await storageGet("admin_edited_images")) || {};
         await storageSet("admin_edited_images", {
           ...editedImages,
-          [elementKey]: newSrc,
+          [elementKey]: { value: newSrc, original: originalSrc },
         });
       } catch (err) {
         console.error("[LiveEditor] Failed to save image edit:", err);

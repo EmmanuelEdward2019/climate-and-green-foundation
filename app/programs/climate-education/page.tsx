@@ -23,7 +23,7 @@ export default function ClimateEducationPage() {
         tag="Program 04"
         headline="A generation that will not look away."
         subheadline="Climate literacy in schools, sensitization in communities, and advocacy with policy-makers."
-        image="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1920&q=80"
+        image="/images/environment-week-group-2.png"
       />
 
       <section className="section-padding bg-white">

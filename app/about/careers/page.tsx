@@ -12,7 +12,7 @@ export default function CareersPage() {
       <PageHero
         tag="Careers"
         headline="Career and Volunteers"
-        image="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=80"
+        image="/images/environment-week-group-2.png"
       />
 
       <section className="section-padding bg-white">
@@ -37,13 +37,13 @@ export default function CareersPage() {
               We are not currently hiring, but we welcome CVs from people who share our values.
             </p>
             <a
-              href="mailto:careers@climategreenworld.org"
+              href="mailto:info@climateandgreen.com"
               className="btn-primary inline-flex"
             >
               Send your CV →
             </a>
             <p className="font-comfortaa text-xs text-text-secondary mt-3">
-              careers@climategreenworld.org
+              info@climateandgreen.com
             </p>
           </div>
 
@@ -55,7 +55,7 @@ export default function CareersPage() {
                 { title: 'Conviction', body: 'You believe in the impacts of climate change and the zeal to act.' },
                 { title: 'Honesty', body: 'Report events as it is without softening it.' },
                 { title: 'Community Instinct', body: 'Must understand that the people we serve are partners, not audiences.' },
-                { title: 'Field Comfort', body: 'Ready to present in place where it is happening.' },
+                { title: 'Field Comfort', body: 'Comfortable being present and actively involved in on-site operations.' },
               ].map((item) => (
                 <div key={item.title} className="p-6 rounded-xl border border-border-color hover:border-lime-green transition-colors duration-300">
                   <h3 className="font-garamond font-semibold text-lg text-text-primary mb-2">{item.title}</h3>

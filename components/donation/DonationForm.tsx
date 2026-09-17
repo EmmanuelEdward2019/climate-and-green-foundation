@@ -8,14 +8,20 @@ type Currency = {
   code: string
   symbol: string
   name: string
+  accountNumber: string
 }
 
 const currencies: Currency[] = [
-  { code: 'GBP', symbol: '£', name: 'Pound Sterling' },
-  { code: 'NGN', symbol: '₦', name: 'Nigerian Naira' },
-  { code: 'USD', symbol: '$', name: 'US Dollar' },
-  { code: 'EUR', symbol: '€', name: 'Euro' },
+  { code: 'GBP', symbol: '£', name: 'Pound Sterling', accountNumber: '5061807898' },
+  { code: 'NGN', symbol: '₦', name: 'Nigerian Naira', accountNumber: '1312325669' },
+  { code: 'USD', symbol: '$', name: 'US Dollar', accountNumber: '5076052391' },
+  { code: 'EUR', symbol: '€', name: 'Euro', accountNumber: '5081522531' },
 ]
+
+const BANK_DETAILS = {
+  accountName: 'Climate And Green World Foundation',
+  bankName: 'Zenith Bank',
+}
 
 type PaymentMethod = 'paystack' | 'bank-transfer' | 'tax-free'
 
@@ -34,7 +40,7 @@ const paymentMethods: {
   {
     id: 'bank-transfer',
     label: 'Bank transfer',
-    description: 'Prefer to donate by bank transfer? Please contact us.',
+    description: 'Transfer directly to our account for the currency you selected.',
     icon: Building2,
   },
   {
@@ -289,9 +295,42 @@ export default function DonationForm() {
               </h2>
               <p className="font-garamond text-base text-text-secondary mb-5">
                 {method === 'bank-transfer'
-                  ? `Prefer to donate by bank transfer? Please contact us and we will send you our ${currency.name} account details. You are welcome to give any amount you wish.`
+                  ? `Transfer any amount you wish to our ${currency.name} (${currency.symbol}) account below.`
                   : `Prefer to make a tax free donation, contact us for details. You are welcome to give any amount you wish in ${currency.name}.`}
               </p>
+
+              {method === 'bank-transfer' && (
+                <dl className="bg-white rounded-xl border border-border-color divide-y divide-border-color mb-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-5 py-4">
+                    <dt className="font-comfortaa text-xs font-semibold text-text-secondary uppercase tracking-wide sm:w-40 flex-shrink-0">
+                      Account Name
+                    </dt>
+                    <dd className="font-garamond text-lg text-text-primary">
+                      {BANK_DETAILS.accountName}
+                    </dd>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-5 py-4">
+                    <dt className="font-comfortaa text-xs font-semibold text-text-secondary uppercase tracking-wide sm:w-40 flex-shrink-0">
+                      Bank Name
+                    </dt>
+                    <dd className="font-garamond text-lg text-text-primary">
+                      {BANK_DETAILS.bankName}
+                    </dd>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-5 py-4">
+                    <dt className="font-comfortaa text-xs font-semibold text-text-secondary uppercase tracking-wide sm:w-40 flex-shrink-0">
+                      Account Number
+                    </dt>
+                    <dd className="font-garamond font-semibold text-lg text-forest-green tracking-wide">
+                      {currency.accountNumber}{' '}
+                      <span className="font-comfortaa text-xs text-text-secondary uppercase tracking-wide">
+                        {currency.symbol} {currency.name}
+                      </span>
+                    </dd>
+                  </div>
+                </dl>
+              )}
+
               <Link href="/contact" className="btn-primary inline-flex gap-2">
                 Contact us
                 <ArrowRight size={16} />
@@ -317,7 +356,8 @@ export default function DonationForm() {
         </div>
         <div className="p-5 rounded-xl border border-border-color">
           <p className="font-garamond text-base text-text-primary">
-            Prefer to donate by bank transfer? Please contact us.
+            Prefer to donate by bank transfer? Select a currency above, then choose Bank transfer
+            for our account details.
           </p>
           <Link
             href="/contact"

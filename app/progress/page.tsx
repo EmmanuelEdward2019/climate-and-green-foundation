@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 
 const yearOneNumbers = [
   { value: '600', label: 'Trees planted', note: 'Native species in active restoration' },
-  { value: '1', label: 'Hectare under restoration', note: 'Under active management and monitoring' },
+  { value: '5', label: 'Awareness campaign', note: 'Community awareness and sensitisation drives' },
   { value: '10', label: 'People employed', note: 'Full-time team members across all programs' },
 ]
 
 const goals2027 = [
   { label: 'Trees planted', value: '[X]' },
-  { label: 'Hectares under restoration', value: '[X]' },
+  { label: 'Awareness campaigns', value: '[X]' },
   { label: 'People employed', value: '[X]' },
   { label: 'Communities reached', value: '[X]' },
   { label: 'First annual independent impact audit', value: '✓' },
@@ -24,7 +24,7 @@ const goals2027 = [
 
 const goals2030 = [
   { label: 'Trees planted', value: '[X]' },
-  { label: 'Hectares under restoration', value: '[X]' },
+  { label: 'Awareness campaigns', value: '[X]' },
   { label: 'Countries with established presence', value: '[#]' },
   { label: 'Schools running our curriculum', value: '[X]' },
   { label: 'Founding member status in continental network', value: '✓' },
@@ -37,7 +37,7 @@ export default function ProgressPage() {
         tag="Our Progress"
         headline="Where we are. Honestly."
         subheadline="We are not going to pretend the numbers are bigger than they are. Every tree we report is a tree in the ground."
-        image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80"
+        image="/images/tree-planting-welcome.png"
       />
 
       {/* Year One */}
@@ -92,7 +92,7 @@ export default function ProgressPage() {
       <div
         className="relative h-56 overflow-hidden"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80')`,
+          backgroundImage: `url('/images/tree-planting-welcome.png')`,
           backgroundAttachment: 'fixed',
           backgroundPosition: 'center',
           backgroundSize: 'cover',

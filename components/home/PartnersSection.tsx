@@ -46,11 +46,10 @@ export default function PartnersSection() {
             Our Partners
             <span className="w-4 h-0.5 bg-lime-green" />
           </span>
-          <h2 className="heading-lg mt-4 mb-4">In good company.</h2>
-          <p className="body-md max-w-2xl mx-auto">
-            We work alongside government agencies, international stakeholders, businesses, and
-            grassroots organizations that share our commitment to measurable, locally-led
-            climate action.
+          <p className="body-md max-w-2xl mx-auto mt-4">
+            We are committed to working with government agencies, international stakeholders,
+            individuals, businesses, and grassroot organisations with focus on environment and
+            climate change.
           </p>
         </div>
       </div>
@@ -75,11 +74,11 @@ export default function PartnersSection() {
       <div className="container-max mt-10 text-center">
         <p className="font-garamond text-base text-text-secondary italic mb-6">
           The Foundation is registered with Nigeria's Corporate Affairs Commission (CAC) and
-          welcomes serious partners across all sectors. Partner logos displayed as partnerships
+          welcomes committed partners across all sectors. Partner logos displayed as partnerships
           are formalized.
         </p>
         <Link
-          href="/get-involved/corporate"
+          href="/get-involved/partnership"
           className="inline-flex items-center gap-2 btn-primary"
         >
           Become a partner

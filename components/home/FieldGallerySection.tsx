@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
-import { BUNKERING_IMAGES, FIELD_VIDEOS } from '@/lib/media'
+import { BUNKERING_IMAGES, FIELD_VIDEOS, FIREWOOD_CHARCOAL_IMAGES } from '@/lib/media'
 
 type GalleryItem =
   | { type: 'image'; src: string; caption: string; tag: string }
@@ -22,15 +22,15 @@ const photos: GalleryItem[] = [
   })),
   {
     type: 'image',
-    src: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=900&q=80',
-    caption: 'Native species planting, Nigeria',
-    tag: 'Restoration',
+    src: FIREWOOD_CHARCOAL_IMAGES[5].src,
+    caption: 'Bagged charcoal ready for distribution',
+    tag: 'Charcoal',
   },
   {
     type: 'image',
-    src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=900&q=80',
-    caption: 'Forest canopy, Niger Delta region',
-    tag: 'Ecosystem',
+    src: FIREWOOD_CHARCOAL_IMAGES[1].src,
+    caption: 'Trees felled and hauled for firewood and charcoal',
+    tag: 'Deforestation',
   },
 ]
 
@@ -122,8 +122,7 @@ export default function FieldGallerySection() {
             </h2>
           </div>
           <p className="font-garamond text-white/60 text-base max-w-xs leading-relaxed">
-            Drag to explore. Real documentation from bunkering sites and restoration work in
-            Nigeria.
+            Documentation from degraded sites and restoration pictures and video.
           </p>
         </div>
       </div>

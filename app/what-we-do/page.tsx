@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
 import EnvironmentalContentSections from '@/components/content/EnvironmentalContentSections'
-import { ArrowRight, Download } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'What We Do',
@@ -12,33 +12,33 @@ export const metadata: Metadata = {
 const principles = [
   {
     num: '01',
-    title: 'Community before planting.',
-    body: 'We do not break ground on a project until the community that will live with it has co-designed it, agreed to it, and taken ownership of it. Top-down projects fail; we have seen it, and we will not repeat it.',
-    image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=500&q=75',
+    title: 'Community before planning.',
+    body: "We ensure that every project has the blessings of the community it's designed for, before implementation. They have to cosign with it, agree on modalities and take ownership of it.",
+    image: '/images/environment-week-group-1.png',
   },
   {
     num: '02',
     title: 'The right tree in the right place.',
-    body: 'Monoculture plantations are not forests. We plant native species in native configurations, guided by local ecology and traditional knowledge.',
-    image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&q=75',
+    body: 'We plant native and economic species as guided by local ecology and traditional knowledge.',
+    image: '/images/tree-planting-welcome.png',
   },
   {
     num: '03',
-    title: 'Restoration is bigger than reforestation.',
-    body: 'Forests are only one kind of landscape. We also restore farmland, urban green spaces, and the ecosystems being eroded by petroleum pollution and unsafe land-use practices.',
-    image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=500&q=75',
+    title: 'From Restoration to Reforestation.',
+    body: 'We restore degraded farmland, urban green spaces and the ecosystems eroded by pollution and unwholesome land practices.',
+    image: '/images/environment-week-group-2.png',
   },
   {
     num: '04',
-    title: 'The conversation matters as much as the planting.',
-    body: 'Bush burning, charcoal production, and oil bunkering are not abstractions - they are decisions made by real people under real economic pressure. Sensitization - done with respect, not lecture - is core to our work.',
-    image: 'https://images.unsplash.com/photo-1578836537282-3171d77f8632?w=500&q=75',
+    title: 'Bush Burning.',
+    body: 'Sensitization done with diplomacy and conviction for maximum effects is core to our work.',
+    image: '/images/environmental-preservation-2.png',
   },
   {
     num: '05',
-    title: 'Measured in decades, not seasons.',
-    body: 'Our minimum project horizon is ten years. Anything shorter is landscaping.',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500&q=75',
+    title: 'Measured impact.',
+    body: "It's one of our core values. To seasonally measure progress and impact of the work we have done. The result is our satisfaction.",
+    image: '/images/Bunkering 1(1).png',
   },
 ]
 
@@ -69,19 +69,13 @@ export default function WhatWeDoPage() {
             We Measure.
           </>
         }
-        image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80"
+        image="/images/tree-planting-welcome.png"
       />
 
       {/* Overview */}
       <section className="section-padding bg-white">
         <div className="container-max max-w-3xl">
           <div className="space-y-5 body-md">
-            <p>
-              Anyone can plant a tree. Making sure that tree is still alive in ten years, that the
-              soil it sits in is healthier than it was, that the community around it benefits, and
-              that the activities killing the surrounding ecosystem are being addressed in parallel -
-              that is the work.
-            </p>
             <p>
               Climate & Green World Foundation runs four interlocking programs across Nigeria and
               the Sahel. Each one is designed to keep delivering benefit long after our direct
@@ -164,7 +158,7 @@ export default function WhatWeDoPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {indicators.map((ind) => (
               <div
                 key={ind.title}
@@ -179,21 +173,6 @@ export default function WhatWeDoPage() {
                 </p>
               </div>
             ))}
-          </div>
-
-          <div className="bg-forest-green rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="font-garamond font-semibold text-xl text-white mb-2">
-                Year-One Impact Report
-              </h3>
-              <p className="font-garamond text-white/75 text-base">
-                Our first annual report will be published at the close of foundation year 2025.
-              </p>
-            </div>
-            <button className="btn-secondary flex-shrink-0 flex items-center gap-2 opacity-60 cursor-not-allowed" disabled>
-              <Download size={16} />
-              Coming Soon
-            </button>
           </div>
         </div>
       </section>

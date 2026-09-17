@@ -7,35 +7,47 @@ import { Plus, Minus } from 'lucide-react'
 const faqs = [
   {
     q: 'Are you a registered organization?',
-    a: 'Yes. Climate & Green World Foundation is registered with the Corporate Affairs Commission of Nigeria. Registration number: [XXXX]. Full documentation is available on request.',
+    a: 'Yes. Climate & Green World Foundation is registered with the Corporate Affairs Commission of Nigeria. Registration number: 9559410. Full documentation is available on request.',
   },
   {
     q: "You're new. Why should I trust you with my partnership or donation?",
-    a: "Honest answer: because we say what we have done, not what we wish we had. Our founder has been working on these issues personally for years before formalizing the Foundation. Our Year-One numbers are modest and we publish them as such. Our growth plan is concrete, measurable, and shared openly with every partner we work with. That is the basis of trust we are offering - not a long history we don't yet have.",
+    a: `We believe trust is earned, not simply claimed. While CGWF is a young organisation, our commitment is clear, to work transparently, responsibly and with measurable results.
+
+We will show you what we do, where resources go and what our programmes achieve. Our activities, partnerships, reports and impact will be documented and made available as we grow.
+
+You do not have to trust us simply because we ask you to. Give us the opportunity to demonstrate that we are worthy of your trust.`,
   },
   {
     q: 'Where does my donation go?',
-    a: 'A minimum of [XX%] of every donation goes directly to on-the-ground program delivery. The remainder covers the essentials of running a transparent organization - monitoring, reporting, and the staff who make the field work possible. We publish full financial reports annually.',
+    a: 'Your donation helps turn climate action into practical results. We use donations to support tree planting and ecosystem restoration, climate and environmental education, community sensitization, research and advocacy, and initiatives that help vulnerable communities respond to environment challenges. We also use a portion of funds for essential programme and operational costs so that our work can be delivered effectively and responsibility.',
   },
   {
     q: 'Do you issue carbon credits?',
-    a: 'We are currently assessing the most credible pathway for carbon accounting within our restoration portfolio. At this stage, partnerships and donations support restoration outcomes directly, rather than tradable credits. We will update this policy transparently as our measurement framework matures.',
+    a: 'CGWF does not presently issue or sell carbon credits. Our work focuses on tree planting, ecosystem restoration, climate education, community engagement, and other practical climate action initiatives. As our restoration projects develop, we may explore credible carbon credit programmes in the future, subject to the appropriate standards, verification and certification.',
   },
   {
-    q: 'Can I visit a project site?',
-    a: 'Yes, we welcome serious partners, funders, and journalists at our sites. Contact us at hello@climategreenworld.org to arrange a visit.',
+    q: 'Can we visit project sites?',
+    a: 'We welcome prospective partners, funders, and journalists at our sites. You may need to contact us to arrange a visit.',
   },
   {
-    q: 'How is the Foundation funded?',
-    a: 'Through three streams: corporate partnerships, government and institutional partnerships, and individual donations. We are actively building each of these streams in parallel.',
+    q: 'How is the foundation funded?',
+    a: `CGWF is funded through a combination of donations, grants, partnerships, corporate social responsibility (CSR) support, and contributions from individuals and organizations that share our commitment to climate and environmental action.
+
+As our programmes grow, we will continue to build partnerships with development organisations, businesses, communities, and other funding partners to support sustainable impact.`,
   },
   {
-    q: 'What kinds of trees do you plant?',
-    a: 'We plant native species in native configurations, guided by local ecology and traditional knowledge. We do not plant monoculture plantations. Species selection is site-specific and community-validated.',
+    q: 'What kind of trees do you plant?',
+    a: `We prioritise native and well-adapted tree species that are suitable for the local environment, climate, soil and ecosystem. Our choice also considers biodiversity, long-term survival, shade, soil protection and the needs of the communities where we work.
+
+We aim to plant trees that restore rather than disrupt local ecosystems, working with communities and, where select species best suited to each location.`,
   },
   {
-    q: 'How do you measure your impact?',
-    a: 'We track tree and biomass growth, carbon drawdown, biodiversity return, soil and water health, and community outcomes. Our framework draws on FAO methodology, IPCC guidance, and AFR100 reporting protocols. We report annually against agreed baselines.',
+    q: 'How do you measure impact',
+    a: `We measure impact through clear, evidence-based indicators. Depending on the programme, we track trees planted and surviving, hectares of land restored, communities and people reached, climate and environmental awareness created, and changes resulting from our interventions.
+
+We document our activities, monitor progress over time, and use reports, field observations, community feedback and other relevant data to assess what is working and where improvements are needed.
+
+Our goal is not simply to count activities, but to demonstrate meaningful and lasting environmental and community impact.`,
   },
 ]
 
@@ -61,10 +73,12 @@ function FAQItem({ faq }: { faq: typeof faqs[0] }) {
       </button>
 
       {open && (
-        <div className="px-6 pb-6 border-t border-border-color">
-          <p className="font-garamond text-base text-text-secondary leading-relaxed pt-4">
-            {faq.a}
-          </p>
+        <div className="px-6 pb-6 border-t border-border-color pt-4 space-y-4">
+          {faq.a.split('\n\n').map((paragraph, i) => (
+            <p key={i} className="font-garamond text-base text-text-secondary leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
         </div>
       )}
     </div>
@@ -76,7 +90,7 @@ export default function FAQsPage() {
     <>
       <PageHero
         tag="FAQs"
-        headline="Honest answers to honest questions."
+        headline="Straight questions. Straight answers."
         subheadline="If something you need to know is not here, write to us."
       />
 
@@ -95,7 +109,7 @@ export default function FAQsPage() {
             <p className="font-garamond text-white/80 mb-5">
               We are happy to answer directly.
             </p>
-            <a href="mailto:hello@climategreenworld.org" className="btn-secondary">
+            <a href="mailto:info@climateandgreen.com" className="btn-secondary">
               Write to us →
             </a>
           </div>

@@ -43,14 +43,14 @@ export default function Hero() {
             <div
               className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 animate-fade-up opacity-0 [animation-delay:300ms]"
             >
-              <Link href="/get-involved/donate" className="btn-secondary text-sm px-8 py-4 w-full sm:w-auto">
-                Donate
-              </Link>
               <Link href="/about" className="btn-primary text-sm px-8 py-4 w-full sm:w-auto">
                 Who We Are
               </Link>
               <Link href="/what-we-do" className="btn-primary text-sm px-8 py-4 w-full sm:w-auto">
                 What We Do
+              </Link>
+              <Link href="/get-involved/donate" className="btn-secondary text-sm px-8 py-4 w-full sm:w-auto">
+                Donate
               </Link>
             </div>
           </div>
@@ -62,9 +62,9 @@ export default function Hero() {
             <div className="grid grid-cols-2 gap-4">
               {[
                 { value: '600', label: 'Trees Planted' },
-                { value: '1 ha', label: 'Under Restoration' },
+                { value: '5', label: 'Community Awareness' },
                 { value: '10', label: 'People Employed' },
-                { value: '2025', label: 'Founded' },
+                { value: '2026', label: 'Founded' },
               ].map((stat) => (
                 <div key={stat.label} className="hero-stat-card">
                   <p className="font-garamond font-semibold text-2xl md:text-3xl text-lime-green">

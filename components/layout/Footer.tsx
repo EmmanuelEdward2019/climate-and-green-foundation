@@ -19,8 +19,7 @@ const whatWeDoLinks = [
 ]
 
 const getInvolvedLinks = [
-  { label: 'Corporate Partnerships', href: '/get-involved/corporate' },
-  { label: 'Government Partnerships', href: '/get-involved/government' },
+  { label: 'Partnership', href: '/get-involved/partnership' },
   { label: 'Donate', href: '/get-involved/donate' },
   { label: 'Newsletter', href: '/get-involved/newsletter' },
 ]
@@ -153,8 +152,8 @@ export default function Footer() {
 
             <div className="mt-6">
               <p className="font-comfortaa text-xs text-white/50 mb-2">Contact us:</p>
-              <p className="font-garamond text-sm text-white/70">hello@climategreenworld.org</p>
-              <p className="font-garamond text-sm text-white/70">Lagos, Nigeria</p>
+              <p className="font-garamond text-sm text-white/70">info@climateandgreen.com</p>
+              <p className="font-garamond text-sm text-white/70">Port Harcourt, Nigeria</p>
             </div>
           </div>
         </div>
@@ -170,7 +169,7 @@ export default function Footer() {
               </p>
               <span className="hidden sm:inline text-white/30">·</span>
               <p className="font-comfortaa text-xs text-white/50">
-                Registered with CAC Nigeria · Reg. No. [XXXX]
+                Registered with CAC Nigeria · Reg. No. 9559410
               </p>
             </div>
             <div className="flex items-center gap-4">

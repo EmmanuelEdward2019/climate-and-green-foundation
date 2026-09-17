@@ -18,12 +18,12 @@ export const metadata: Metadata = {
 }
 
 const contacts = [
-  { icon: Mail, label: 'General enquiries', value: 'hello@climategreenworld.org', href: 'mailto:hello@climategreenworld.org' },
-  { icon: Mail, label: 'Partnerships', value: 'partnerships@climategreenworld.org', href: 'mailto:partnerships@climategreenworld.org' },
-  { icon: Mail, label: 'Media', value: 'media@climategreenworld.org', href: 'mailto:media@climategreenworld.org' },
-  { icon: Mail, label: 'Careers', value: 'careers@climategreenworld.org', href: 'mailto:careers@climategreenworld.org' },
-  { icon: MapPin, label: 'Office', value: 'Lagos, Nigeria', href: '#' },
-  { icon: Phone, label: 'Phone', value: '+234 XXX XXX XXXX', href: 'tel:+234XXXXXXXXXX' },
+  { icon: Mail, label: 'General enquiries', value: 'info@climateandgreen.com', href: 'mailto:info@climateandgreen.com' },
+  { icon: Mail, label: 'Partnerships', value: 'info@climateandgreen.com', href: 'mailto:info@climateandgreen.com' },
+  { icon: MapPin, label: 'Office', value: 'Port Harcourt, Nigeria', href: '#' },
+  { icon: Phone, label: 'Phone', value: '+234 803 751 7325', href: 'tel:+2348037517325' },
+  { icon: Phone, label: 'Phone', value: '+234 915 601 9074', href: 'tel:+2349156019074' },
+  { icon: Phone, label: 'Phone', value: '+234 903 492 0091', href: 'tel:+2349034920091' },
 ]
 
 const socials = [
@@ -36,8 +36,7 @@ const socials = [
 
 const reasons = [
   'General enquiry',
-  'Corporate partnership',
-  'Government partnership',
+  'Partnership',
   'Media',
   'Volunteering',
   'Donating',
@@ -65,7 +64,7 @@ export default function ContactPage() {
                   const Icon = contact.icon
                   return (
                     <a
-                      key={contact.label}
+                      key={`${contact.label}-${contact.value}`}
                       href={contact.href}
                       className="flex items-start gap-4 group"
                     >

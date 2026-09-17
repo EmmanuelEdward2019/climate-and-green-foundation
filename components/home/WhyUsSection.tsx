@@ -1,33 +1,28 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Globe, AlertTriangle, Heart, User, BarChart3, Target } from 'lucide-react'
+import { Globe, AlertTriangle, Heart, User, Target } from 'lucide-react'
 
 const reasons = [
   {
     icon: Globe,
-    title: 'African-rooted, globally networked.',
-    body: 'Our work is in Nigeria and the Sahel. Our partnerships extend across borders to anyone serious about climate action.',
+    title: 'Rooted in Africa.',
+    body: 'We work in Nigeria and the Sahel. Our partnership extends across borders to groups and individuals desirous of climate change action.',
   },
   {
     icon: AlertTriangle,
-    title: 'The pollution others overlook.',
-    body: 'We are one of the few foundations engaging directly with the ecological damage of oil bunkering and illegal artisanal refining.',
+    title: 'We tackle what others ignore.',
+    body: 'We engage directly with oil bunkering, illegal refinning, and the felling of trees for firewood issues too critical to be ignored.',
   },
   {
     icon: Heart,
     title: 'Community-first.',
-    body: 'No project begins without the buy-in of the people who will live with it for the next fifty years.',
+    body: 'No project begins without the people who should be the direct beneficiaries.',
   },
   {
     icon: User,
     title: 'Founder-led, mission-built.',
     body: 'Dr. Ike Anosike spent years on this work before the Foundation existed. The institution is new; the conviction is not.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Transparent.',
-    body: "We publish what worked, what didn't, and what it cost.",
   },
   {
     icon: Target,
@@ -63,10 +58,9 @@ export default function WhyUsSection() {
             <span className="w-4 h-0.5 bg-lime-green" />
             Our Differentiation
           </span>
-          <h2 className="heading-lg mt-4 green-line">Why us?</h2>
+          <h2 className="heading-lg mt-4 green-line">Why Us?</h2>
           <p className="body-md">
-            Six reasons why Climate & Green World Foundation is the partner serious climate
-            actors are looking for.
+            Five Reasons Climate Actors Should Choose Climate &amp; Green World Foundation.
           </p>
         </div>
 

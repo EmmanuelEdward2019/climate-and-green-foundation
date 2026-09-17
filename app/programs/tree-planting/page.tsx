@@ -24,7 +24,7 @@ export default function TreePlantingPage() {
         tag="Program 01"
         headline="Bringing degraded land back to life."
         subheadline="Our flagship work. Reforestation that sticks, not the photo-op kind."
-        image="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=80"
+        image="/images/tree-planting-welcome.png"
       />
 
       <section className="section-padding bg-white">
@@ -75,7 +75,7 @@ export default function TreePlantingPage() {
                 </h3>
                 <p className="font-garamond text-base text-text-secondary leading-relaxed">
                   Nigeria and the Sahel. Specific project site names to be confirmed. Our initial
-                  site covers one hectare of degraded land currently under active restoration.
+                  sites span degraded land across different communities under active restoration.
                 </p>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function TreePlantingPage() {
                 <div className="space-y-4">
                   {[
                     { value: '600', label: 'Trees planted' },
-                    { value: '1', label: 'Hectare under restoration' },
+                    { value: '5', label: 'Awareness campaigns' },
                     { value: '10', label: 'Team members' },
                   ].map((stat) => (
                     <div key={stat.label} className="border-b border-white/15 pb-4 last:border-0 last:pb-0">
@@ -124,7 +124,7 @@ export default function TreePlantingPage() {
                 <p className="font-garamond text-sm text-text-secondary mb-4">
                   Support this work through a corporate or institutional partnership with measurable outcomes.
                 </p>
-                <Link href="/get-involved/corporate" className="btn-primary w-full text-center flex items-center justify-center gap-2 text-sm">
+                <Link href="/get-involved/partnership" className="btn-primary w-full text-center flex items-center justify-center gap-2 text-sm">
                   Get involved <ArrowRight size={14} />
                 </Link>
               </div>

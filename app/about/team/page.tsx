@@ -10,55 +10,52 @@ const whatWeDo = [
   'Climate change and environmental education',
   'Community climate awareness and sensitisation',
   'Tree planting and ecosystem restoration',
-  'Biodiversity and nature conservation',
-  'Sustainable environmental practices',
   'Youth and school environmental programmes',
-  'Community-based climate resilience initiatives',
   'Partnerships and advocacy for environmental action',
 ]
 
 const team = [
   {
-    name: 'Fortune Terdoo',
-    title: 'a 500 level medical student.',
-    image: '/images/fortune-terdoo.png',
-    bio: [
-      "My interest in climate change grew out of my journey as a medical student, with a heart set by God's grace on specializing in paediatrics. Even at this stage of training, I've seen how climate change isn't just an environmental issue but a health crisis unfolding in real time, often affecting children first, through malnutrition, waterborne illness, and heat-related conditions.",
-      "As I train toward a future in paediatrics, I see my role extending beyond the clinic: advocating for policies that protect vulnerable communities from climate-driven health risks, and helping bridge the gaps between environmental awareness and public health action. I believe sustainable, resilient communities begin with informed, committed individuals  and I'm determined to be one of them.",
-    ],
+    name: 'Nnenna Joy Anosike',
+    title: 'Head, Program & Projects',
+    image: '/images/nnenna-joy-anosike.jpg',
+    bio: ['Bsc Estate Management'],
   },
   {
-    name: 'Igah Helen Ebam',
-    title: 'also a 500 level medical student.',
-    image: '/images/igah-helen-ebam.png',
-    bio: [
-      "My interest in climate change stems from a fascination with how interconnected biological systems truly are. As a medical student, I've come to appreciate that human health doesn't exist in isolation; it responds to shifts in temperature, air quality, food security, and disease patterns, many of which are being reshaped by a changing climate.",
-      'This has sparked a deeper curiosity in me: how do we prepare the next generation of healthcare professionals to anticipate and respond to these shifts? I see this not just as an environmental concern, but as a call to think ahead blending scientific rigor with a genuine commitment to safeguarding the health of future generations.',
-    ],
-  },
-  {
-    name: 'Iorna Terhemba Emmanuel',
-    title: 'Field Officer & Community Mobilizer',
-    image: '/images/iorna-terhemba-emmanuel.png',
-    bio: [],
-  },
-  {
-    name: 'Emmanuel Chukwuemeka.',
-    title: 'Secretary Climate and Green World Foundation',
+    name: 'Emmanuel Chukwuemeka',
+    title: 'Head, Communication & Media',
     image: '/images/emmanuel-chukwuemeka.png',
     bio: [],
   },
   {
-    name: 'Mr Okpokam Frank',
-    title: 'Finance and Administration',
+    name: 'Frank Okpokam',
+    title: 'Head, Finance & Administration',
     image: '/images/okpokam-frank.jpg',
     bio: ['B.A.Hons; Economics|Pub.Administration from Panjab University, Chandigarh, North India.'],
   },
   {
-    name: 'NNenna Joy Anosike',
-    title: 'Executive Director | Policy & Strategy, Climate and Green World Foundation.',
-    image: '/images/nnenna-joy-anosike.jpg',
-    bio: ['Bsc Estate Management'],
+    name: 'Iorna Terhemba Emmanuel',
+    title: 'Head, Schools & Community Outreach',
+    image: '/images/iorna-terhemba-emmanuel.png',
+    bio: [],
+  },
+  {
+    name: 'Fortune Terdoo',
+    title: 'Head, Research, Data & Impact',
+    image: '/images/fortune-terdoo.png',
+    bio: [],
+  },
+  {
+    name: 'Igah Helen Ebam',
+    title: 'Communication & Media',
+    image: '/images/igah-helen-ebam.png',
+    bio: [],
+  },
+  {
+    name: 'Williams Otanwa',
+    title: 'Head, Operation, Monitoring & Evaluation',
+    image: '/images/williams-otanwa.jpg',
+    bio: [],
   },
 ]
 
@@ -69,7 +66,7 @@ export default function TeamPage() {
         tag="Founder & Team"
         headline="The people behind the work."
         subheadline="A select team of climate enthusiasts, community organizers, and field officers,working across Nigeria and the Sahel"
-        image="https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1920&q=80"
+        image="/images/environment-week-group-1.png"
       />
 
       {/* Founder section */}
@@ -96,7 +93,10 @@ export default function TeamPage() {
                 <span className="w-4 h-0.5 bg-lime-green" />
                 Founder
               </span>
-              <h2 className="heading-lg mt-4 mb-6 green-line">Dr. Ike Anosike</h2>
+              <h2 className="heading-lg mt-4 mb-2 green-line">Dr. Ike Anosike</h2>
+              <p className="font-comfortaa font-semibold text-sm text-forest-green mb-6">
+                Executive Director | Founder
+              </p>
               <div className="space-y-4 body-md">
                 <p>
                   Dr Ike Anosike&apos;s love for nature and clean environment led to the
@@ -112,15 +112,18 @@ export default function TeamPage() {
                   depend must be protected, restored and sustainably managed if people and future
                   generations are to thrive.
                 </p>
-              </div>
-
-              {/* Placeholder for publications */}
-              <div className="mt-8 p-5 rounded-xl bg-neutral-bg border border-border-color">
-                <p className="font-comfortaa font-semibold text-sm text-text-primary mb-1">
-                  Publications &amp; Research
+                <p>
+                  Across Africa, particularly in vulnerable communities, climate change and
+                  environmental degradation are already affecting livelihoods, food security,
+                  health and economic opportunities. Deforestation, ecosystem loss, unsustainable
+                  land use, pollution and low public awareness continue to place additional
+                  pressure on already fragile environments.
                 </p>
-                <p className="font-garamond text-sm text-text-secondary italic">
-                  [Publication links to be added]
+                <p>
+                  CGWF works to bridge the gaps between climate knowledge and practical community
+                  action. Our work focuses on climate and environmental awareness, ecosystem
+                  restoration, tree planting, biodiversity conservation, sustainable livelihoods,
+                  community engagement and climate education.
                 </p>
               </div>
             </div>
@@ -129,19 +132,6 @@ export default function TeamPage() {
           {/* Continuation of the write-up */}
           <div className="max-w-4xl mt-16">
             <div className="space-y-4 body-md">
-              <p>
-                Across Africa, particularly in vulnerable communities, climate change and
-                environmental degradation are already affecting livelihoods, food security, health
-                and economic opportunities. Deforestation, ecosystem loss, unsustainable land use,
-                pollution and low public awareness continue to place additional pressure on already
-                fragile environments.
-              </p>
-              <p>
-                CGWF works to bridge the gaps between climate knowledge and practical community
-                action. Our work focuses on climate and environmental awareness, ecosystem
-                restoration, tree planting, biodiversity conservation, sustainable livelihoods,
-                community engagement and climate education.
-              </p>
               <p>
                 We believe that lasting environmental change cannot be achieved by institutions
                 alone. Communities must understand the challenges, participate in the solutions and
@@ -215,10 +205,10 @@ export default function TeamPage() {
               <span className="w-4 h-0.5 bg-lime-green" />
               Our Team
             </span>
-            <h2 className="heading-lg mt-4 mb-4">Small by design. Growing by season.</h2>
+            <h2 className="heading-lg mt-4 mb-4">CGWF - Team and Portfolio</h2>
             <p className="body-md max-w-2xl">
-              We are a team of ten. Each person is here because they believe climate work should
-              be African-led, measured honestly, and delivered with community at the center.
+              Meet the people providing leadership and direction across climate and green world
+              foundation key areas of work.
             </p>
           </div>
 

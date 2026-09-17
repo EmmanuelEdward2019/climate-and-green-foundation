@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
-import { Building2, Landmark, Heart, Mail, ArrowRight } from 'lucide-react'
+import { Building2, Heart, Mail, ArrowRight } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'Get Involved',
@@ -11,18 +11,10 @@ export const metadata: Metadata = {
 const pathways = [
   {
     icon: Building2,
-    title: 'Corporate Partnerships',
-    desc: 'Co-designed project portfolios, branded sites, quarterly reporting, employee engagement, and content rights. For businesses serious about measurable climate action.',
-    href: '/get-involved/corporate',
+    title: 'Partnership',
+    desc: 'Individual, corporate, institutional and government partnerships. Support meaningful projects, engage communities, strengthen environmental awareness and contribute to measurable environmental outcomes.',
+    href: '/get-involved/partnership',
     cta: 'Request a partnership proposal',
-    primary: true,
-  },
-  {
-    icon: Landmark,
-    title: 'Government & Institutional',
-    desc: 'A delivery partner with credibility, transparency, and the ability to operate in complex local environments. Registered with Nigeria\'s CAC.',
-    href: '/get-involved/government',
-    cta: 'Start a conversation',
     primary: true,
   },
   {
@@ -50,7 +42,7 @@ export default function GetInvolvedPage() {
         tag="Get Involved"
         headline="Every greener world begins with a decision."
         subheadline="Whether you are a corporation, a government agency, or an individual who wants to help - there is a place for you here."
-        image="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=1920&q=80"
+        image="/images/environment-week-group-1.png"
       />
 
       <section className="section-padding bg-white">

@@ -39,16 +39,10 @@ export default function FinalCTASection() {
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            href="/get-involved/corporate"
+            href="/get-involved/partnership"
             className="btn-outline-white w-full sm:w-auto"
           >
-            Corporate Partnerships
-          </Link>
-          <Link
-            href="/get-involved/government"
-            className="btn-outline-white w-full sm:w-auto"
-          >
-            Government Partnerships
+            Partnership
           </Link>
           <Link
             href="/get-involved/donate"

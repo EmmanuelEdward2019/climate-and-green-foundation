@@ -24,7 +24,7 @@ export default function UrbanGreeningPage() {
         tag="Program 02"
         headline="A cooler, greener city is built tree by tree."
         subheadline="Many of Africa's fastest-growing cities are losing green cover at exactly the moment they need it most."
-        image="https://images.unsplash.com/photo-1496564203457-11bb12075d90?w=1920&q=80"
+        image="/images/environment-week-group-1.png"
       />
 
       <section className="section-padding bg-white">
@@ -71,7 +71,7 @@ export default function UrbanGreeningPage() {
                 <p className="font-comfortaa text-xs text-lime-green uppercase tracking-widest mb-3">Program Status</p>
                 <p className="font-garamond font-semibold text-lg text-white mb-2">In development.</p>
                 <p className="font-garamond text-sm text-white/70 leading-relaxed">
-                  Urban greening partnerships are being scoped for the 2025–2026 season. Municipal
+                  Urban greening partnerships are being scoped for the 2026 season. Municipal
                   engagements are underway.
                 </p>
               </div>

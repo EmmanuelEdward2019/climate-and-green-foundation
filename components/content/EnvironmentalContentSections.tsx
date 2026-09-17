@@ -183,58 +183,58 @@ export default function EnvironmentalContentSections({
       {/* Our Response */}
       <section className="section-padding bg-neutral-bg">
         <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div style={fade(0)}>
-              <span className="section-tag mb-4">
-                <span className="w-4 h-0.5 bg-lime-green" />
-                Our Response
-              </span>
-              <h2 className="heading-lg green-line mb-6">
-                Climate and Green World is responding through
-              </h2>
-              {variant === 'home' && (
-                <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                  <Link href="/programs/petroleum-pollution" className="btn-primary">
-                    Our Petroleum Defense Program
-                  </Link>
-                  <Link href="/get-involved/corporate" className="btn-outline">
-                    Partner With Us
-                  </Link>
-                </div>
-              )}
+          {/* Heading sits above the three boxes so they read as one block */}
+          <div className="max-w-3xl mb-12" style={fade(0)}>
+            <span className="section-tag mb-4">
+              <span className="w-4 h-0.5 bg-lime-green" />
+              Our Response
+            </span>
+            <h2 className="heading-lg green-line">
+              Climate and Green World is responding through
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6" style={fade(120)}>
+            <div className="solution-card">
+              <Megaphone size={24} className="text-lime-green mb-4" />
+              <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
+                Awareness
+              </h3>
+              <p className="font-garamond text-text-secondary">
+                We create awareness through various media like newspaper, radio and social media.
+                Involvement of chiefs and community leader. Enlightenment of youths and various
+                groups and organisation.
+              </p>
             </div>
-            <div className="space-y-6" style={fade(120)}>
-              <div className="solution-card">
-                <Megaphone size={24} className="text-lime-green mb-4" />
-                <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
-                  Awareness
-                </h3>
-                <p className="font-garamond text-text-secondary">
-                  Working with the chiefs and communities on the link between livelihood and long
-                  term survival.
-                </p>
-              </div>
-              <div className="solution-card">
-                <Sprout size={24} className="text-lime-green mb-4" />
-                <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
-                  Alternative Livelihood and Restoration
-                </h3>
-                <p className="font-garamond text-text-secondary">
-                  Promoting clean energy, sustainable farming, and leading tree planting campaigns
-                  to restore what has been lost.
-                </p>
-              </div>
-              <div className="solution-card">
-                <Gavel size={24} className="text-lime-green mb-4" />
-                <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
-                  Advocacy
-                </h3>
-                <p className="font-garamond text-text-secondary">
-                  Pushing for enforcement and government action.
-                </p>
-              </div>
+            <div className="solution-card">
+              <Sprout size={24} className="text-lime-green mb-4" />
+              <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
+                Alternative Livelihood and Restoration
+              </h3>
+              <p className="font-garamond text-text-secondary">
+                Promoting clean energy, sustainable farming, and leading tree planting campaigns
+                to restore what has been lost.
+              </p>
+            </div>
+            <div className="solution-card">
+              <Gavel size={24} className="text-lime-green mb-4" />
+              <h3 className="font-garamond font-semibold text-xl text-text-primary mb-2">
+                Advocacy
+              </h3>
+              <p className="font-garamond text-text-secondary">
+                Pushing for attitudinal change towards the environment. Advocating for various
+                government actions and commitment towards the environment.
+              </p>
             </div>
           </div>
+
+          {variant === 'home' && (
+            <div className="mt-12 flex flex-col sm:flex-row gap-4" style={fade(200)}>
+              <Link href="/what-we-do" className="btn-primary">
+                See what we do
+              </Link>
+            </div>
+          )}
         </div>
       </section>
     </div>

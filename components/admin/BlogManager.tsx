@@ -13,5 +13,5 @@ export default function BlogManager() {
     { name: "body", label: "Full Article Body", type: "textarea" as const },
   ];
 
-  return <GenericManager title="Blog Posts Manager" storageKey="admin_blogs" fields={fields} />;
+  return <GenericManager title="Blog Posts Manager" storageKey="admin_blogs_v2" fields={fields} />;
 }

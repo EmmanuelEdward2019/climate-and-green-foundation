@@ -17,7 +17,7 @@ export default function MapContact() {
       L.Icon.Default.mergeOptions({ iconRetinaUrl: '', iconUrl: '', shadowUrl: '' })
 
       const map = L.map(mapRef.current!, {
-        center: [6.5244, 3.3792],
+        center: [4.8156, 7.0498],
         zoom: 11,
         scrollWheelZoom: false,
         zoomControl: true,
@@ -26,11 +26,14 @@ export default function MapContact() {
 
       instanceRef.current = map
 
+      /*
+        OpenStreetMap standard tiles - keyless and free. The CARTO basemap now
+        requires an API key and renders an "API KEY REQUIRED" watermark without one.
+      */
       L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
         {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-          subdomains: 'abcd',
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
           maxZoom: 19,
         }
       ).addTo(map)
@@ -57,12 +60,12 @@ export default function MapContact() {
         `,
       })
 
-      L.marker([6.5244, 3.3792], { icon: svgIcon })
+      L.marker([4.8156, 7.0498], { icon: svgIcon })
         .addTo(map)
         .bindPopup(
           `<div style="font-family:'EB Garamond',serif;padding:4px 2px;">
             <strong style="font-size:15px;color:#1C5E2C;">Climate & Green World Foundation</strong><br/>
-            <span style="font-size:13px;color:#5F6368;">Lagos, Nigeria</span>
+            <span style="font-size:13px;color:#5F6368;">Port Harcourt, Nigeria</span>
           </div>`,
           { maxWidth: 220, className: 'cgwf-popup' }
         )

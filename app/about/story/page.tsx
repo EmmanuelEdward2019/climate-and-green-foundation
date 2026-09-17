@@ -11,41 +11,41 @@ export const metadata: Metadata = {
 const timeline = [
   {
     year: 'Years Before',
-    title: 'One man. One question.',
-    body: 'Dr. Ike Anosike works as a lone voice - planting what he can, speaking where he can, documenting what he sees. The forests strain. The rivers darken. The land shrinks.',
-    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=400&q=75',
-    imageAlt: 'Forest landscape under pressure',
+    title: 'One man & a dream.',
+    body: 'Dr. Ike Anosike worked as a lone voice - planting where he could, speaking where he could, documenting what he saw.',
+    image: '/images/the-founder.png',
+    imageAlt: 'Dr. Ike Anosike, Founder',
   },
   {
-    year: '2025',
+    year: '2026',
     title: 'Making it official.',
-    body: 'The Climate & Green World Foundation is registered with the Corporate Affairs Commission of Nigeria. The lone voice becomes an institution. The personal commitment becomes a team.',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&q=75',
+    body: 'The Climate & Green World Foundation is registered with the Corporate Affairs Commission of Nigeria. The lone voice becomes an institution.',
+    image: '/images/environment-week-group-1.png',
     imageAlt: 'Foundation registration',
   },
   {
-    year: 'Year One',
+    year: 'Since then',
     title: 'Starting with what we have.',
-    body: 'Six hundred trees in the ground. One hectare under restoration. Ten people committed to the work. A foundation year of honest numbers and honest learning.',
-    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&q=75',
+    body: 'Six hundred trees in the ground. 200 students enlightened. Ten people committed to the work. The number keeps going up.',
+    image: '/images/tree-planting-welcome.png',
     imageAlt: 'Trees being planted',
   },
   {
     year: 'Season by Season',
     title: 'The curve upward.',
-    body: 'Each season adds trees, land, people, and knowledge. The vision grows. The numbers grow. The partnerships take shape.',
-    image: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&q=75',
+    body: 'Each season adds more trees, people, and knowledge. The vision grows. The numbers grow. The partnerships are forthcoming.',
+    image: '/images/environment-week-group-2.png',
     imageAlt: 'Green landscape growing',
   },
 ]
 
 /* Staggered masonry photo grid for the visual break section */
 const gridPhotos = [
-  { src: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&q=80', alt: 'Forest path', span: 'row-span-2' },
-  { src: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=700&q=80', alt: 'Savannah landscape', span: '' },
-  { src: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=700&q=80', alt: 'Community work', span: '' },
-  { src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=700&q=80', alt: 'Open landscape', span: '' },
-  { src: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=700&q=80', alt: 'Nature close-up', span: '' },
+  { src: '/images/tree-planting-welcome.png', alt: 'Planting a native seedling', span: 'row-span-2' },
+  { src: '/images/environment-week-group-1.png', alt: 'World Environment Day tree planting', span: '' },
+  { src: '/images/environment-week-group-2.png', alt: 'Community engagement', span: '' },
+  { src: '/images/environmental-preservation-2.png', alt: 'Felled trees hauled for firewood', span: '' },
+  { src: '/images/Bunkering 1(1).png', alt: 'Documented bunkering site, Niger Delta', span: '' },
 ]
 
 export default function StoryPage() {
@@ -53,8 +53,8 @@ export default function StoryPage() {
     <>
       <PageHero
         tag="Our Story"
-        headline="A foundation that started with one man and a question."
-        image="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=80"
+        headline="A foundation that started with one man, a deep conviction and a growing purpose."
+        image="/images/the-founder.png"
       />
 
       {/* Story narrative */}
@@ -69,29 +69,28 @@ export default function StoryPage() {
               </span>
               <div className="prose-custom space-y-5">
                 <p className="font-garamond text-xl font-semibold text-text-primary leading-relaxed italic">
-                  For years, Dr. Ike Anosike worked alone.
+                  For years Dr. Ike Anosike worked alone.
                 </p>
                 <p>
-                  A scientist by training and a lover of nature by disposition, he watched the
-                  landscapes he had grown up loving - the forests, the riverbanks, the farmland of
-                  Nigeria and the wider Sahel - strain and shrink under the combined pressures of
-                  climate change, deforestation, oil pollution, and the slow erosion of community
-                  knowledge. He planted what he could. He spoke where he could. He documented what
-                  he saw.
+                  A socio-scientist and a lover of nature, he watched the abuse of our environment
+                  and knew he had to act.
                 </p>
                 <p>
-                  In 2025, he made it official.
-                </p>
-                <p>
-                  The Climate & Green World Foundation was registered with the Corporate Affairs
-                  Commission of Nigeria as a non-governmental organization with one purpose: to take
-                  the work he had been doing as an individual and turn it into something that could
-                  outlast any one person. A foundation. A team. A long horizon.
-                </p>
-                <p>
-                  We started with what we had - a hectare of land, six hundred trees, ten people
-                  committed to the work. We are growing season by season. The vision is sustainable:
-                  a planet where nature thrives.
+                  Concerned about these destructions; the loss of Green Spaces, pollution and
+                  indiscriminate waste disposal, the combined pressure of deforestation, chopping
+                  down of trees for charcoal production, and the slow erosion of community
+                  heritage, he was compelled to act. What began as a deep concern for the
+                  environment gradually became a commitment to make a difference. He started where
+                  he could; his house, schools, space for a tree he planted. He spoke to students
+                  and pupils, to communities and anyone who would listen. These obsessions
+                  inevitably formed the building blocks of what crystallized into CLIMATE &amp;
+                  GREEN WORLD FOUNDATION, registered with the corporate affairs commission of
+                  Nigeria, as a Non-Governmental Organization with a purpose to internationalise
+                  the work he&apos;s been doing. So far, this singular act has attracted 10 staff
+                  and volunteers. More than 200 students have been spoken to about Climate change
+                  and what to do about it. Equally, 600 trees have been planted at different
+                  communities and we have continued to plant where we could because we have this
+                  conviction that a clean and Green world is possible, when we all play a role.
                 </p>
               </div>
 
@@ -196,7 +195,7 @@ export default function StoryPage() {
       <section className="py-20 px-4 bg-forest-green">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-garamond italic text-2xl md:text-3xl text-white leading-relaxed mb-6">
-            "The vision is bigger than the numbers. The numbers are growing every season."
+            "The vision is big and the numbers are growing."
           </p>
           <p className="font-comfortaa font-semibold text-sm text-lime-green">
             - Dr. Ike Anosike, Founder
@@ -209,7 +208,7 @@ export default function StoryPage() {
         <div className="container-max max-w-3xl">
           <div className="space-y-10">
             {[
-              { label: 'Vision', text: 'A sustainable planet where nature thrives.' },
+              { label: 'Vision', text: 'A clear and green environment where nature thrives. African communities leading the way.' },
               { label: 'Mission', text: 'Empowering communities to protect and preserve ecosystems and to promote eco-friendly practices.' },
             ].map((item) => (
               <div key={item.label} className="border-l-4 border-lime-green pl-6">

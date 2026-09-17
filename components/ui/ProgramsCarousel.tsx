@@ -6,15 +6,15 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const slides = [
   {
-    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1600&q=85',
+    image: '/images/tree-planting-welcome.png',
     tag: 'Program 01',
     title: 'Tree Planting & Landscape Restoration',
-    body: 'Six hundred trees in the ground. One hectare under active restoration. Reforestation that sticks.',
+    body: 'Six hundred trees in the ground across different communities. Reforestation that sticks.',
     href: '/programs/tree-planting',
     cta: 'Explore program',
   },
   {
-    image: 'https://images.unsplash.com/photo-1496564203457-11bb12075d90?w=1600&q=85',
+    image: '/images/environment-week-group-1.png',
     tag: 'Program 02',
     title: 'Urban Greening',
     body: "Africa's cities are losing green cover at the moment they need it most. We are fixing that, tree by tree.",
@@ -22,7 +22,7 @@ const slides = [
     cta: 'Explore program',
   },
   {
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=85',
+    image: '/images/Bunkering 1(1).png',
     tag: 'Program 03',
     title: 'Petroleum Pollution & Ecological Defense',
     body: 'The damage no one else is talking about. We engage directly with oil bunkering and illegal refining.',
@@ -30,7 +30,7 @@ const slides = [
     cta: 'Explore program',
   },
   {
-    image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=1600&q=85',
+    image: '/images/environment-week-group-2.png',
     tag: 'Program 04',
     title: 'Climate Education & Community Awareness',
     body: 'A generation that will not look away. Climate literacy in schools, sensitization in communities.',

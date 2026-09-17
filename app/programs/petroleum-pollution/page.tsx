@@ -92,7 +92,7 @@ export default function PetroleumPollutionPage() {
                 <p className="font-garamond text-sm text-text-secondary mb-4">
                   This program requires institutional partners. If your agency works in the Niger Delta or Sahel, we want to talk.
                 </p>
-                <Link href="/get-involved/government" className="btn-primary w-full text-center text-sm">
+                <Link href="/get-involved/partnership" className="btn-primary w-full text-center text-sm">
                   Start a conversation →
                 </Link>
               </div>

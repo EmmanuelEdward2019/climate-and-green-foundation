@@ -17,10 +17,10 @@ const programs = [
     body: 'We plant native species, restore degraded farmland and forest, support community nurseries, and protect what we plant for the long term. Reforestation that sticks, not the photo-op kind.',
     stats: [
       { value: '600', label: 'Trees planted' },
-      { value: '1 ha', label: 'Under restoration' },
+      { value: '5', label: 'Awareness campaigns' },
     ],
     href: '/programs/tree-planting',
-    image: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80',
+    image: '/images/tree-planting-welcome.png',
     color: 'border-forest-green',
   },
   {
@@ -31,7 +31,7 @@ const programs = [
     body: "Many of Africa's fastest-growing cities are losing green cover at exactly the moment they need it most. We work with municipal partners, schools, and community associations to plant and protect urban trees and restore public green spaces.",
     stats: [],
     href: '/programs/urban-greening',
-    image: 'https://images.unsplash.com/photo-1496564203457-11bb12075d90?w=800&q=80',
+    image: '/images/environment-week-group-1.png',
     color: 'border-lime-green',
   },
   {
@@ -42,7 +42,7 @@ const programs = [
     body: 'Across Nigeria, oil bunkering and illegal artisanal refining are quietly poisoning soils, rivers, and mangroves. We engage directly - educating communities, partnering with government, and restoring petroleum-affected sites.',
     stats: [],
     href: '/programs/petroleum-pollution',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80',
+    image: '/images/Bunkering 1(1).png',
     color: 'border-forest-green',
   },
   {
@@ -53,7 +53,7 @@ const programs = [
     body: 'Climate literacy in schools, sensitization campaigns in communities, and advocacy with policy-makers. The landscapes we restore today will be inherited by the children sitting in classrooms right now.',
     stats: [],
     href: '/programs/climate-education',
-    image: 'https://images.unsplash.com/photo-1529390079861-591de354faf5?w=800&q=80',
+    image: '/images/environment-week-group-2.png',
     color: 'border-lime-green',
   },
 ]

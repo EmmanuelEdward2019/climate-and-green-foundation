@@ -19,7 +19,7 @@ export default function DashboardOverview() {
         return data ? JSON.parse(data).length : 0;
       };
       setStats({
-        blog: getLength("admin_blogs"),
+        blog: getLength("admin_blogs_v2"),
         newsletter: getLength("admin_newsletters"),
         contacts: getLength("admin_contacts"),
         donations: getLength("admin_donations")

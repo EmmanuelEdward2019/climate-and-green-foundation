@@ -41,7 +41,7 @@ const subpages = [
   { label: 'Our Story', href: '/about/story', desc: 'How the Foundation began.' },
   { label: 'Founder & Team', href: '/about/team', desc: 'The people behind the work.' },
   { label: 'Careers', href: '/about/careers', desc: 'Work that matters.' },
-  { label: 'FAQs', href: '/about/faqs', desc: 'Honest answers.' },
+  { label: 'FAQs', href: '/about/faqs', desc: 'Straight answers.' },
 ]
 
 export default function AboutPage() {
@@ -51,7 +51,7 @@ export default function AboutPage() {
         tag="About"
         headline="Built to outlast any one person."
         subheadline="Climate & Green World Foundation exists to channel decades of personal commitment into an institution capable of carrying the work forward."
-        image="https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=1920&q=80"
+        image="/images/the-founder.png"
       />
 
       {/* Subpage navigation */}
@@ -81,7 +81,8 @@ export default function AboutPage() {
             <div className="bg-forest-green rounded-2xl p-8 text-white">
               <span className="font-comfortaa text-xs uppercase tracking-widest text-lime-green mb-3 block">Vision</span>
               <h2 className="font-garamond font-semibold text-2xl mb-4 leading-snug">
-                A sustainable planet where nature thrives.
+                A clear and green environment where nature thrives. African communities leading
+                the way.
               </h2>
               <div className="w-12 h-0.5 bg-lime-green" />
             </div>
@@ -94,7 +95,7 @@ export default function AboutPage() {
             </div>
             <div className="bg-neutral-bg rounded-2xl p-8 border border-border-color">
               <span className="font-comfortaa text-xs uppercase tracking-widest text-forest-green mb-3 block">Founded</span>
-              <h2 className="font-garamond font-semibold text-4xl text-text-primary mb-2">2025</h2>
+              <h2 className="font-garamond font-semibold text-4xl text-text-primary mb-2">2026</h2>
               <p className="font-garamond text-base text-text-secondary leading-relaxed">
                 Registered with the Corporate Affairs Commission of Nigeria. Building season by season.
               </p>
@@ -137,15 +138,25 @@ export default function AboutPage() {
               Our Network
             </span>
             <h2 className="heading-lg mt-4 mb-6">Connected to what matters.</h2>
-            <p className="body-md mb-6">
-              We partner with communities, government agencies, and international stakeholders. As
-              the Foundation grows, we are building affiliations with AFR100, the UN Decade on
-              Ecosystem Restoration, 1% for the Planet, and ECOWAS environmental working groups.
-            </p>
-            <p className="body-md mb-8">
-              If your organization shares our commitments, we would welcome the conversation.
-            </p>
-            <Link href="/get-involved/corporate" className="btn-primary inline-flex items-center gap-2">
+            <div className="space-y-4 body-md mb-8">
+              <p>
+                Climate and environmental challenges cannot be solved by one organization alone.
+                CGWF works to build a growing network of communities, civil society organisations,
+                academic institutions, businesses, government agencies, development partners and
+                environmental practitioners who share our commitment to a healthier and more
+                sustainable world.
+              </p>
+              <p>
+                Through partnerships and collaboration, we seek to share knowledge, mobilise
+                resources, strengthen local action and scale practical solutions in climate
+                awareness, ecosystem restoration and environmental sustainability.
+              </p>
+              <p>
+                We welcome organizations and individuals who share our vision to connect,
+                collaborate and create lasting impact together.
+              </p>
+            </div>
+            <Link href="/get-involved/partnership" className="btn-primary inline-flex items-center gap-2">
               Become a Partner
               <ArrowRight size={16} />
             </Link>
