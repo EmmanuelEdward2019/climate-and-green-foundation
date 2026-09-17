@@ -276,7 +276,7 @@ export default function Header() {
                           <img
                             src={item.megaImage}
                             alt={item.megaImageAlt || ''}
-                            className="absolute inset-0 w-full h-full object-cover opacity-50"
+                            className="absolute inset-0 w-full h-full object-cover object-top opacity-50"
                           />
                           <div className="relative z-10 p-5 h-full flex flex-col justify-end">
                             <p className="font-garamond font-semibold text-base text-white leading-snug mb-2">

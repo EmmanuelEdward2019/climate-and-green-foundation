@@ -52,6 +52,8 @@ export default function AboutPage() {
         headline="Built to outlast any one person."
         subheadline="Climate & Green World Foundation exists to channel decades of personal commitment into an institution capable of carrying the work forward."
         image="/images/the-founder.png"
+        imagePosition="center top"
+        minHeight="560px"
       />
 
       {/* Subpage navigation */}

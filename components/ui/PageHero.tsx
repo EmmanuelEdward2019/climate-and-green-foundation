@@ -3,6 +3,13 @@ interface PageHeroProps {
   headline?: React.ReactNode
   subheadline?: string
   image?: string
+  /**
+   * Focal point of the background image, as a CSS background-position.
+   * Portrait photos need 'top' so the wide hero band does not crop the face off.
+   */
+  imagePosition?: string
+  /** Minimum height of the hero band. Portrait photos need more room to frame a face. */
+  minHeight?: string
   dark?: boolean
 }
 
@@ -11,16 +18,21 @@ export default function PageHero({
   headline,
   subheadline,
   image,
+  imagePosition = 'center',
+  minHeight,
   dark = true,
 }: PageHeroProps) {
   return (
-    <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section
+      className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden flex flex-col justify-center"
+      style={minHeight ? { minHeight } : undefined}
+    >
       {/* Background */}
       {image ? (
         <>
           <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-            style={{ backgroundImage: `url('${image}')` }}
+            className="absolute inset-0 bg-cover bg-no-repeat"
+            style={{ backgroundImage: `url('${image}')`, backgroundPosition: imagePosition }}
           />
           <div className="hero-overlay absolute inset-0" />
         </>

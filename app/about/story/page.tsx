@@ -8,13 +8,21 @@ export const metadata: Metadata = {
   description: 'How Dr. Ike Anosike turned years of personal commitment into Climate & Green World Foundation.',
 }
 
-const timeline = [
+const timeline: {
+  year: string
+  title: string
+  body: string
+  image: string
+  imageAlt: string
+  imagePosition?: string
+}[] = [
   {
     year: 'Years Before',
     title: 'One man & a dream.',
     body: 'Dr. Ike Anosike worked as a lone voice - planting where he could, speaking where he could, documenting what he saw.',
     image: '/images/the-founder.png',
     imageAlt: 'Dr. Ike Anosike, Founder',
+    imagePosition: 'center 12%',
   },
   {
     year: '2026',
@@ -55,6 +63,8 @@ export default function StoryPage() {
         tag="Our Story"
         headline="A foundation that started with one man, a deep conviction and a growing purpose."
         image="/images/the-founder.png"
+        imagePosition="center top"
+        minHeight="560px"
       />
 
       {/* Story narrative */}
@@ -126,9 +136,12 @@ export default function StoryPage() {
                             src={item.image}
                             alt={item.imageAlt}
                             className="w-full h-full object-cover"
+                            style={{ objectPosition: item.imagePosition ?? 'center' }}
                             loading="lazy"
                           />
                           <div className="absolute inset-0 bg-gradient-to-r from-forest-green/70 to-transparent" />
+                          {/* Keeps the year label legible over lighter photos */}
+                          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
                           <div className="absolute bottom-3 left-4">
                             <span className="font-comfortaa font-bold text-xs text-lime-green uppercase tracking-widest">
                               {item.year}
