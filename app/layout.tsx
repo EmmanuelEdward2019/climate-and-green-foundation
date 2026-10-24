@@ -66,6 +66,8 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link rel="icon" href="/images/favicon.png" type="image/png" sizes="any" />
+        {/* Paystack inline JS for popup checkout */}
+        <script src="https://js.paystack.co/v1/inline.js" async />
       </head>
       <body className="font-garamond antialiased">
         <LiveEditorProvider />

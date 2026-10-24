@@ -1,21 +1,33 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
-import Link from 'next/link'
-import { ArrowRight, Building2, CreditCard, Heart, Loader2, Receipt, ShieldCheck } from 'lucide-react'
+import { useState } from 'react'
+import {
+  ArrowRight,
+  Building2,
+  CheckCircle2,
+  Copy,
+  Check,
+  CreditCard,
+  Heart,
+  Loader2,
+  Send,
+  ShieldCheck,
+  X,
+} from 'lucide-react'
 
 type Currency = {
   code: string
   symbol: string
   name: string
   accountNumber: string
+  flag: string
 }
 
 const currencies: Currency[] = [
-  { code: 'GBP', symbol: '£', name: 'Pound Sterling', accountNumber: '5061807898' },
-  { code: 'NGN', symbol: '₦', name: 'Nigerian Naira', accountNumber: '1312325669' },
-  { code: 'USD', symbol: '$', name: 'US Dollar', accountNumber: '5076052391' },
-  { code: 'EUR', symbol: '€', name: 'Euro', accountNumber: '5081522531' },
+  { code: 'GBP', symbol: '£', name: 'Pound Sterling', accountNumber: '5061807898', flag: '🇬🇧' },
+  { code: 'NGN', symbol: '₦', name: 'Nigerian Naira', accountNumber: '1312325669', flag: '🇳🇬' },
+  { code: 'USD', symbol: '$', name: 'US Dollar', accountNumber: '5076052391', flag: '🇺🇸' },
+  { code: 'EUR', symbol: '€', name: 'Euro', accountNumber: '5081522531', flag: '🇪🇺' },
 ]
 
 const BANK_DETAILS = {
@@ -23,351 +35,443 @@ const BANK_DETAILS = {
   bankName: 'Zenith Bank',
 }
 
-type PaymentMethod = 'paystack' | 'bank-transfer' | 'tax-free'
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    PaystackPop: any
+  }
+}
 
-const paymentMethods: {
-  id: PaymentMethod
-  label: string
-  description: string
-  icon: typeof CreditCard
-}[] = [
-  {
-    id: 'paystack',
-    label: 'Paystack',
-    description: 'Card, bank, USSD and mobile money checkout.',
-    icon: CreditCard,
-  },
-  {
-    id: 'bank-transfer',
-    label: 'Bank transfer',
-    description: 'Transfer directly to our account for the currency you selected.',
-    icon: Building2,
-  },
-  {
-    id: 'tax-free',
-    label: 'Tax free donation',
-    description: 'Prefer to make a tax free donation, contact us for details.',
-    icon: Receipt,
-  },
-]
-
-export default function DonationForm() {
-  const [currency, setCurrency] = useState<Currency | null>(null)
-  const [method, setMethod] = useState<PaymentMethod>('paystack')
+/* ─────────────────────────────── Paystack Section ─────────────────────────── */
+function PaystackSection() {
   const [amount, setAmount] = useState('')
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [phone, setPhone] = useState('')
+  const [name, setName] = useState('')
   const [error, setError] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+  async function handlePaystack() {
     setError('')
-    setIsSubmitting(true)
+
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      setError('Please enter a valid email address.')
+      return
+    }
+    const parsedAmount = Number(amount)
+    if (!parsedAmount || parsedAmount < 1) {
+      setError('Please enter a valid amount.')
+      return
+    }
+
+    setIsLoading(true)
 
     try {
       const response = await fetch('/api/paystack/initialize', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          amount: Number(amount),
-          currency: currency?.code,
+          amount: parsedAmount,
+          currency: 'NGN',
           email,
           name,
-          phone,
           frequency: 'one-time',
         }),
       })
+
       const data = await response.json()
 
-      if (!response.ok || !data.authorizationUrl) {
+      if (!response.ok || !data.accessCode) {
         throw new Error(data.error || 'Unable to start this donation.')
       }
 
-      window.location.href = data.authorizationUrl
-    } catch (submissionError) {
+      if (typeof window !== 'undefined' && window.PaystackPop) {
+        const handler = window.PaystackPop.setup({
+          key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY,
+          email,
+          amount: Math.round(parsedAmount * 100),
+          currency: 'NGN',
+          ref: data.reference,
+          access_code: data.accessCode,
+          onClose: () => setIsLoading(false),
+          callback: () => {
+            window.location.href = '/get-involved/donate/thank-you'
+          },
+        })
+        handler.openIframe()
+      } else {
+        window.location.href = data.authorizationUrl
+      }
+    } catch (err) {
       setError(
-        submissionError instanceof Error
-          ? submissionError.message
-          : 'Unable to start this donation. Please try again.',
+        err instanceof Error ? err.message : 'Unable to start this donation. Please try again.',
       )
-      setIsSubmitting(false)
+      setIsLoading(false)
     }
   }
 
   return (
-    <div className="space-y-7">
-      {/* Currency selection */}
-      <div>
-        <h2 className="heading-lg mb-5 text-center">
-          Donate In £ , ₦ , $ , €
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {currencies.map((option) => {
-            const isSelected = currency?.code === option.code
-
-            return (
-              <button
-                key={option.code}
-                type="button"
-                onClick={() => {
-                  setCurrency(option)
-                  setError('')
-                }}
-                className={`px-5 py-6 rounded-xl border-2 text-center transition-all duration-200 hover:shadow-md ${
-                  isSelected
-                    ? 'border-forest-green bg-forest-green/5 shadow-sm'
-                    : 'border-border-color hover:border-forest-green'
-                }`}
-                aria-pressed={isSelected}
-              >
-                <p className="font-garamond font-semibold text-3xl text-text-primary mb-1">
-                  {option.symbol}
-                </p>
-                <p className="font-comfortaa text-xs text-text-secondary uppercase tracking-wide">
-                  {option.code}
-                </p>
-              </button>
-            )
-          })}
+    <div className="rounded-2xl border-2 border-forest-green bg-gradient-to-br from-forest-green/[0.03] to-forest-green/[0.08] overflow-hidden">
+      {/* Header */}
+      <div className="bg-forest-green px-6 py-5 flex items-center gap-4">
+        <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+          <CreditCard size={22} className="text-white" />
         </div>
-        {!currency && (
-          <p className="font-garamond text-base text-text-secondary mt-4 text-center italic">
-            Choose a currency to continue to a payment method.
+        <div>
+          <h3 className="font-garamond font-semibold text-xl text-white leading-tight">
+            Pay Online with Paystack
+          </h3>
+          <p className="font-comfortaa text-xs text-white/70 mt-0.5">
+            Card · Bank · USSD · Mobile Money
+          </p>
+        </div>
+      </div>
+
+      {/* Form */}
+      <div className="p-5 sm:p-6 space-y-4">
+        <p className="font-garamond text-base text-text-secondary">
+          Make a secure online donation instantly. Enter your details and click pay — Paystack will
+          handle the rest.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label className="font-comfortaa text-xs font-semibold text-text-primary block mb-1.5">
+              Name <span className="text-text-secondary font-normal">(optional)</span>
+            </label>
+            <input
+              type="text"
+              className="input-field text-sm"
+              placeholder="Your full name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="font-comfortaa text-xs font-semibold text-text-primary block mb-1.5">
+              Email *
+            </label>
+            <input
+              type="email"
+              className="input-field text-sm"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value)
+                setError('')
+              }}
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="font-comfortaa text-xs font-semibold text-text-primary block mb-1.5">
+            Amount (₦) *
+          </label>
+          <div className="relative">
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-garamond text-text-secondary text-lg">
+              ₦
+            </span>
+            <input
+              type="number"
+              className="input-field text-sm pl-8"
+              placeholder="Enter amount"
+              min="1"
+              step="any"
+              value={amount}
+              onChange={(e) => {
+                setAmount(e.target.value)
+                setError('')
+              }}
+              required
+            />
+          </div>
+        </div>
+
+        {error && (
+          <p className="font-comfortaa text-xs text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
+            {error}
           </p>
         )}
+
+        <button
+          type="button"
+          onClick={handlePaystack}
+          disabled={isLoading}
+          className="w-full btn-primary justify-center gap-2 py-3.5 text-base"
+        >
+          {isLoading ? (
+            <>
+              <Loader2 size={18} className="animate-spin" />
+              Opening Paystack…
+            </>
+          ) : (
+            <>
+              <Heart size={18} />
+              Donate Now
+              <ArrowRight size={16} />
+            </>
+          )}
+        </button>
+
+        <p className="font-comfortaa text-xs text-text-secondary flex items-center justify-center gap-1.5">
+          <ShieldCheck size={13} className="text-forest-green flex-shrink-0" />
+          Secure 256-bit encrypted checkout by Paystack
+        </p>
+      </div>
+    </div>
+  )
+}
+
+/* ─────────────── Transfer Card with "I have transferred" ─────────────────── */
+function TransferCard({ currency }: { currency: Currency }) {
+  const [copied, setCopied] = useState(false)
+  const [showNotify, setShowNotify] = useState(false)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [transferAmount, setTransferAmount] = useState('')
+  const [message, setMessage] = useState('')
+  const [error, setError] = useState('')
+  const [isSending, setIsSending] = useState(false)
+  const [sent, setSent] = useState(false)
+
+  function copyAccount() {
+    navigator.clipboard.writeText(currency.accountNumber).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+
+  async function handleNotify() {
+    setError('')
+
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) {
+      setError('Please enter a valid email so we can confirm your donation.')
+      return
+    }
+
+    setIsSending(true)
+
+    try {
+      const response = await fetch('/api/transfer-notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          currency: currency.code,
+          amount: transferAmount,
+          message,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Unable to send notification.')
+      }
+
+      setSent(true)
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : 'Unable to send notification. Please try again.',
+      )
+    } finally {
+      setIsSending(false)
+    }
+  }
+
+  return (
+    <div className="rounded-2xl border-2 border-border-color bg-white overflow-hidden transition-all duration-300 hover:border-forest-green/40 hover:shadow-lg">
+      {/* Header */}
+      <div className="bg-forest-green/5 px-5 py-4 flex items-center gap-3 border-b border-border-color">
+        <span className="text-2xl leading-none">{currency.flag}</span>
+        <div className="flex-1 min-w-0">
+          <p className="font-garamond font-semibold text-xl text-text-primary leading-none">
+            {currency.symbol}{' '}
+            <span className="text-base">{currency.code}</span>
+          </p>
+          <p className="font-comfortaa text-[11px] text-text-secondary mt-0.5">{currency.name}</p>
+        </div>
       </div>
 
-      {currency && (
-        <>
-          {/* Payment method for the selected currency */}
-          <div className="bg-neutral-bg rounded-xl border border-forest-green/20 p-5 sm:p-6">
-            <h2 className="heading-md mb-2">Choose a payment method.</h2>
-            <p className="font-garamond text-base text-text-secondary mb-5">
-              Payment methods available for donations in {currency.name} ({currency.symbol}).
-            </p>
+      <div className="p-5 space-y-3">
+        {/* Bank details */}
+        <div className="flex items-center gap-2 mb-1">
+          <Building2 size={13} className="text-forest-green flex-shrink-0" />
+          <p className="font-comfortaa text-[11px] font-semibold text-text-secondary uppercase tracking-wide">
+            {BANK_DETAILS.bankName}
+          </p>
+        </div>
+        <p className="font-garamond text-sm text-text-secondary leading-snug">
+          {BANK_DETAILS.accountName}
+        </p>
+        <div className="flex items-center gap-2">
+          <p className="font-garamond font-bold text-2xl text-text-primary tracking-wide tabular-nums">
+            {currency.accountNumber}
+          </p>
+          <button
+            type="button"
+            onClick={copyAccount}
+            title="Copy account number"
+            className="p-1.5 rounded-lg hover:bg-forest-green/10 transition-colors text-text-secondary hover:text-forest-green"
+          >
+            {copied ? (
+              <Check size={14} className="text-forest-green" />
+            ) : (
+              <Copy size={14} />
+            )}
+          </button>
+        </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {paymentMethods.map((option) => {
-                const Icon = option.icon
-                const isSelected = method === option.id
+        <div className="border-t border-border-color pt-3">
+          {!showNotify && !sent && (
+            <button
+              type="button"
+              onClick={() => setShowNotify(true)}
+              className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 border-forest-green/30 text-forest-green font-comfortaa font-semibold text-sm hover:bg-forest-green/5 transition-all duration-200"
+            >
+              <CheckCircle2 size={15} />
+              I Have Transferred
+            </button>
+          )}
 
-                return (
-                  <button
-                    key={option.id}
-                    type="button"
-                    onClick={() => {
-                      setMethod(option.id)
-                      setError('')
-                    }}
-                    className={`px-5 py-4 rounded-xl border-2 text-left transition-all duration-200 hover:shadow-md bg-white ${
-                      isSelected
-                        ? 'border-forest-green shadow-sm'
-                        : 'border-border-color hover:border-forest-green'
-                    }`}
-                    aria-pressed={isSelected}
-                  >
-                    <Icon size={20} className="text-forest-green mb-3" />
-                    <p className="font-garamond font-semibold text-lg text-text-primary mb-1">
-                      {option.label}
-                    </p>
-                    <p className="font-garamond text-sm text-text-secondary">
-                      {option.description}
-                    </p>
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-
-          {method === 'paystack' ? (
-            <form onSubmit={handleSubmit}>
-              <div className="bg-neutral-bg rounded-xl border border-forest-green/20 p-5 sm:p-6">
-                <div className="w-12 h-12 rounded-full bg-forest-green/10 flex items-center justify-center mb-4">
-                  <Heart size={24} className="text-forest-green" />
-                </div>
-                <h2 className="heading-md mb-2">Complete your donation.</h2>
-                <p className="font-garamond text-base text-text-secondary mb-4">
-                  Enter any amount you wish to give. You will be sent to Paystack to complete a
-                  secure payment in {currency.code}.
-                </p>
-
-                <div className="mb-4">
-                  <label
-                    htmlFor="donation-amount"
-                    className="font-comfortaa text-xs font-semibold text-text-primary block mb-1.5"
-                  >
-                    Amount ({currency.symbol}) *
-                  </label>
-                  <input
-                    id="donation-amount"
-                    type="number"
-                    className="input-field"
-                    placeholder={`Enter any amount in ${currency.code}`}
-                    min="1"
-                    step="any"
-                    value={amount}
-                    onChange={(event) => setAmount(event.target.value)}
-                    required
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-3">
-                  <div>
-                    <label htmlFor="donor-name" className="font-comfortaa text-xs font-semibold text-text-primary block mb-1.5">
-                      Name
-                    </label>
-                    <input
-                      id="donor-name"
-                      type="text"
-                      className="input-field"
-                      placeholder="Your full name"
-                      value={name}
-                      onChange={(event) => setName(event.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="donor-email" className="font-comfortaa text-xs font-semibold text-text-primary block mb-1.5">
-                      Email *
-                    </label>
-                    <input
-                      id="donor-email"
-                      type="email"
-                      className="input-field"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value)}
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-5">
-                  <label htmlFor="donor-phone" className="font-comfortaa text-xs font-semibold text-text-primary block mb-1.5">
-                    Phone
-                  </label>
-                  <input
-                    id="donor-phone"
-                    type="tel"
-                    className="input-field"
-                    placeholder="+234"
-                    value={phone}
-                    onChange={(event) => setPhone(event.target.value)}
-                  />
-                </div>
-
-                {error && (
-                  <p className="font-comfortaa text-sm text-red-700 bg-red-50 border border-red-200 rounded-xl px-4 py-3 mb-5">
-                    {error}
-                  </p>
-                )}
-
-                <button type="submit" className="btn-primary w-full sm:w-auto gap-2" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 size={16} className="animate-spin" />
-                      Redirecting to Paystack
-                    </>
-                  ) : (
-                    <>
-                      Donate with Paystack
-                      <ArrowRight size={16} />
-                    </>
-                  )}
-                </button>
-
-                <p className="font-comfortaa text-xs text-text-secondary mt-4 flex items-center gap-2">
-                  <ShieldCheck size={15} className="text-forest-green" />
-                  Secure checkout is handled by Paystack.
-                </p>
-              </div>
-            </form>
-          ) : (
-            <div className="bg-neutral-bg rounded-xl border border-forest-green/20 p-5 sm:p-6">
-              <div className="w-12 h-12 rounded-full bg-forest-green/10 flex items-center justify-center mb-4">
-                <Heart size={24} className="text-forest-green" />
-              </div>
-              <h2 className="heading-md mb-2">
-                {method === 'bank-transfer' ? 'Donate by bank transfer.' : 'Make a tax free donation.'}
-              </h2>
-              <p className="font-garamond text-base text-text-secondary mb-5">
-                {method === 'bank-transfer'
-                  ? `Transfer any amount you wish to our ${currency.name} (${currency.symbol}) account below.`
-                  : `Prefer to make a tax free donation, contact us for details. You are welcome to give any amount you wish in ${currency.name}.`}
+          {sent && (
+            <div className="bg-forest-green/5 rounded-xl px-4 py-3 flex items-start gap-2.5">
+              <CheckCircle2 size={16} className="text-forest-green flex-shrink-0 mt-0.5" />
+              <p className="font-garamond text-sm text-forest-green leading-snug">
+                Thank you! We&apos;ve been notified of your transfer and will confirm it shortly.
               </p>
-
-              {method === 'bank-transfer' && (
-                <dl className="bg-white rounded-xl border border-border-color divide-y divide-border-color mb-5">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-5 py-4">
-                    <dt className="font-comfortaa text-xs font-semibold text-text-secondary uppercase tracking-wide sm:w-40 flex-shrink-0">
-                      Account Name
-                    </dt>
-                    <dd className="font-garamond text-lg text-text-primary">
-                      {BANK_DETAILS.accountName}
-                    </dd>
-                  </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-5 py-4">
-                    <dt className="font-comfortaa text-xs font-semibold text-text-secondary uppercase tracking-wide sm:w-40 flex-shrink-0">
-                      Bank Name
-                    </dt>
-                    <dd className="font-garamond text-lg text-text-primary">
-                      {BANK_DETAILS.bankName}
-                    </dd>
-                  </div>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 px-5 py-4">
-                    <dt className="font-comfortaa text-xs font-semibold text-text-secondary uppercase tracking-wide sm:w-40 flex-shrink-0">
-                      Account Number
-                    </dt>
-                    <dd className="font-garamond font-semibold text-lg text-forest-green tracking-wide">
-                      {currency.accountNumber}{' '}
-                      <span className="font-comfortaa text-xs text-text-secondary uppercase tracking-wide">
-                        {currency.symbol} {currency.name}
-                      </span>
-                    </dd>
-                  </div>
-                </dl>
-              )}
-
-              <Link href="/contact" className="btn-primary inline-flex gap-2">
-                Contact us
-                <ArrowRight size={16} />
-              </Link>
             </div>
           )}
-        </>
-      )}
 
-      {/* Alternative giving routes */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div className="p-5 rounded-xl border border-border-color">
-          <p className="font-garamond text-base text-text-primary">
-            Prefer to make a tax free donation, contact us for details.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 mt-3 font-comfortaa font-semibold text-sm text-forest-green hover:text-lime-green transition-colors"
-          >
-            Contact us
-            <ArrowRight size={14} />
-          </Link>
-        </div>
-        <div className="p-5 rounded-xl border border-border-color">
-          <p className="font-garamond text-base text-text-primary">
-            Prefer to donate by bank transfer? Select a currency above, then choose Bank transfer
-            for our account details.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 mt-3 font-comfortaa font-semibold text-sm text-forest-green hover:text-lime-green transition-colors"
-          >
-            Contact us
-            <ArrowRight size={14} />
-          </Link>
+          {showNotify && !sent && (
+            <div className="space-y-2.5">
+              <div className="flex items-center justify-between mb-1">
+                <p className="font-comfortaa text-xs font-semibold text-text-secondary uppercase tracking-wide">
+                  Notify us of your transfer
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowNotify(false)
+                    setError('')
+                  }}
+                  className="p-1 rounded-lg hover:bg-neutral-100 transition-colors text-text-secondary"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+
+              <input
+                type="text"
+                className="input-field text-sm"
+                placeholder="Your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <input
+                type="email"
+                className="input-field text-sm"
+                placeholder="Email address *"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  setError('')
+                }}
+                required
+              />
+              <input
+                type="text"
+                className="input-field text-sm"
+                placeholder={`Amount transferred (${currency.symbol})`}
+                value={transferAmount}
+                onChange={(e) => setTransferAmount(e.target.value)}
+              />
+              <textarea
+                className="input-field text-sm resize-none"
+                rows={2}
+                placeholder="Any additional message (optional)"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+
+              {error && (
+                <p className="font-comfortaa text-xs text-red-700 bg-red-50 border border-red-200 rounded-xl px-3 py-2">
+                  {error}
+                </p>
+              )}
+
+              <button
+                type="button"
+                onClick={handleNotify}
+                disabled={isSending}
+                className="w-full btn-primary justify-center gap-2 text-sm py-2.5"
+              >
+                {isSending ? (
+                  <>
+                    <Loader2 size={14} className="animate-spin" />
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    <Send size={14} />
+                    Send Notification
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </div>
+    </div>
+  )
+}
+
+/* ──────────────────────────── Main Export ──────────────────────────────────── */
+export default function DonationForm() {
+  return (
+    <div className="space-y-10">
+      {/* ── Section 1: Paystack ──────────────────────────────────────────── */}
+      <div>
+        <div className="text-center mb-6">
+          <h2 className="heading-lg mb-2">Donate Instantly</h2>
+          <p className="font-garamond text-lg text-text-secondary max-w-xl mx-auto">
+            Click the button below and pay securely with your card, bank account, USSD or mobile
+            money via Paystack.
+          </p>
+        </div>
+        <div className="max-w-lg mx-auto">
+          <PaystackSection />
+        </div>
+      </div>
+
+      {/* ── Divider ──────────────────────────────────────────────────────── */}
+      <div className="flex items-center gap-4">
+        <div className="flex-1 h-px bg-border-color" />
+        <span className="font-comfortaa text-xs font-semibold text-text-secondary uppercase tracking-wider">
+          Or transfer directly
+        </span>
+        <div className="flex-1 h-px bg-border-color" />
+      </div>
+
+      {/* ── Section 2: Bank Transfers ────────────────────────────────────── */}
+      <div>
+        <div className="text-center mb-6">
+          <h2 className="heading-lg mb-2">Bank Transfer</h2>
+          <p className="font-garamond text-lg text-text-secondary max-w-xl mx-auto">
+            Transfer directly to our {BANK_DETAILS.bankName} account in your preferred currency.
+            After transferring, click &quot;I Have Transferred&quot; to let us know.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {currencies.map((currency) => (
+            <TransferCard key={currency.code} currency={currency} />
+          ))}
+        </div>
+      </div>
+
     </div>
   )
 }
